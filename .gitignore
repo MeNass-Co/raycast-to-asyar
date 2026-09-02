@@ -1,0 +1,10 @@
+raycast-extensions/
+asyar/
+sdk/
+pkgs/
+v1/
+tool/
+shim/node_modules/
+shim/out/
+shim/tmp/
+shim/preview/out/

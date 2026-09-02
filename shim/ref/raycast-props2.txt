@@ -1,0 +1,729 @@
+ declare interface ListProps_2 extends ActionsInterface, NavigationChildInterface, SearchBarInterface, PaginationInterface {
+     actions?: ReactNode;
+     children?: ReactNode;
+     onSelectionChange?: (id: string | null) => void;
+     searchBarAccessory?: ReactElement<DropdownProps_2> | undefined | null;
+     searchText?: string;
+     enableFiltering?: boolean;
+     searchBarPlaceholder?: string;
+     selectedItemId?: string;
+     isShowingDetail?: boolean;
+ }
+
+declare interface ItemProps extends ActionsInterface {
+    id?: string;
+    title: string | {
+        value: string;
+        tooltip?: string | null;
+    };
+    subtitle?: string | {
+        value?: string | null;
+        tooltip?: string | null;
+    };
+    keywords?: string[];
+    icon?: Image.ImageLike | {
+        value: Image.ImageLike | undefined | null;
+        tooltip: string;
+    };
+    accessoryIcon?: Image.ImageLike;
+    accessoryTitle?: string;
+    accessories?: ItemAccessory[] | undefined | null;
+    actions?: ReactNode | null;
+    detail?: ReactNode;
+    quickLook?: {
+        name?: string | null;
+        path: PathLike;
+    };
+}
+
+declare type ItemAccessory = ({
+    text?: string | undefined | null | {
+        value: string | undefined | null;
+        color?: Color;
+    };
+}
+
+declare type ItemAccessory_2 = {
+    icon?: Image.ImageLike | undefined | null;
+    tooltip?: string | undefined | null;
+}
+
+ declare interface SectionProps {
+     children?: ReactNode;
+     title?: string;
+ }
+
+ declare interface SectionProps_2 {
+     children?: ReactNode;
+     id?: string;
+     title?: string;
+     subtitle?: string;
+ }
+
+ declare interface SectionProps_3 {
+     children?: ReactNode;
+     title?: string;
+     subtitle?: string;
+     columns?: number;
+     aspectRatio?: `${GridAspectRatio}`;
+     fit?: GridFit;
+     inset?: GridInset;
+ }
+
+ declare interface MetadataProps {
+     children: ReactNode;
+ }
+
+ declare interface TagListProps {
+     title: string;
+     children: ReactNode;
+ }
+
+ declare interface TagListItemProps {
+     icon?: Image.ImageLike | undefined | null;
+     text?: string;
+     color?: Color.ColorLike | undefined | null;
+     onAction?: () => void;
+ }
+
+ declare interface LinkProps {
+     title: string;
+     target: string;
+     text: string;
+ }
+
+ declare interface SeparatorProps {
+ }
+
+ declare interface SubmenuProps extends SearchBarInterface {
+     id?: string;
+     title: string;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+     children?: ReactNode;
+     onOpen?: () => void;
+     autoFocus?: boolean;
+ }
+
+ declare interface PushProps {
+     title: string;
+     target: ReactNode;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+     onPush?: () => void;
+     onPop?: () => void;
+ }
+
+ declare interface OpenProps {
+     target: string;
+     application?: Application | string;
+     title: string;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+     onOpen?: (target: string) => void;
+ }
+
+ declare interface PasteProps {
+     content: string | number | Clipboard.Content;
+     title?: string;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+     onPaste?: (content: string | number | Clipboard.Content) => void;
+ }
+
+ declare interface SubmitFormProps<T extends Form.Values> {
+     title?: string;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+     style?: Action.Style;
+     onSubmit?: (input: T) => void | boolean | Promise<void | boolean>;
+ }
+
+ declare interface OpenInBrowserProps {
+     url: string;
+     title?: string;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+     onOpen?: (url: string) => void;
+ }
+
+ declare interface ShowInFinderProps {
+     path: PathLike;
+     title?: string;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+     onShow?: (path: PathLike) => void;
+ }
+
+ declare interface TrashProps {
+     paths: PathLike | PathLike[];
+     title?: string;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+     onTrash?: (paths: PathLike | PathLike[]) => void;
+ }
+
+ declare interface ToggleQuickLookProps {
+     title?: string;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+ }
+
+ declare interface OpenWithProps {
+     path: string;
+     title?: string;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+     onOpen?: (path: string) => void;
+ }
+
+ declare interface PickDateProps {
+     title: string;
+     icon?: Image.ImageLike;
+     shortcut?: Keyboard.Shortcut;
+     onChange: (date: Date | null) => void;
+     type?: DatePickerType_2;
+     min?: Date;
+     max?: Date;
+ }
+
+export declare interface Image {
+    source: Image.Source;
+    fallback?: Image.Fallback | undefined | null;
+    mask?: Image.Mask | undefined | null;
+    tintColor?: Color.ColorLike | undefined | null;
+}
+
+export declare namespace Image {
+    export type URL = string;
+    export type Asset = string;
+    export type ImageLike = URL | Asset | Icon | FileIcon | Image;
+    export type Source = URL | Asset | Icon | {
+        light: URL | Asset;
+        dark: URL | Asset;
+    };
+    export type Fallback = Asset | Icon | {
+        light: Asset;
+        dark: Asset;
+    };
+    export enum Mask {
+        Circle = "circle",
+        RoundedRectangle = "roundedRectangle"
+    }
+}
+
+export declare interface FileIcon {
+    fileIcon: string;
+}
+
+ declare interface MenuBarExtraProps {
+     isLoading?: boolean;
+     title?: string;
+     tooltip?: string;
+     icon?: Image.ImageLike;
+     children?: ReactNode;
+ }
+
+ declare interface MenuBarExtraMembers {
+     Item: typeof Item_3;
+     Separator: typeof Separator_3;
+     Submenu: typeof Submenu_2;
+     Section: typeof Section_4;
+ }
+
+declare interface ItemProps_3 {
+    title: string;
+    subtitle?: string;
+    icon?: Image.ImageLike;
+    tooltip?: string;
+    onAction?: (event: ItemActionEvent) => void;
+    shortcut?: Keyboard.Shortcut;
+    alternate?: ReactElement<ItemProps_3>;
+}
+
+export declare namespace Alert {
+    export interface Options {
+        icon?: Image.ImageLike;
+        title: string;
+        message?: string;
+        primaryAction?: ActionOptions;
+        dismissAction?: ActionOptions;
+        rememberUserChoice?: boolean;
+    }
+    export interface ActionOptions {
+        title: string;
+        style?: ActionStyle;
+        onAction?: () => void;
+    }
+    const ActionStyle: typeof AlertActionStyle_2;
+    export type ActionStyle = AlertActionStyle_2;
+    export namespace ActionStyle {
+        export type Default = AlertActionStyle_2.Default;
+        export type Cancel = AlertActionStyle_2.Cancel;
+        export type Destructive = AlertActionStyle_2.Destructive;
+    }
+}
+
+export declare class Cache {
+    static get STORAGE_DIRECTORY_NAME(): string;
+    static get DEFAULT_CAPACITY(): number;
+    private directory;
+    private namespace?;
+    private capacity;
+    private journal;
+    private storage;
+    private subscribers;
+    constructor(options?: Cache.Options);
+    get storageDirectory(): string;
+    get(key: string): string | undefined;
+    has(key: string): boolean;
+    get isEmpty(): boolean;
+    set(key: string, data: string): void;
+    remove(key: string): boolean;
+    clear(options?: {
+        notifySubscribers: boolean;
+    }): void;
+    subscribe(subscriber: Cache.Subscriber): Cache.Subscription;
+    private maintainCapacity;
+    private notifySubscribers;
+}
+
+export declare namespace Cache {
+    export interface Options {
+        namespace?: string;
+        directory?: string;
+        capacity?: number;
+    }
+    export type Subscriber = (key: string | undefined, data: string | undefined) => void;
+    export type Subscription = () => void;
+}
+
+ export declare namespace LocalStorage {
+     export function allItems<T extends Values = Values>(): Promise<T>;
+     export function getItem<T extends Value = Value>(key: string): Promise<T | undefined>;
+     export function setItem(key: string, value: Value): Promise<void>;
+     export function removeItem(key: string): Promise<void>;
+     export function clear(): Promise<void>;
+     export type Value = string | number | boolean;
+     export interface Values {
+         [key: string]: any;
+     }
+ }
+
+export declare namespace Clipboard {
+    export function copy(content: string | number | Content, options?: CopyOptions): Promise<void>;
+    export function clear(): Promise<void>;
+    export function paste(content: string | number | Content): Promise<void>;
+    export function read(options?: {
+        offset?: number;
+    }): Promise<ReadContent>;
+    export function readText(options?: {
+        offset?: number;
+    }): Promise<string | undefined>;
+    export type ReadContent = {
+        text: string;
+        file?: string;
+        html?: string;
+    };
+    export type Content = {
+        text: string;
+    } | {
+        file: PathLike;
+    } | {
+        html: string;
+        text?: string;
+    };
+    export type CopyOptions = {
+        transient?: boolean;
+        concealed?: boolean;
+    };
+}
+
+ export declare class Toast {
+     private options;
+     private id;
+     private callbacks;
+     constructor(props: Toast.Options);
+     get style(): Toast.Style;
+     set style(style: Toast.Style);
+     get title(): string;
+     set title(title: string);
+     get message(): string | undefined;
+     set message(message: string | undefined);
+     get primaryAction(): Toast.ActionOptions | undefined;
+     set primaryAction(action: Toast.ActionOptions | undefined);
+     get secondaryAction(): Toast.ActionOptions | undefined;
+     set secondaryAction(action: Toast.ActionOptions | undefined);
+     show(): Promise<void>;
+     hide(): Promise<void>;
+     private update;
+ }
+
+ export declare namespace Toast {
+     export interface Options {
+         title: string;
+         message?: string;
+         style?: Style;
+         primaryAction?: ActionOptions;
+         secondaryAction?: ActionOptions;
+     }
+     export interface ActionOptions {
+         title: string;
+         shortcut?: Keyboard.Shortcut;
+         onAction: (toast: Toast) => void;
+     }
+     const Style: typeof ToastStyle_2;
+     export type Style = ToastStyle_2;
+     export namespace Style {
+         export type Success = ToastStyle_2.Success;
+         export type Failure = ToastStyle_2.Failure;
+         export type Animated = ToastStyle_2.Animated;
+     }
+ }
+
+export declare interface Application {
+    name: string;
+    localizedName?: string;
+    path: string;
+    bundleId?: string;
+    windowsAppId?: string;
+}
+
+ declare interface SearchBarInterface {
+     filtering?: boolean | {
+         keepSectionOrder: boolean;
+     };
+     isLoading?: boolean;
+     throttle?: boolean;
+     onSearchTextChange?: (text: string) => void;
+ }
+
+ declare interface NavigationChildInterface {
+     navigationTitle?: string;
+     isLoading?: boolean;
+ }
+
+ declare interface PaginationInterface {
+     pagination?: {
+         pageSize: number;
+         hasMore: boolean;
+         onLoadMore: () => void;
+     };
+ }
+
+declare interface GridProps extends ActionsInterface, NavigationChildInterface, SearchBarInterface, PaginationInterface {
+    actions?: ReactNode;
+    children?: ReactNode;
+    columns?: number;
+    itemSize?: Grid.ItemSize;
+    aspectRatio?: Grid.AspectRatio;
+    fit?: Grid.Fit;
+    inset?: Grid.Inset;
+    onSelectionChange?: (id: string | null) => void;
+    searchBarAccessory?: ReactElement<DropdownProps_2> | undefined | null;
+    searchText?: string;
+    enableFiltering?: boolean;
+    searchBarPlaceholder?: string;
+    selectedItemId?: string;
+}
+
+ declare interface LinkAccessoryProps {
+     target: string;
+     text: string;
+ }
+
+ declare interface TextFieldProps extends FormItemProps_2<string> {
+     placeholder?: string;
+ }
+
+ declare interface TextAreaProps extends FormItemProps_2<string> {
+     placeholder?: string;
+     enableMarkdown?: boolean;
+ }
+
+declare interface CheckboxProps extends FormItemProps_2<boolean> {
+    label: string;
+}
+
+ declare interface TagPickerProps extends FormItemProps_2<string[]> {
+     children?: ReactNode;
+     placeholder?: string;
+ }
+
+ declare interface TagPickerItemProps {
+     value: string;
+     title: string;
+     icon?: Image.ImageLike;
+ }
+
+ declare interface PasswordFieldProps extends FormItemProps_2<string> {
+     placeholder?: string;
+ }
+
+ declare interface Quicklink {
+     icon?: Icon;
+     link: string;
+     name?: string;
+     application?: string | Application;
+ }
+
+ declare interface Snippet {
+     text: string;
+     name?: string;
+     keyword?: string;
+ }
+
+ export declare type LaunchProps<T extends {
+     arguments?: Arguments;
+     draftValues?: Form.Values;
+     launchContext?: LaunchContext;
+ }
+
+declare type IntraExtensionLaunchOptions = {
+    name: string;
+    type: LaunchType;
+    arguments?: Arguments | null;
+    context?: LaunchContext | null;
+    fallbackText?: string | null;
+}
+
+declare type InterExtensionLaunchOptions = {
+    ownerOrAuthorName: string;
+    extensionName: string;
+    name: string;
+    type: LaunchType;
+    arguments?: Arguments | null;
+    context?: LaunchContext | null;
+    fallbackText?: string | null;
+}
+
+ export declare interface PreferenceValues {
+     [name: string]: any;
+ }
+
+ declare interface ListMembers {
+     EmptyView: typeof EmptyView;
+     Item: typeof Item;
+     Section: typeof Section_2;
+     Dropdown: typeof Dropdown_2;
+ }
+
+ export declare interface Navigation {
+     push: (component: ReactNode, onPop?: () => void) => void;
+     pop: () => void;
+ }
+
+export declare function confirmAlert(options: Alert.Options): Promise<boolean>;
+
+ export declare function showToast(options: Toast.Options): Promise<Toast>;
+
+ export declare function showToast(style: Toast.Style, title: string, message?: string): Promise<Toast>;
+
+ export declare function showHUD(title: string, options?: {
+     clearRootSearch?: boolean;
+     popToRootType?: PopToRootType;
+ }
+
+export declare function closeMainWindow(options?: {
+    clearRootSearch?: boolean;
+    popToRootType?: PopToRootType;
+}
+
+ export declare function popToRoot(options?: {
+     clearSearchBar?: boolean;
+ }
+
+ export declare function open(target: string, application?: Application | string): Promise<void>;
+
+ export declare function trash(path: PathLike | PathLike[]): Promise<void>;
+
+ export declare function showInFinder(path: PathLike): Promise<void>;
+
+export declare function getSelectedText(): Promise<string>;
+
+export declare function getSelectedFinderItems(): Promise<FileSystemItem[]>;
+
+export declare function getApplications(path?: PathLike): Promise<Application[]>;
+
+export declare function getFrontmostApplication(): Promise<Application>;
+
+ export declare function openExtensionPreferences(): Promise<void>;
+
+ export declare function openCommandPreferences(): Promise<void>;
+
+ export declare function useNavigation(): Navigation;
+
+export declare namespace BrowserExtension {
+    export function getContent(options?: {
+        format?: "html" | "text" | "markdown";
+        cssSelector?: string;
+        tabId?: number;
+    }): Promise<string>;
+    export interface Tab {
+        id: number;
+        url: string;
+        title?: string;
+        favicon?: string;
+        active: boolean;
+    }
+    export function getTabs(): Promise<Tab[]>;
+}
+
+ export declare namespace WindowManagement {
+     export enum DesktopType {
+         User = "User",
+         FullScreen = "FullScreen"
+     }
+     export type Window = {
+         id: string;
+         application?: Application;
+         bounds: {
+             position: {
+                 x: number;
+                 y: number;
+             };
+             size: {
+                 width: number;
+                 height: number;
+             };
+         } | "fullscreen";
+         desktopId: string;
+         fullScreenSettable: boolean;
+         resizable: boolean;
+         positionable: boolean;
+         active: boolean;
+     };
+     export type Desktop = {
+         size: {
+             width: number;
+             height: number;
+         };
+         id: string;
+         screenId: string;
+         active: boolean;
+         type: DesktopType;
+     };
+     export function getDesktops(): Promise<Desktop[]>;
+     export function getActiveWindow(): Promise<Window>;
+     export function getWindowsOnActiveDesktop(): Promise<Window[]>;
+     export function setWindowBounds(options: {
+         id: string;
+     } & ({
+         bounds: {
+             position?: {
+                 x?: number;
+                 y?: number;
+             };
+             size?: {
+                 width?: number;
+                 height?: number;
+             };
+         };
+         desktopId?: string;
+     } | {
+         bounds: "fullscreen";
+     })): Promise<void>;
+ }
+
+ export declare namespace OAuth {
+     const clientIdMetadataDocument = "https://www.raycast.com/.well-known/oauth-client-metadata/raycast.json";
+     export namespace PKCEClient {
+         export interface Options<TRedirectMethod extends RedirectMethod = RedirectMethod> {
+             redirectMethod: TRedirectMethod;
+             providerName: string;
+             providerIcon?: Image.ImageLike;
+             providerId?: string;
+             description?: string;
+         }
+     }
+     export class PKCEClient<TRedirectMethod extends RedirectMethod = RedirectMethod> {
+         redirectMethod: TRedirectMethod;
+         providerName: string;
+         providerIcon?: Image.ImageLike;
+         providerId: string;
+         description?: string;
+         private resolvesOnRedirect?;
+         private isAuthorizing;
+         constructor(options: PKCEClient.Options<TRedirectMethod>);
+         authorizationRequest(this: PKCEClient<RedirectMethod.ClientIdMetadataDocument>, options: ClientIdMetadataDocumentAuthorizationRequestOptions): Promise<AuthorizationRequest>;
+         authorizationRequest(options: AuthorizationRequestOptions): Promise<AuthorizationRequest>;
+         private resolveClientId;
+         authorize(options: AuthorizationRequest | AuthorizationOptions): Promise<AuthorizationResponse>;
+         private authorizationURL;
+         setTokens(options: TokenSetOptions | TokenResponse): Promise<void>;
+         getTokens(): Promise<TokenSet | undefined>;
+         removeTokens(): Promise<void>;
+     }
+     export enum RedirectMethod {
+         Web = "web",
+         App = "app",
+         AppURI = "appURI",
+         ClientIdMetadataDocument = "clientIdMetadataDocument"
+     }
+     export interface AuthorizationRequestOptions {
+         endpoint: string;
+         clientId: string;
+         scope: string;
+         extraParameters?: {
+             [key: string]: string;
+         };
+     }
+     export interface ClientIdMetadataDocumentAuthorizationRequestOptions extends Omit<AuthorizationRequestOptions, "clientId"> {
+         clientId?: string;
+     }
+     export interface AuthorizationRequestURLParams {
+         clientId?: string;
+         codeChallenge: string;
+         codeVerifier: string;
+         state: string;
+         redirectURI: string;
+     }
+     export interface AuthorizationRequest extends AuthorizationRequestURLParams {
+         clientId: string;
+         toURL(): string;
+     }
+     export interface AuthorizationOptions {
+         url: string;
+     }
+     export interface AuthorizationResponse {
+         authorizationCode: string;
+     }
+     export interface TokenSet {
+         accessToken: string;
+         refreshToken?: string;
+         idToken?: string;
+         expiresIn?: number;
+         scope?: string;
+         updatedAt: Date;
+         isExpired(): boolean;
+     }
+     export interface TokenSetOptions {
+         accessToken: string;
+         refreshToken?: string;
+         idToken?: string;
+         expiresIn?: number;
+         scope?: string | string[];
+     }
+     export interface TokenResponse {
+         access_token: string;
+         refresh_token?: string;
+         id_token?: string;
+         expires_in?: number;
+         scope?: string | string[];
+     }
+ }
+
+declare interface DetailMembers {
+    Metadata: typeof Metadata;
+}
+
+ declare interface MetadataMembers {
+     Label: typeof Label;
+     Separator: typeof Separator_2;
+     Link: typeof Link;
+     TagList: typeof TagList;
+ }
+
+ declare interface TagListMembers {
+     Item: typeof TagListItem;
+ }

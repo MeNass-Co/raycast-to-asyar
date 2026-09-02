@@ -1,0 +1,46 @@
+// ImageLike → <img>/<svg>/emoji element.
+import React from 'react';
+import { RAYCAST_ICONS } from './icons';
+
+export const COLORS: Record<string, string> = {
+  'raycast-blue': '#0A84FF', 'raycast-green': '#30D158', 'raycast-magenta': '#FF375F', 'raycast-orange': '#FF9F0A',
+  'raycast-purple': '#BF5AF2', 'raycast-red': '#FF453A', 'raycast-yellow': '#FFD60A',
+  'raycast-primary-text': 'var(--text-primary)', 'raycast-secondary-text': 'var(--text-secondary)',
+};
+export function colorOf(c: unknown, appearance: 'light' | 'dark' = 'dark'): string | undefined {
+  if (!c) return undefined;
+  if (typeof c === 'string') return COLORS[c] ?? c;
+  if (typeof c === 'object') { const d = c as { light?: string; dark?: string }; return appearance === 'light' ? d.light : d.dark; }
+  return undefined;
+}
+
+let extensionId = '';
+export const setImageContext = (id: string) => { extensionId = id; };
+const isEmoji = (s: string) => /^\p{Extended_Pictographic}/u.test(s) && s.length <= 8;
+
+function sourceUrl(src: unknown): string | undefined {
+  if (typeof src !== 'string') { const d = src as { light?: string; dark?: string } | undefined; return d ? sourceUrl(d.dark ?? d.light) : undefined; }
+  if (/^(https?:|data:|asyar-)/.test(src)) return src;
+  if (src.startsWith('/')) return `asyar-icon://localhost/${src.replace(/\//g, '_')}.png`;
+  if (src.endsWith('-16') && RAYCAST_ICONS[src]) return undefined;
+  return `asyar-extension://${extensionId}/assets/${src}`;
+}
+
+export function Img({ value, size = 16, className = '', tint }: { value: unknown; size?: number; className?: string; tint?: string }) {
+  if (value === undefined || value === null || value === false) return null;
+  const v = value as string | { source?: unknown; mask?: string; tintColor?: unknown; fileIcon?: string; value?: unknown; tooltip?: string };
+  if (typeof v === 'object' && 'value' in v && v.value !== undefined && !('source' in v)) return <span title={v.tooltip}><Img value={v.value} size={size} className={className} tint={tint} /></span>;
+  const style: React.CSSProperties = { width: size, height: size };
+  if (typeof v === 'object' && v.fileIcon) return <img className={`rc-img ${className}`} style={style} src={`asyar-icon://localhost/${v.fileIcon.replace(/\//g, '_')}.png`} alt="" onError={hideOnError} />;
+  const source = typeof v === 'string' ? v : v.source;
+  const mask = typeof v === 'object' ? v.mask : undefined;
+  const color = tint ?? colorOf(typeof v === 'object' ? v.tintColor : undefined);
+  if (typeof source === 'string' && RAYCAST_ICONS[source]) {
+    return <span className={`rc-icon ${className}`} style={{ ...style, color }} dangerouslySetInnerHTML={{ __html: RAYCAST_ICONS[source] }} />;
+  }
+  if (typeof source === 'string' && isEmoji(source)) return <span className={`rc-emoji ${className}`} style={{ fontSize: size * 0.85, width: size, height: size }}>{source}</span>;
+  const url = sourceUrl(source);
+  if (!url) return null;
+  return <img className={`rc-img ${className} ${mask === 'circle' ? 'rc-mask-circle' : mask === 'roundedRectangle' ? 'rc-mask-rounded' : ''}`} style={style} src={url} alt="" onError={hideOnError} />;
+}
+const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden'; };
