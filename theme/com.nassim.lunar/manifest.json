@@ -1,0 +1,14 @@
+{
+  "id": "com.nassim.lunar",
+  "name": "Lunar",
+  "version": "1.0.0",
+  "description": "Lunar: cool near-black surfaces, silver text, one Instrument Cyan accent, moonlight glow. Raycast metrics (Inter, JetBrains Mono, 40 pt rows) kept.",
+  "author": "Nassim Lecornet",
+  "type": "theme",
+  "icon": "icon:moon",
+  "asyarSdk": "^4.10.0",
+  "platforms": [
+    "macos"
+  ],
+  "commands": []
+}
