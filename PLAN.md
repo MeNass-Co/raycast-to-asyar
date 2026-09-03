@@ -90,3 +90,11 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
   DeepSeek provider maxTokens 1000000 → 8192 (API rejects >393216).
 - Known: Mail.app AppleEvents time out on this Mac (-1712) even from plain osascript → mail
   views show empty; mail tools (search-emails via Envelope Index + ripgrep) work. Not a shim bug.
+
+- 10:50 (03/09) Theme `com.nassim.raycast` live (measured colours, Inter). View CSS on Raycast metrics.
+  Raycast ActionPanel mirrored into Asyar's native ⌘K drawer (registerAction, extension_view).
+  Mail views render (TCC "control Mail" consent accepted). Form dropdown default fixed.
+  DeepSeek maxTokens → 393216 (API ceiling; context 1M). Store: full tarball downloading to
+  store/ (git sparse checkout abandoned: 6 GB objects in 42 min); runner store-convert.mjs,
+  triage store-triage.mjs, agent brief campaign/AGENT-BRIEF.md. npm registry is slow from here
+  (TLS 4-8 s): converter now installs only non-@raycast deps with a shared cache.
