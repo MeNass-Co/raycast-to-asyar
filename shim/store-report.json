@@ -1,0 +1,72 @@
+{
+ "startedAt": "2026-09-03T08:18:10.927Z",
+ "results": {
+  "messages": {
+   "id": "raycast.thomaslombart.messages",
+   "status": "ok",
+   "ms": 1592,
+   "code": 0,
+   "commands": 5,
+   "tools": 4,
+   "sizes": {
+    "sidecar.cjs": 3233127,
+    "view.js": 1101085,
+    "worker.js": 192433
+   },
+   "errors": [],
+   "deps": [
+    "date-fns"
+   ]
+  },
+  "mail": {
+   "id": "raycast.yug2005.mail",
+   "status": "ok",
+   "ms": 2433,
+   "code": 0,
+   "commands": 11,
+   "tools": 7,
+   "sizes": {
+    "sidecar.cjs": 23881774,
+    "view.js": 1103224,
+    "worker.js": 194572
+   },
+   "errors": [],
+   "deps": [
+    "execa",
+    "got",
+    "javascript-time-ago",
+    "json2md",
+    "juice",
+    "mailparser",
+    "mime-types",
+    "plist",
+    "string-strip-html",
+    "turndown",
+    "utf8"
+   ]
+  },
+  "apple-notes": {
+   "id": "raycast.raycast.applenotes",
+   "status": "fail",
+   "ms": 228644,
+   "code": 1,
+   "commands": 0,
+   "tools": 0,
+   "sizes": {},
+   "errors": [
+    "const err = new Error(message);",
+    "Error: Command failed: npm install --ignore-scripts --no-audit --no-fund --silent",
+    "at genericNodeError (node:internal/errors:999:15)",
+    "at wrappedFn (node:internal/errors:544:14)",
+    "at checkExecSyncError (node:child_process:942:11)",
+    "stderr: null"
+   ],
+   "deps": [
+    "date-fns",
+    "node-html-markdown",
+    "pinyin-pro"
+   ]
+  }
+ },
+ "finishedAt": "2026-09-03T08:21:59.573Z"
+}

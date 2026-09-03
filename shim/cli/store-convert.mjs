@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const SHIM = path.resolve(here, '..');
-const STORE = path.resolve(SHIM, '..', 'raycast-extensions', 'extensions');
+const STORE = process.env.RC_STORE ?? path.resolve(SHIM, '..', 'store', 'extensions');
 const OUT = path.join(SHIM, 'out');
 const REPORT = path.join(SHIM, 'store-report.json');
 const args = process.argv.slice(2);

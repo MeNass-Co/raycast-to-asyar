@@ -160,3 +160,8 @@ export const MenuBarExtra = Object.assign(MenuBarExtraFn, {
   Section: (p: AnyProps) => host('MenuBarExtra.Section', p, {}, p.children),
   Submenu: (p: AnyProps) => host('MenuBarExtra.Submenu', p, {}, p.children),
 });
+
+// Legacy flat aliases (older extensions import these directly).
+export const FormTextField = Form.TextField, FormTextArea = Form.TextArea, FormCheckbox = Form.Checkbox, FormDatePicker = Form.DatePicker,
+  FormDropdown = Form.Dropdown, FormDropdownItem = Form.Dropdown.Item, FormDropdownSection = Form.Dropdown.Section,
+  FormSeparator = Form.Separator, FormTagPicker = Form.TagPicker, FormTagPickerItem = Form.TagPicker.Item;

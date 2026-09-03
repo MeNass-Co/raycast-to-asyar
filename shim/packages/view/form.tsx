@@ -62,7 +62,9 @@ export const FormView = forwardRef<FormHandle, { root: RNode; invoke: Invoke; dr
             for (const c of realChildren(f)) { if (c.type === 'Form.Dropdown.Section') for (const it of realChildren(c)) opts.push({ value: String(it.props.value), title: String(it.props.title), icon: it.props.icon, section: c.props.title as string }); else if (c.type === 'Form.Dropdown.Item') opts.push({ value: String(c.props.value), title: String(c.props.title), icon: c.props.icon }); }
             const cur = String(get(f) ?? '');
             const curOpt = opts.find((o) => o.value === cur);
-            return wrap(<span className="rc-select-wrap">{curOpt?.icon ? <Img value={curOpt.icon} size={16} className="rc-select-icon" /> : null}<select ref={reg as never} id={'f-' + id} className="rc-input rc-select" value={cur} onChange={(e) => set(f, e.target.value)} onFocus={onFocus} onBlur={onBlur}>{!curOpt ? <option value="">{String(f.props.placeholder ?? '')}</option> : null}{groupOptions(opts)}</select></span>);
+            const shown = curOpt ?? (cur === '' ? opts[0] : undefined);
+            if (!curOpt && shown && f.props.value === undefined) queueMicrotask(() => set(f, shown.value));
+            return wrap(<span className="rc-select-wrap">{shown?.icon ? <Img value={shown.icon} size={16} className="rc-select-icon" /> : null}<select ref={reg as never} id={'f-' + id} className="rc-input rc-select" value={shown?.value ?? ''} onChange={(e) => set(f, e.target.value)} onFocus={onFocus} onBlur={onBlur}>{!shown ? <option value="">{String(f.props.placeholder ?? '')}</option> : null}{groupOptions(opts)}</select></span>);
           }
           case 'Form.TagPicker': {
             const items = realChildren(f).filter((c) => c.type === 'Form.TagPicker.Item');

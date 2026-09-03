@@ -145,10 +145,20 @@ function swiftFunctionNames(pkgDir) {
 }
 function* walk(dir) { if (!fs.existsSync(dir)) return; for (const e of fs.readdirSync(dir, { withFileTypes: true })) { const p = path.join(dir, e.name); if (e.isDirectory()) { if (e.name !== 'node_modules' && e.name !== '.build') yield* walk(p); } else yield p; } }
 
-// Make sure the extension's own deps are installed (for the sidecar bundle).
+// Make sure the extension's own deps are installed (for the sidecar bundle). `@raycast/*` packages are
+// never installed: the shim aliases `@raycast/api`, and `@raycast/utils` resolves from the shim's own
+// node_modules. Skipping them cuts the install to the extension's real runtime deps.
 if (!fs.existsSync(path.join(srcDir, 'node_modules'))) {
-  log('npm install (extension deps)');
-  execFileSync('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', '--silent'], { cwd: srcDir, stdio: 'inherit' });
+  const realDeps = Object.entries(pkg.dependencies ?? {}).filter(([k]) => !k.startsWith('@raycast/'));
+  if (realDeps.length) {
+    log(`npm install (${realDeps.length} deps)`);
+    const tmpPkg = path.join(srcDir, 'package.json');
+    const backup = fs.readFileSync(tmpPkg, 'utf8');
+    try {
+      fs.writeFileSync(tmpPkg, JSON.stringify({ name: pkg.name, private: true, dependencies: Object.fromEntries(realDeps) }));
+      execFileSync('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', '--silent', '--prefer-offline', '--no-package-lock'], { cwd: srcDir, stdio: 'inherit', env: { ...process.env, npm_config_cache: path.join(os.homedir(), '.npm-rc2asyar') } });
+    } finally { fs.writeFileSync(tmpPkg, backup); }
+  }
 }
 
 const commandEntries = {};
@@ -205,8 +215,10 @@ const html = (title, js, css) => `<!DOCTYPE html>\n<html lang="en"><head><meta c
 fs.writeFileSync(path.join(outDir, 'view.html'), html(manifest.name, 'view.js', fs.existsSync(path.join(outDir, 'view.css')) ? 'view.css' : ''));
 if (hasBg) fs.writeFileSync(path.join(outDir, 'worker.html'), html(manifest.name + ' (worker)', 'worker.js', ''));
 
-// assets
+// assets (+ the Raycast package.json: @raycast/utils reads `<assetsPath>/../package.json` for owner/name)
+fs.mkdirSync(path.join(outDir, 'assets'), { recursive: true });
 if (fs.existsSync(path.join(srcDir, 'assets'))) fs.cpSync(path.join(srcDir, 'assets'), path.join(outDir, 'assets'), { recursive: true });
+fs.writeFileSync(path.join(outDir, 'package.json'), JSON.stringify({ name: pkg.name, title: pkg.title, owner: pkg.owner, author: pkg.author, commands: pkg.commands, preferences: pkg.preferences, tools: pkg.tools }, null, 1));
 // keep the Python MCP server if the source ships one (v1 compat)
 if (pkg.ai?.instructions) fs.writeFileSync(path.join(outDir, 'agent-instructions.md'), String(pkg.ai.instructions));
 fs.writeFileSync(path.join(outDir, 'rc2asyar.json'), JSON.stringify({ source: srcDir, raycastName: pkg.name, builtAt: new Date().toISOString(), swiftBins: [...swiftBins] }, null, 2));

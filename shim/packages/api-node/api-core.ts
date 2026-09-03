@@ -8,6 +8,8 @@ import enums from './enums.json' with { type: 'json' };
 
 const APP_DATA = path.join(os.homedir(), 'Library/Application Support/org.asyar.app');
 export const shimRoot = () => path.join(APP_DATA, 'raycast-shim', runtime.extensionId);
+/** Installed extension directory (assets/, package.json, bin/). */
+export const extensionDir = () => (globalThis as Record<string, unknown>).__rcExtensionDir as string | undefined ?? path.join(APP_DATA, 'extensions', runtime.extensionId);
 const ensure = (p: string) => { fs.mkdirSync(p, { recursive: true }); return p; };
 
 // ── enums ───────────────────────────────────────────────────────────────
@@ -31,7 +33,7 @@ export const environment = {
   get entryPointMode() { return runtime.currentCommand?.mode ?? 'view'; },
   get commandName() { return runtime.currentCommand?.id ?? ''; },
   get commandMode() { return runtime.currentCommand?.mode ?? 'view'; },
-  get assetsPath() { return path.join(shimRoot(), 'assets'); },
+  get assetsPath() { return path.join(extensionDir(), 'assets'); },
   get supportPath() { return ensure(path.join(shimRoot(), 'support')); },
   get isDevelopment() { return false; },
   get appearance() { return runtime.appearance; },
@@ -180,7 +182,9 @@ export const LocalStorage = {
   async removeItem(k: string) { const o = lsRead(); delete o[k]; lsWrite(o); },
   async clear() { lsWrite({}); },
 };
-export const getLocalStorageItem = LocalStorage.getItem, setLocalStorageItem = LocalStorage.setItem, removeLocalStorageItem = LocalStorage.removeItem, clearLocalStorage = LocalStorage.clear, allLocalStorageItems = LocalStorage.allItems;
+export const getLocalStorageItem = LocalStorage.getItem, setLocalStorageItem = LocalStorage.setItem, removeLocalStorageItem = LocalStorage.removeItem;
+export const clearLocalStorage = LocalStorage.clear;
+export const allLocalStorageItems = LocalStorage.allItems;
 
 // ── Cache (synchronous, file-backed, LRU by capacity) ───────────────────
 export class Cache {
