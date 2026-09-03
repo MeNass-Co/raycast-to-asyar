@@ -166,7 +166,7 @@ if (!fs.existsSync(path.join(srcDir, 'node_modules'))) {
     const specs = ts.preProcessFile(fs.readFileSync(f, 'utf8'), true, true).importedFiles.map((i) => [null, i.fileName]);
     for (const m of specs) {
       if (!m[1] || m[1].startsWith('.') || m[1].startsWith('/')) continue;
-      const spec = m[1]; if (spec.startsWith('node:') || spec.startsWith('swift:')) continue;
+      const spec = m[1]; if (/^(node|swift|rust|bun|data|https?):/.test(spec)) continue;
       const name = spec.startsWith('@') ? spec.split('/').slice(0, 2).join('/') : spec.split('/')[0];
       if (tsPaths.some(({ re }) => re.test(spec))) continue;
       if (!name.startsWith('@raycast/') && !declared.has(name) && !builtin.has(name)) undeclared.add(name);
