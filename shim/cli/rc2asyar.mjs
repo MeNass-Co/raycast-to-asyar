@@ -299,6 +299,9 @@ if (hasBg) fs.writeFileSync(path.join(outDir, 'worker.html'), html(manifest.name
 // assets (+ the Raycast package.json: @raycast/utils reads `<assetsPath>/../package.json` for owner/name)
 fs.mkdirSync(path.join(outDir, 'assets'), { recursive: true });
 if (fs.existsSync(path.join(srcDir, 'assets'))) fs.cpSync(path.join(srcDir, 'assets'), path.join(outDir, 'assets'), { recursive: true });
+// The launcher's WKWebView shows an empty box for PNGs without colour metadata (most Raycast icons);
+// rewrite every asset PNG with an sRGB profile so command tiles render.
+try { execFileSync(path.join(SHIM, '..', 'tools', 'normalize-png.sh'), [path.join(outDir, 'assets')], { stdio: 'ignore' }); } catch {}
 fs.writeFileSync(path.join(outDir, 'package.json'), JSON.stringify({ name: pkg.name, title: pkg.title, owner: pkg.owner, author: pkg.author, commands: pkg.commands, preferences: pkg.preferences, tools: pkg.tools }, null, 1));
 // keep the Python MCP server if the source ships one (v1 compat)
 if (pkg.ai?.instructions) fs.writeFileSync(path.join(outDir, 'agent-instructions.md'), String(pkg.ai.instructions));
