@@ -31126,6 +31126,2512 @@
     "gray-matter",
     "open"
    ]
+  },
+  "obsidian-smart-capture": {
+   "id": "raycast.millingabani.obsidiansmartcapture",
+   "status": "ok",
+   "ms": 1330,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 5011557,
+    "view.js": 1095175,
+    "worker.js": 186345
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch",
+    "node-html-markdown",
+    "node-html-parser",
+    "yaml",
+    "youtube-transcript"
+   ]
+  },
+  "obsidian-tasks": {
+   "id": "raycast.ozencb.obsidiantasks",
+   "status": "ok",
+   "ms": 3314,
+   "code": 0,
+   "commands": 6,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2793885,
+    "view.js": 1098173,
+    "worker.js": 189343
+   },
+   "errors": [],
+   "deps": [
+    "chrono-node",
+    "date-fns",
+    "fs-extra",
+    "gray-matter"
+   ]
+  },
+  "oci": {
+   "id": "raycast.xmok.oci",
+   "status": "ok",
+   "ms": 36547,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 14065051,
+    "view.js": 1096400,
+    "worker.js": 187570
+   },
+   "errors": [],
+   "deps": [
+    "filesize",
+    "oci-sdk"
+   ]
+  },
+  "octoprint": {
+   "id": "raycast.msarheed.octoprint",
+   "status": "ok",
+   "ms": 4556,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2716557,
+    "view.js": 1096294,
+    "worker.js": 187464
+   },
+   "errors": [],
+   "deps": [
+    "date-fns"
+   ]
+  },
+  "octopus-energy": {
+   "id": "raycast.mike182uk.octopusenergy",
+   "status": "ok",
+   "ms": 2855,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3288247,
+    "view.js": 1096245,
+    "worker.js": 187415
+   },
+   "errors": [],
+   "deps": [
+    "date-fns",
+    "node-fetch"
+   ]
+  },
+  "odesli": {
+   "id": "raycast.annedouwe.odesli",
+   "status": "ok",
+   "ms": 589,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1583764,
+    "view.js": 1095534,
+    "worker.js": 186704
+   },
+   "errors": [],
+   "deps": []
+  },
+  "odin": {
+   "id": "raycast.aamoussa97.odin",
+   "status": "ok",
+   "ms": 1923,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 10946564,
+    "view.js": 1095239,
+    "worker.js": 186409
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "cheerio",
+    "moment"
+   ]
+  },
+  "odoo-companion": {
+   "id": "raycast.taewenn.odoocompanion",
+   "status": "ok",
+   "ms": 587,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1949658,
+    "view.js": 1096066,
+    "worker.js": 187236
+   },
+   "errors": [],
+   "deps": []
+  },
+  "office-quotes": {
+   "id": "raycast.braydoncoyer.officequotes",
+   "status": "ok",
+   "ms": 603,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1725462,
+    "view.js": 1095163,
+    "worker.js": 186333
+   },
+   "errors": [],
+   "deps": []
+  },
+  "office2pdf": {
+   "id": "raycast.arui.office2pdf",
+   "status": "ok",
+   "ms": 1411,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3307846,
+    "view.js": 1095868,
+    "worker.js": 187038
+   },
+   "errors": [],
+   "deps": [
+    "cloudconvert",
+    "mime-types"
+   ]
+  },
+  "oh-shoot": {
+   "id": "raycast.nicopergande.ohshoot",
+   "status": "ok",
+   "ms": 3078,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1588863,
+    "view.js": 1095209,
+    "worker.js": 186379
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ohdear": {
+   "id": "raycast.ohdear.ohdear",
+   "status": "ok",
+   "ms": 1304,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3039841,
+    "view.js": 1096919,
+    "worker.js": 188089
+   },
+   "errors": [],
+   "deps": [
+    "dayjs",
+    "node-fetch"
+   ]
+  },
+  "ohmyzsh-git-alias": {
+   "id": "raycast.yufeikang.ohmyzshgitalias",
+   "status": "ok",
+   "ms": 597,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1591364,
+    "view.js": 1095052,
+    "worker.js": 186222
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ohmyzsh-plugins": {
+   "id": "raycast.k8scat.ohmyzshplugins",
+   "status": "ok",
+   "ms": 1164,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3256352,
+    "view.js": 1095016,
+    "worker.js": 186186
+   },
+   "errors": [],
+   "deps": [
+    "axios"
+   ]
+  },
+  "ok-json": {
+   "id": "raycast.anybox.okjson",
+   "status": "ok",
+   "ms": 1013,
+   "code": 0,
+   "commands": 7,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1795992,
+    "view.js": 1096665,
+    "worker.js": 187835
+   },
+   "errors": [],
+   "deps": [
+    "osascript-tag",
+    "run-applescript"
+   ]
+  },
+  "oklch-color-converter": {
+   "id": "raycast.strongeron.oklchcolorconverter",
+   "status": "ok",
+   "ms": 1193,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2042206,
+    "view.js": 1095174,
+    "worker.js": 186344
+   },
+   "errors": [],
+   "deps": [
+    "culori"
+   ]
+  },
+  "okta-app-manager": {
+   "id": "raycast.tigeredgar.oktaappmanager",
+   "status": "ok",
+   "ms": 643,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1658820,
+    "view.js": 1095983,
+    "worker.js": 187153
+   },
+   "errors": [],
+   "deps": []
+  },
+  "oktasearch": {
+   "id": "raycast.damianzachwieja.oktasearch",
+   "status": "ok",
+   "ms": 1786,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3363268,
+    "view.js": 1095548,
+    "worker.js": 186718
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "node-fetch",
+    "ray"
+   ]
+  },
+  "olacv": {
+   "id": "raycast.xmok.olacv",
+   "status": "ok",
+   "ms": 653,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2008926,
+    "view.js": 1095427,
+    "worker.js": 186597
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ollama-mind-map-generator": {
+   "id": "raycast.vojay.ollamamindmapgenerator",
+   "status": "ok",
+   "ms": 4257,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 13068331,
+    "view.js": 1095649,
+    "worker.js": 186819
+   },
+   "errors": [],
+   "deps": [
+    "fs-extra",
+    "markmap-lib",
+    "node-fetch"
+   ]
+  },
+  "olympic-games": {
+   "id": "raycast.elonwoo.olympicgames",
+   "status": "ok",
+   "ms": 590,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1609322,
+    "view.js": 1095047,
+    "worker.js": 186217
+   },
+   "errors": [],
+   "deps": []
+  },
+  "omg-lol": {
+   "id": "raycast.danpalmer.omglol",
+   "status": "ok",
+   "ms": 1548,
+   "code": 0,
+   "commands": 7,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4868507,
+    "view.js": 1097079,
+    "worker.js": 188249
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch",
+    "unicode-emoji"
+   ]
+  },
+  "omni-news": {
+   "id": "raycast.macraycast.omninews",
+   "status": "ok",
+   "ms": 1026,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2525409,
+    "view.js": 1095317,
+    "worker.js": 186487
+   },
+   "errors": [],
+   "deps": [
+    "json2md",
+    "node-fetch"
+   ]
+  },
+  "omnifocus": {
+   "id": "raycast.nicolasmarien.omnifocus",
+   "status": "ok",
+   "ms": 548,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2081150,
+    "view.js": 1096601,
+    "worker.js": 187771
+   },
+   "errors": [],
+   "deps": []
+  },
+  "omnivore": {
+   "id": "raycast.karolusd.omnivore",
+   "status": "ok",
+   "ms": 1044,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2919855,
+    "view.js": 1095711,
+    "worker.js": 186881
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch",
+    "uuid"
+   ]
+  },
+  "onbo": {
+   "id": "raycast.soradotwav.onbo",
+   "status": "ok",
+   "ms": 549,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2151276,
+    "view.js": 1096803,
+    "worker.js": 187973
+   },
+   "errors": [],
+   "deps": []
+  },
+  "one-tab-group": {
+   "id": "raycast.xiaoluoboding.onetabgroup",
+   "status": "ok",
+   "ms": 1205,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3424537,
+    "view.js": 1095315,
+    "worker.js": 186485
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "dayjs"
+   ]
+  },
+  "one-thing": {
+   "id": "raycast.pernielsentikaer.onething",
+   "status": "ok",
+   "ms": 1969,
+   "code": 0,
+   "commands": 3,
+   "tools": 2,
+   "sizes": {
+    "sidecar.cjs": 1566803,
+    "view.js": 1096272,
+    "worker.js": 187442
+   },
+   "errors": [],
+   "deps": []
+  },
+  "one-time-password": {
+   "id": "raycast.lachero.onetimepassword",
+   "status": "ok",
+   "ms": 2867,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 10311971,
+    "view.js": 1095906,
+    "worker.js": 187076
+   },
+   "errors": [],
+   "deps": [
+    "hi-base32",
+    "jimp",
+    "jsqr",
+    "otpauth",
+    "protobufjs",
+    "zod"
+   ]
+  },
+  "one-time-secret": {
+   "id": "raycast.larsasolidor.onetimesecret",
+   "status": "ok",
+   "ms": 1156,
+   "code": 0,
+   "commands": 3,
+   "tools": 1,
+   "sizes": {
+    "sidecar.cjs": 1623824,
+    "view.js": 1098698,
+    "worker.js": 189868
+   },
+   "errors": [],
+   "deps": []
+  },
+  "onecal-unified-calendar": {
+   "id": "raycast.keito4.onecalunifiedcalendar",
+   "status": "ok",
+   "ms": 2436,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4504207,
+    "view.js": 1096182,
+    "worker.js": 187352
+   },
+   "errors": [],
+   "deps": [
+    "@modelcontextprotocol/sdk"
+   ]
+  },
+  "oneko": {
+   "id": "raycast.miklw.oneko",
+   "status": "ok",
+   "ms": 573,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1964269,
+    "view.js": 1095669,
+    "worker.js": 186839
+   },
+   "errors": [],
+   "deps": []
+  },
+  "onelook-thesaurus": {
+   "id": "raycast.felipecortez.onelookthesaurus",
+   "status": "ok",
+   "ms": 534,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1958875,
+    "view.js": 1095242,
+    "worker.js": 186412
+   },
+   "errors": [],
+   "deps": []
+  },
+  "onenote": {
+   "id": "raycast.alewandowski.onenote",
+   "status": "ok",
+   "ms": 1103,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2448800,
+    "view.js": 1095064,
+    "worker.js": 186234
+   },
+   "errors": [],
+   "deps": [
+    "dateformat",
+    "file-url",
+    "run-applescript",
+    "sql.js"
+   ]
+  },
+  "ones": {
+   "id": "raycast.k8scat.ones",
+   "status": "ok",
+   "ms": 1335,
+   "code": 0,
+   "commands": 8,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4003419,
+    "view.js": 1098397,
+    "worker.js": 189567
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "moment"
+   ]
+  },
+  "open-camera-menu-bar": {
+   "id": "raycast.peduarte.opencameramenubar",
+   "status": "ok",
+   "ms": 552,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1541712,
+    "view.js": 1095117,
+    "worker.js": 186287
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-docker": {
+   "id": "raycast.k4lok.opendocker",
+   "status": "ok",
+   "ms": 615,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1911408,
+    "view.js": 1095143,
+    "worker.js": 186313
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-folders": {
+   "id": "raycast.timothyboye.openfolders",
+   "status": "ok",
+   "ms": 684,
+   "code": 0,
+   "commands": 11,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1603043,
+    "view.js": 1101955,
+    "worker.js": 193125
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-gem-documentation": {
+   "id": "raycast.remofritzsche.opengemdocumentation",
+   "status": "ok",
+   "ms": 617,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1958952,
+    "view.js": 1096191,
+    "worker.js": 187361
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-graph": {
+   "id": "raycast.weiho.opengraph",
+   "status": "ok",
+   "ms": 1545,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3432853,
+    "view.js": 1095507,
+    "worker.js": 186677
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch",
+    "node-html-parser"
+   ]
+  },
+  "open-in-android-studio": {
+   "id": "raycast.llomi.openinandroidstudio",
+   "status": "ok",
+   "ms": 652,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1581537,
+    "view.js": 1095873,
+    "worker.js": 187043
+   },
+   "errors": [],
+   "deps": []
+  },
+  "messages": {
+   "id": "raycast.thomaslombart.messages",
+   "status": "ok",
+   "ms": 489130,
+   "code": 0,
+   "commands": 5,
+   "tools": 4,
+   "sizes": {
+    "sidecar.cjs": 3253119,
+    "view.js": 1101549,
+    "worker.js": 192719
+   },
+   "errors": [
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/messages/swift/contacts/.build/checkouts/extensions-swift-tools/Package.swift: TypeScriptCodeGenerator-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/messages/swift/contacts/.build/checkouts/extensions-swift-tools/Package.swift: MacrosImplementation: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/usr/lib' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/messages/swift/contacts/.build/checkouts/extensions-swift-tools/Package.swift: MacrosImplementation: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/messages/swift/contacts/Package.swift: Messages-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/usr/lib' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/messages/swift/contacts/Package.swift: Messages-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "[Planning deferred tasks]"
+   ],
+   "deps": [
+    "date-fns"
+   ]
+  },
+  "open-in-cursor": {
+   "id": "raycast.mjoosuf.openincursor",
+   "status": "ok",
+   "ms": 700,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1543583,
+    "view.js": 1095353,
+    "worker.js": 186523
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-in-json-hero": {
+   "id": "raycast.maverickdotdev.openinjsonhero",
+   "status": "ok",
+   "ms": 692,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1542449,
+    "view.js": 1096642,
+    "worker.js": 187812
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-in-shopify-admin": {
+   "id": "raycast.approxhuman.openinshopifyadmin",
+   "status": "ok",
+   "ms": 640,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1908282,
+    "view.js": 1095210,
+    "worker.js": 186380
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-in-sublime-text": {
+   "id": "raycast.anfalas.openinsublimetext",
+   "status": "ok",
+   "ms": 628,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1914764,
+    "view.js": 1095469,
+    "worker.js": 186639
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-in-textmate": {
+   "id": "raycast.fannarfreyr.openintextmate",
+   "status": "ok",
+   "ms": 625,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1888715,
+    "view.js": 1095126,
+    "worker.js": 186296
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-in-trae": {
+   "id": "raycast.haroldao.openintrae",
+   "status": "ok",
+   "ms": 622,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1888226,
+    "view.js": 1095104,
+    "worker.js": 186274
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-in-visual-studio-code": {
+   "id": "raycast.shubzkothekar.openinvisualstudiocode",
+   "status": "ok",
+   "ms": 595,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1918273,
+    "view.js": 1095733,
+    "worker.js": 186903
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-laravel-herd-site": {
+   "id": "raycast.medienbaecker.openlaravelherdsite",
+   "status": "ok",
+   "ms": 615,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1551990,
+    "view.js": 1095453,
+    "worker.js": 186623
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-latest-url-from-clipboard": {
+   "id": "raycast.pernielsentikaer.openlatesturlfromclipboard",
+   "status": "ok",
+   "ms": 612,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1541301,
+    "view.js": 1096346,
+    "worker.js": 187516
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-link-in-specific-browser": {
+   "id": "raycast.koinzhang.openlinkinspecificbrowser",
+   "status": "ok",
+   "ms": 651,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2063118,
+    "view.js": 1097598,
+    "worker.js": 188768
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-path": {
+   "id": "raycast.koinzhang.openpath",
+   "status": "ok",
+   "ms": 1247,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3039967,
+    "view.js": 1097300,
+    "worker.js": 188470
+   },
+   "errors": [],
+   "deps": [
+    "fs-extra",
+    "validator"
+   ]
+  },
+  "open-props": {
+   "id": "raycast.tmwrnr.openprops",
+   "status": "ok",
+   "ms": 1204,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2577122,
+    "view.js": 1095433,
+    "worker.js": 186603
+   },
+   "errors": [],
+   "deps": [
+    "ofetch"
+   ]
+  },
+  "open-with-app": {
+   "id": "raycast.fturcheti.openwithapp",
+   "status": "ok",
+   "ms": 678,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2002507,
+    "view.js": 1095147,
+    "worker.js": 186317
+   },
+   "errors": [],
+   "deps": []
+  },
+  "open-targets-raycast": {
+   "id": "raycast.ireneisdoomed.opentargets",
+   "status": "ok",
+   "ms": 1386,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3489093,
+    "view.js": 1096565,
+    "worker.js": 187735
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch"
+   ]
+  },
+  "openai-gpt": {
+   "id": "raycast.simicvm.openaigpt",
+   "status": "ok",
+   "ms": 1379,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3987641,
+    "view.js": 1095360,
+    "worker.js": 186530
+   },
+   "errors": [],
+   "deps": [
+    "openai"
+   ]
+  },
+  "openai-speak": {
+   "id": "raycast.jianchaoman.openaispeak",
+   "status": "ok",
+   "ms": 1911,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4834855,
+    "view.js": 1095580,
+    "worker.js": 186750
+   },
+   "errors": [],
+   "deps": [
+    "openai"
+   ]
+  },
+  "openclaw": {
+   "id": "raycast.leveragedrobot.openclaw",
+   "status": "ok",
+   "ms": 506,
+   "code": 0,
+   "commands": 6,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1681723,
+    "view.js": 1097182,
+    "worker.js": 188352
+   },
+   "errors": [],
+   "deps": []
+  },
+  "opencode-sessions": {
+   "id": "raycast.mike182uk.opencodesessions",
+   "status": "fail",
+   "ms": 1231,
+   "code": 1,
+   "commands": 0,
+   "tools": 0,
+   "sizes": {},
+   "errors": [
+    "✘ [ERROR] No matching export in \"node_modules/@opencode-ai/sdk/dist/v2/index.d.ts\" for import \"createOpencode\"",
+    "let error = new Error(text);",
+    "Error: Build failed with 1 error:",
+    "src/lib/clients.ts:2:9: ERROR: No matching export in \"node_modules/@opencode-ai/sdk/dist/v2/index.d.ts\" for import \"createOpencode\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)",
+    "errors: [Getter/Setter],"
+   ],
+   "deps": [
+    "@opencode-ai/sdk"
+   ]
+  },
+  "openai-translator": {
+   "id": "raycast.douo.openaitranslator",
+   "status": "ok",
+   "ms": 3330,
+   "code": 0,
+   "commands": 8,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 5963300,
+    "view.js": 1106595,
+    "worker.js": 197765
+   },
+   "errors": [],
+   "deps": [
+    "@anthropic-ai/sdk",
+    "capitalize",
+    "eventsource-parser",
+    "google-auth-library",
+    "iso-639-1",
+    "iso-639-3-to-1",
+    "node-fetch",
+    "socks-proxy-agent",
+    "stream-json",
+    "uuid"
+   ]
+  },
+  "opencodex-usage": {
+   "id": "raycast.jonaslist.opencodexusage",
+   "status": "ok",
+   "ms": 881,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2130520,
+    "view.js": 1098917,
+    "worker.js": 190087
+   },
+   "errors": [],
+   "deps": []
+  },
+  "openfortivpn": {
+   "id": "raycast.rafalpetryka.openfortivpn",
+   "status": "ok",
+   "ms": 694,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1553473,
+    "view.js": 1095612,
+    "worker.js": 186782
+   },
+   "errors": [],
+   "deps": []
+  },
+  "openhue": {
+   "id": "raycast.thibauult.openhue",
+   "status": "ok",
+   "ms": 1720,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3749631,
+    "view.js": 1096159,
+    "worker.js": 187329
+   },
+   "errors": [],
+   "deps": [
+    "yaml"
+   ]
+  },
+  "openrouter-manager": {
+   "id": "raycast.clapalo.openroutermanager",
+   "status": "ok",
+   "ms": 2040,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2834456,
+    "view.js": 1096218,
+    "worker.js": 187388
+   },
+   "errors": [],
+   "deps": [
+    "date-fns"
+   ]
+  },
+  "openqr": {
+   "id": "raycast.sammoreton.openqr",
+   "status": "ok",
+   "ms": 3122,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2046168,
+    "view.js": 1096199,
+    "worker.js": 187369
+   },
+   "errors": [],
+   "deps": [
+    "@open-qr/sdk"
+   ]
+  },
+  "openrouter-models-finder": {
+   "id": "raycast.jeejeeguan.openroutermodelsfinder",
+   "status": "ok",
+   "ms": 515,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1582631,
+    "view.js": 1095172,
+    "worker.js": 186342
+   },
+   "errors": [],
+   "deps": []
+  },
+  "openrouter-model-search": {
+   "id": "raycast.mutewinter.openroutermodelsearch",
+   "status": "ok",
+   "ms": 525,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2036465,
+    "view.js": 1095194,
+    "worker.js": 186364
+   },
+   "errors": [],
+   "deps": []
+  },
+  "openrouter-quick-actions": {
+   "id": "raycast.hugogresse.openrouterquickactions",
+   "status": "ok",
+   "ms": 1764,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3882574,
+    "view.js": 1101043,
+    "worker.js": 192213
+   },
+   "errors": [],
+   "deps": [
+    "openai"
+   ]
+  },
+  "opensearch": {
+   "id": "raycast.itggood2420.opensearch",
+   "status": "ok",
+   "ms": 2284,
+   "code": 0,
+   "commands": 6,
+   "tools": 1,
+   "sizes": {
+    "sidecar.cjs": 4682640,
+    "view.js": 1098065,
+    "worker.js": 189235
+   },
+   "errors": [],
+   "deps": [
+    "aws4",
+    "undici"
+   ]
+  },
+  "openstreetmap-search": {
+   "id": "raycast.crisboarna.openstreetmapsearch",
+   "status": "ok",
+   "ms": 776,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1569268,
+    "view.js": 1096758,
+    "worker.js": 187928
+   },
+   "errors": [],
+   "deps": []
+  },
+  "openverse": {
+   "id": "raycast.openverse.openverse",
+   "status": "ok",
+   "ms": 1566,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2690575,
+    "view.js": 1095477,
+    "worker.js": 186647
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch",
+    "run-applescript"
+   ]
+  },
+  "openvpn": {
+   "id": "raycast.benekuehn.openvpn",
+   "status": "ok",
+   "ms": 651,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1995069,
+    "view.js": 1095738,
+    "worker.js": 186908
+   },
+   "errors": [],
+   "deps": []
+  },
+  "openweathermap": {
+   "id": "raycast.tonka3000.openweathermap",
+   "status": "ok",
+   "ms": 1254,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3030639,
+    "view.js": 1096195,
+    "worker.js": 187365
+   },
+   "errors": [],
+   "deps": [
+    "moment",
+    "node-fetch"
+   ]
+  },
+  "openstatus": {
+   "id": "raycast.thibaultleouay.openstatus",
+   "status": "ok",
+   "ms": 4810,
+   "code": 0,
+   "commands": 5,
+   "tools": 6,
+   "sizes": {
+    "sidecar.cjs": 2505818,
+    "view.js": 1098302,
+    "worker.js": 189472
+   },
+   "errors": [],
+   "deps": [
+    "zod"
+   ]
+  },
+  "opera": {
+   "id": "raycast.crisboarna.opera",
+   "status": "ok",
+   "ms": 1440,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2031082,
+    "view.js": 1096082,
+    "worker.js": 187252
+   },
+   "errors": [],
+   "deps": []
+  },
+  "opsgenie": {
+   "id": "raycast.ricoberger.opsgenie",
+   "status": "ok",
+   "ms": 2533,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2902701,
+    "view.js": 1096429,
+    "worker.js": 187599
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch"
+   ]
+  },
+  "opslevel": {
+   "id": "raycast.duckyc.opslevel",
+   "status": "ok",
+   "ms": 6252,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 8122365,
+    "view.js": 1095423,
+    "worker.js": 186593
+   },
+   "errors": [],
+   "deps": [
+    "@apollo/client",
+    "graphql",
+    "ts-node"
+   ]
+  },
+  "orbit": {
+   "id": "raycast.michaelheckmann.orbit",
+   "status": "ok",
+   "ms": 7025,
+   "code": 0,
+   "commands": 3,
+   "tools": 3,
+   "sizes": {
+    "sidecar.cjs": 1983354,
+    "view.js": 1098080,
+    "worker.js": 189250
+   },
+   "errors": [],
+   "deps": [
+    "chrono-node"
+   ]
+  },
+  "orbita": {
+   "id": "raycast.tcelestino.orbita",
+   "status": "ok",
+   "ms": 6157,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3202158,
+    "view.js": 1095076,
+    "worker.js": 186246
+   },
+   "errors": [],
+   "deps": [
+    "javascript-time-ago",
+    "rss-parser"
+   ]
+  },
+  "orbstack": {
+   "id": "raycast.nicholasq.orbstack",
+   "status": "ok",
+   "ms": 6306,
+   "code": 0,
+   "commands": 2,
+   "tools": 7,
+   "sizes": {
+    "sidecar.cjs": 2098400,
+    "view.js": 1099283,
+    "worker.js": 190453
+   },
+   "errors": [],
+   "deps": []
+  },
+  "orion": {
+   "id": "raycast.plonq.orion",
+   "status": "ok",
+   "ms": 1377,
+   "code": 0,
+   "commands": 6,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2352972,
+    "view.js": 1097181,
+    "worker.js": 188351
+   },
+   "errors": [],
+   "deps": [
+    "bplist-parser"
+   ]
+  },
+  "orshot": {
+   "id": "raycast.rishi.orshot",
+   "status": "ok",
+   "ms": 673,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1553790,
+    "view.js": 1096014,
+    "worker.js": 187184
+   },
+   "errors": [],
+   "deps": []
+  },
+  "origami": {
+   "id": "raycast.xilopaint.origami",
+   "status": "ok",
+   "ms": 6358,
+   "code": 0,
+   "commands": 2,
+   "tools": 7,
+   "sizes": {
+    "sidecar.cjs": 2250880,
+    "view.js": 1102710,
+    "worker.js": 193880
+   },
+   "errors": [],
+   "deps": []
+  },
+  "osint-web-check": {
+   "id": "raycast.gksander.osintwebcheck",
+   "status": "ok",
+   "ms": 2619,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3824224,
+    "view.js": 1097675,
+    "worker.js": 188845
+   },
+   "errors": [],
+   "deps": [
+    "got",
+    "swr"
+   ]
+  },
+  "osquery": {
+   "id": "raycast.henryst.osquery",
+   "status": "ok",
+   "ms": 502,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4248251,
+    "view.js": 1096568,
+    "worker.js": 187738
+   },
+   "errors": [],
+   "deps": []
+  },
+  "osrs-wiki": {
+   "id": "raycast.luizkc.osrswiki",
+   "status": "ok",
+   "ms": 1816,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1991181,
+    "view.js": 1095128,
+    "worker.js": 186298
+   },
+   "errors": [],
+   "deps": [
+    "@tanstack/react-query",
+    "lodash.debounce"
+   ]
+  },
+  "ossinsight": {
+   "id": "raycast.k8scat.ossinsight",
+   "status": "ok",
+   "ms": 678,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1970530,
+    "view.js": 1095363,
+    "worker.js": 186533
+   },
+   "errors": [],
+   "deps": []
+  },
+  "oss-browser": {
+   "id": "raycast.jinshi.ossbrowser",
+   "status": "fail",
+   "ms": 2823,
+   "code": 1,
+   "commands": 0,
+   "tools": 0,
+   "sizes": {},
+   "errors": [
+    "You can mark the path \"proxy-agent\" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle. You can also surround this \"require\" call with a try/catch block to handle this failure at run-time instead of bundle-time.",
+    "let error = new Error(text);",
+    "Error: Build failed with 1 error:",
+    "node_modules/urllib/lib/detect_proxy_agent.js:24:51: ERROR: Could not resolve \"proxy-agent\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)",
+    "errors: [Getter/Setter],"
+   ],
+   "deps": [
+    "ali-oss",
+    "got",
+    "raycast-toolkit"
+   ]
+  },
+  "otp-inbox": {
+   "id": "raycast.chroxify.otpinbox",
+   "status": "ok",
+   "ms": 1395,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3484249,
+    "view.js": 1095720,
+    "worker.js": 186890
+   },
+   "errors": [],
+   "deps": [
+    "cross-fetch"
+   ]
+  },
+  "otp-auth": {
+   "id": "raycast.huzef44.otpauth",
+   "status": "ok",
+   "ms": 3477,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2467732,
+    "view.js": 1095442,
+    "worker.js": 186612
+   },
+   "errors": [],
+   "deps": [
+    "decrypt-otpauth-ts",
+    "totp-generator"
+   ]
+  },
+  "otter": {
+   "id": "raycast.mrmartineau.otter",
+   "status": "ok",
+   "ms": 2438,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 5132637,
+    "view.js": 1096922,
+    "worker.js": 188092
+   },
+   "errors": [],
+   "deps": [
+    "@supabase/supabase-js",
+    "node-fetch",
+    "proper-url-join",
+    "run-applescript",
+    "tiny-relative-date",
+    "title"
+   ]
+  },
+  "ottomatic": {
+   "id": "raycast.eluce2.ottomatic",
+   "status": "ok",
+   "ms": 1865,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 5194925,
+    "view.js": 1095379,
+    "worker.js": 186549
+   },
+   "errors": [],
+   "deps": [
+    "cross-fetch",
+    "jose",
+    "lodash",
+    "zod"
+   ]
+  },
+  "oura": {
+   "id": "raycast.rob.oura",
+   "status": "ok",
+   "ms": 687,
+   "code": 0,
+   "commands": 9,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2077068,
+    "view.js": 1098254,
+    "worker.js": 189424
+   },
+   "errors": [],
+   "deps": []
+  },
+  "otty": {
+   "id": "raycast.ethancao.otty",
+   "status": "ok",
+   "ms": 3367,
+   "code": 0,
+   "commands": 6,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1556558,
+    "view.js": 1096729,
+    "worker.js": 187899
+   },
+   "errors": [],
+   "deps": []
+  },
+  "outline-page": {
+   "id": "raycast.praveenjuge.outlinepage",
+   "status": "ok",
+   "ms": 783,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1910849,
+    "view.js": 1095116,
+    "worker.js": 186286
+   },
+   "errors": [],
+   "deps": []
+  },
+  "outline-document-search": {
+   "id": "raycast.dnlfrst.outlinedocumentsearch",
+   "status": "ok",
+   "ms": 2618,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4647730,
+    "view.js": 1095519,
+    "worker.js": 186689
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ovh": {
+   "id": "raycast.xmok.ovhcloud",
+   "status": "ok",
+   "ms": 659,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2043011,
+    "view.js": 1096532,
+    "worker.js": 187702
+   },
+   "errors": [],
+   "deps": []
+  },
+  "owledge-raycast": {
+   "id": "raycast.romain.owledgeraycast",
+   "status": "ok",
+   "ms": 659,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1964034,
+    "view.js": 1095918,
+    "worker.js": 187088
+   },
+   "errors": [],
+   "deps": []
+  },
+  "owncloud": {
+   "id": "raycast.xmok.owncloud",
+   "status": "ok",
+   "ms": 1562,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2720979,
+    "view.js": 1095475,
+    "worker.js": 186645
+   },
+   "errors": [],
+   "deps": [
+    "fast-xml-parser",
+    "filesize"
+   ]
+  },
+  "owl": {
+   "id": "raycast.gohadar.owl",
+   "status": "ok",
+   "ms": 3383,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2740545,
+    "view.js": 1095477,
+    "worker.js": 186647
+   },
+   "errors": [],
+   "deps": [
+    "raycast",
+    "raycast-cross-extension"
+   ]
+  },
+  "oxford-collocation-dictionary": {
+   "id": "raycast.guilhermevictor.oxfordcollocationdictionary",
+   "status": "ok",
+   "ms": 1617,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 9044595,
+    "view.js": 1095630,
+    "worker.js": 186800
+   },
+   "errors": [],
+   "deps": [
+    "cheerio"
+   ]
+  },
+  "ozbargain-deals": {
+   "id": "raycast.x.ozbargaindeals",
+   "status": "ok",
+   "ms": 1938,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 6190590,
+    "view.js": 1095272,
+    "worker.js": 186442
+   },
+   "errors": [],
+   "deps": [
+    "he",
+    "sanitize-html",
+    "turndown",
+    "xml2js"
+   ]
+  },
+  "package-tracker": {
+   "id": "raycast.cojmeister.packagetracker",
+   "status": "ok",
+   "ms": 1052,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3363698,
+    "view.js": 1095480,
+    "worker.js": 186650
+   },
+   "errors": [],
+   "deps": [
+    "axios"
+   ]
+  },
+  "p00f": {
+   "id": "raycast.miguelcaetanodias.p00f",
+   "status": "ok",
+   "ms": 2183,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1667291,
+    "view.js": 1097543,
+    "worker.js": 188713
+   },
+   "errors": [],
+   "deps": [
+    "@p00f/core"
+   ]
+  },
+  "pagespeed": {
+   "id": "raycast.vorillaz.pagespeed",
+   "status": "ok",
+   "ms": 1159,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2840653,
+    "view.js": 1095395,
+    "worker.js": 186565
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch"
+   ]
+  },
+  "pagerduty": {
+   "id": "raycast.horimislime.pagerduty",
+   "status": "ok",
+   "ms": 3427,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4022673,
+    "view.js": 1096002,
+    "worker.js": 187172
+   },
+   "errors": [],
+   "deps": [
+    "date-fns"
+   ]
+  },
+  "palette-colors": {
+   "id": "raycast.douglaspires.palettecolors",
+   "status": "ok",
+   "ms": 2724,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2319241,
+    "view.js": 1095138,
+    "worker.js": 186308
+   },
+   "errors": [],
+   "deps": [
+    "@adobe/leonardo-contrast-colors",
+    "color-scheme"
+   ]
+  },
+  "palette-picker": {
+   "id": "raycast.juliusmarminge.palettepicker",
+   "status": "ok",
+   "ms": 1144,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1846006,
+    "view.js": 1095440,
+    "worker.js": 186610
+   },
+   "errors": [],
+   "deps": [
+    "execa"
+   ]
+  },
+  "pangu-for-raycast": {
+   "id": "raycast.avengerbevis.panguforraycast",
+   "status": "ok",
+   "ms": 2148,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1575442,
+    "view.js": 1095207,
+    "worker.js": 186377
+   },
+   "errors": [],
+   "deps": [
+    "@types/pangu",
+    "pangu"
+   ]
+  },
+  "pandas-documentation-search": {
+   "id": "raycast.fariaf22.pandasdocumentationsearch",
+   "status": "ok",
+   "ms": 2943,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 8796847,
+    "view.js": 1096264,
+    "worker.js": 187434
+   },
+   "errors": [],
+   "deps": [
+    "cheerio"
+   ]
+  },
+  "pantheon-sites": {
+   "id": "raycast.matbrady.pantheonsites",
+   "status": "ok",
+   "ms": 583,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2033805,
+    "view.js": 1096016,
+    "worker.js": 187186
+   },
+   "errors": [],
+   "deps": []
+  },
+  "paper": {
+   "id": "raycast.luctst.paper",
+   "status": "ok",
+   "ms": 548,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1985303,
+    "view.js": 1095304,
+    "worker.js": 186474
+   },
+   "errors": [],
+   "deps": []
+  },
+  "papago-translate": {
+   "id": "raycast.ritamordio.papagotranslate",
+   "status": "ok",
+   "ms": 1338,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3888129,
+    "view.js": 1096131,
+    "worker.js": 187301
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "moment"
+   ]
+  },
+  "paper-design": {
+   "id": "raycast.asifk.paperdesign",
+   "status": "ok",
+   "ms": 638,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2077225,
+    "view.js": 1095809,
+    "worker.js": 186979
+   },
+   "errors": [],
+   "deps": []
+  },
+  "paper-agent": {
+   "id": "raycast.marvel940804836.paperagent",
+   "status": "ok",
+   "ms": 1109,
+   "code": 0,
+   "commands": 11,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2181542,
+    "view.js": 1104801,
+    "worker.js": 195971
+   },
+   "errors": [],
+   "deps": [
+    "js-yaml"
+   ]
+  },
+  "paperform": {
+   "id": "raycast.parterburn.paperform",
+   "status": "ok",
+   "ms": 1513,
+   "code": 0,
+   "commands": 1,
+   "tools": 1,
+   "sizes": {
+    "sidecar.cjs": 2076571,
+    "view.js": 1097240,
+    "worker.js": 188410
+   },
+   "errors": [],
+   "deps": []
+  },
+  "paperless-ngx": {
+   "id": "raycast.damdam.paperlessngx",
+   "status": "ok",
+   "ms": 1823,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 5158307,
+    "view.js": 1096614,
+    "worker.js": 187784
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "moment",
+    "form-data-encoder",
+    "formdata-node"
+   ]
+  },
+  "papersize": {
+   "id": "raycast.mihaeltomic.papersize",
+   "status": "ok",
+   "ms": 548,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1561437,
+    "view.js": 1095126,
+    "worker.js": 186296
+   },
+   "errors": [],
+   "deps": []
+  },
+  "papermatch": {
+   "id": "raycast.marlonr.papermatch",
+   "status": "ok",
+   "ms": 1126,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1745797,
+    "view.js": 1095812,
+    "worker.js": 186982
+   },
+   "errors": [],
+   "deps": [
+    "run-applescript"
+   ]
+  },
+  "paperspace": {
+   "id": "raycast.yuri.paperspace",
+   "status": "ok",
+   "ms": 1137,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4305172,
+    "view.js": 1095245,
+    "worker.js": 186415
+   },
+   "errors": [],
+   "deps": [
+    "undici"
+   ]
+  },
+  "papra": {
+   "id": "raycast.xmok.papra",
+   "status": "ok",
+   "ms": 1009,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2074294,
+    "view.js": 1095407,
+    "worker.js": 186577
+   },
+   "errors": [],
+   "deps": [
+    "filesize"
+   ]
+  },
+  "parabol": {
+   "id": "raycast.parabol.parabol",
+   "status": "ok",
+   "ms": 564,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1540451,
+    "view.js": 1096005,
+    "worker.js": 187175
+   },
+   "errors": [],
+   "deps": []
+  },
+  "parachord": {
+   "id": "raycast.parachord.parachord",
+   "status": "ok",
+   "ms": 555,
+   "code": 0,
+   "commands": 12,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1592793,
+    "view.js": 1098283,
+    "worker.js": 189453
+   },
+   "errors": [],
+   "deps": []
+  },
+  "parallels-virtual-machines": {
+   "id": "raycast.danpalmer.parallelsvirtualmachines",
+   "status": "ok",
+   "ms": 535,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1996078,
+    "view.js": 1095478,
+    "worker.js": 186648
+   },
+   "errors": [],
+   "deps": []
+  },
+  "parcel-tracker": {
+   "id": "raycast.junhyukjin.parceltracker",
+   "status": "ok",
+   "ms": 1369,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3393933,
+    "view.js": 1095381,
+    "worker.js": 186551
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "moment"
+   ]
+  },
+  "parrot-translate": {
+   "id": "raycast.haojen.parrottranslate",
+   "status": "ok",
+   "ms": 1143,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2911646,
+    "view.js": 1098434,
+    "worker.js": 189604
+   },
+   "errors": [],
+   "deps": [
+    "axios"
+   ]
+  },
+  "parse": {
+   "id": "raycast.traf.parse",
+   "status": "ok",
+   "ms": 619,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1582660,
+    "view.js": 1095384,
+    "worker.js": 186554
+   },
+   "errors": [],
+   "deps": []
+  },
+  "parcel": {
+   "id": "raycast.marcmagn1.parcel",
+   "status": "ok",
+   "ms": 3682,
+   "code": 0,
+   "commands": 2,
+   "tools": 2,
+   "sizes": {
+    "sidecar.cjs": 5597512,
+    "view.js": 1096647,
+    "worker.js": 187817
+   },
+   "errors": [],
+   "deps": [
+    "date-fns",
+    "zod"
+   ]
+  },
+  "parse-logs": {
+   "id": "raycast.normc.parselogs",
+   "status": "ok",
+   "ms": 550,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1572362,
+    "view.js": 1095743,
+    "worker.js": 186913
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pass": {
+   "id": "raycast.capipo.pass",
+   "status": "ok",
+   "ms": 502,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1568249,
+    "view.js": 1095473,
+    "worker.js": 186643
+   },
+   "errors": [],
+   "deps": []
+  },
+  "party-parrot": {
+   "id": "raycast.thomas.partyparrot",
+   "status": "ok",
+   "ms": 956,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1549364,
+    "view.js": 1095063,
+    "worker.js": 186233
+   },
+   "errors": [],
+   "deps": [
+    "use-interval"
+   ]
+  },
+  "passphrase-generator": {
+   "id": "raycast.ombratteng.passphrasegenerator",
+   "status": "ok",
+   "ms": 484,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1580353,
+    "view.js": 1096298,
+    "worker.js": 187468
+   },
+   "errors": [],
+   "deps": []
+  },
+  "password-generator": {
+   "id": "raycast.joshuaiz.passwordgenerator",
+   "status": "fail",
+   "ms": 660,
+   "code": 1,
+   "commands": 0,
+   "tools": 0,
+   "sizes": {},
+   "errors": [
+    "catch (e) { const tail = String(e.stderr ?? '').split('\\n').filter((l) => /npm (error|ERR)/i.test(l)).slice(0, 4).join(' | '); throw new Error('npm install failed: ' + (tail || e.message)); }",
+    "Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name \"bun:test\" of package \"bun:test@latest\": name can only contain URL-friendly characters. | npm error A complete log of this run can be found in: /Users/nassimlecornet/.npm-rc2asyar/_logs/2026-09-03T09_46_39"
+   ],
+   "deps": []
+  },
+  "passbolt": {
+   "id": "raycast.adreatikdedej.passbolt",
+   "status": "ok",
+   "ms": 2615,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 6525307,
+    "view.js": 1097409,
+    "worker.js": 188579
+   },
+   "errors": [],
+   "deps": [
+    "openpgp",
+    "otpauth"
+   ]
+  },
+  "password-link": {
+   "id": "raycast.taylordrayson.passwordlink",
+   "status": "ok",
+   "ms": 1561,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2249256,
+    "view.js": 1096815,
+    "worker.js": 187985
+   },
+   "errors": [],
+   "deps": [
+    "sjcl"
+   ]
+  },
+  "password-store": {
+   "id": "raycast.afok.passwordstore",
+   "status": "ok",
+   "ms": 1268,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2857914,
+    "view.js": 1095711,
+    "worker.js": 186881
+   },
+   "errors": [],
+   "deps": [
+    "glob"
+   ]
+  },
+  "paste-as-plain-text": {
+   "id": "raycast.koinzhang.pasteasplaintext",
+   "status": "ok",
+   "ms": 1483,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 11673113,
+    "view.js": 1096469,
+    "worker.js": 187639
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "cheerio",
+    "fs-extra",
+    "json5",
+    "validator"
+   ]
+  },
+  "paste-from-apple-books": {
+   "id": "raycast.winann.pastefromapplebooks",
+   "status": "ok",
+   "ms": 575,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1537497,
+    "view.js": 1095291,
+    "worker.js": 186461
+   },
+   "errors": [],
+   "deps": []
+  },
+  "paste-from-kindle": {
+   "id": "raycast.jasoncarey.kindlepaste",
+   "status": "ok",
+   "ms": 646,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1883361,
+    "view.js": 1095167,
+    "worker.js": 186337
+   },
+   "errors": [],
+   "deps": []
+  },
+  "password-strength": {
+   "id": "raycast.j3lte.passwordstrength",
+   "status": "ok",
+   "ms": 4946,
+   "code": 0,
+   "commands": 1,
+   "tools": 2,
+   "sizes": {
+    "sidecar.cjs": 6285253,
+    "view.js": 1097974,
+    "worker.js": 189144
+   },
+   "errors": [],
+   "deps": [
+    "@zxcvbn-ts/core",
+    "@zxcvbn-ts/language-common",
+    "@zxcvbn-ts/language-en"
+   ]
+  },
+  "paste-safely": {
+   "id": "raycast.alexibuild.pastesafely",
+   "status": "ok",
+   "ms": 1112,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1943691,
+    "view.js": 1095394,
+    "worker.js": 186564
+   },
+   "errors": [],
+   "deps": []
+  },
+  "paste-rs": {
+   "id": "raycast.xdhrv.pasters",
+   "status": "ok",
+   "ms": 4265,
+   "code": 0,
+   "commands": 3,
+   "tools": 3,
+   "sizes": {
+    "sidecar.cjs": 1940592,
+    "view.js": 1097058,
+    "worker.js": 188228
+   },
+   "errors": [],
+   "deps": []
+  },
+  "paste-to-markdown": {
+   "id": "raycast.weicodes.pastetomarkdown",
+   "status": "ok",
+   "ms": 4502,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3410175,
+    "view.js": 1097547,
+    "worker.js": 188717
+   },
+   "errors": [],
+   "deps": [
+    "@joplin/turndown-plugin-gfm",
+    "turndown"
+   ]
+  },
+  "pastebin": {
+   "id": "raycast.vimtor.pastebin",
+   "status": "ok",
+   "ms": 3302,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4401522,
+    "view.js": 1095748,
+    "worker.js": 186918
+   },
+   "errors": [],
+   "deps": [
+    "pastebin-api",
+    "swr",
+    "dateformat"
+   ]
+  },
+  "pastery": {
+   "id": "raycast.xmok.pastery",
+   "status": "ok",
+   "ms": 1109,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2031738,
+    "view.js": 1095197,
+    "worker.js": 186367
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pastefy": {
+   "id": "raycast.interaapps.pastefy",
+   "status": "ok",
+   "ms": 2515,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2709072,
+    "view.js": 1096044,
+    "worker.js": 187214
+   },
+   "errors": [],
+   "deps": [
+    "crypto-js"
+   ]
+  },
+  "paymenter": {
+   "id": "raycast.xmok.paymenter",
+   "status": "ok",
+   "ms": 1085,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1974183,
+    "view.js": 1095776,
+    "worker.js": 186946
+   },
+   "errors": [],
+   "deps": []
+  },
+  "paypal-invoices": {
+   "id": "raycast.ethananderstandable.paypalinvoices",
+   "status": "ok",
+   "ms": 1409,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1765495,
+    "view.js": 1096006,
+    "worker.js": 187176
+   },
+   "errors": [],
+   "deps": []
+  },
+  "paystack": {
+   "id": "raycast.dominuskelvin.paystack",
+   "status": "ok",
+   "ms": 746,
+   "code": 0,
+   "commands": 8,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2057688,
+    "view.js": 1098776,
+    "worker.js": 189946
+   },
+   "errors": [],
+   "deps": []
   }
  }
 }

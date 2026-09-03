@@ -46,8 +46,10 @@ class SystemPlus implements Extension {
           const count = Number(await this.osa('tell application "Finder" to count items of trash')) || 0;
           if (count === 0) { await this.hud('Trash is already empty'); return; }
           if (warn) {
-            const ok = await this.feedback.confirmAlert({ title: 'Empty Trash?', message: `${count} item${count === 1 ? '' : 's'} will be deleted permanently.`, confirmText: 'Empty Trash', cancelText: 'Cancel', variant: 'danger' });
-            if (!ok) return;
+            // Native dialog: the launcher window may be hidden (hotkey/deeplink), so an in-window
+            // confirm would never be seen. Finder's own sheet reads exactly like Raycast's.
+            const r = await this.osa(`display dialog ${q(`Are you sure you want to permanently erase the ${count} item${count === 1 ? '' : 's'} in the Trash?`)} with title "Empty Trash" buttons {"Cancel", "Empty Trash"} default button "Empty Trash" cancel button "Cancel" with icon caution`).catch(() => 'cancel');
+            if (!/Empty Trash/.test(r)) return;
           }
           await this.osa('tell application "Finder" to empty trash');
           await this.hud('Trash Emptied');

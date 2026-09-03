@@ -4762,6 +4762,7 @@ var manifest_default = {
 
 // src/worker.ts
 var OSA = "/usr/bin/osascript";
+var q = (s) => '"' + s.replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"';
 var SystemPlus = class {
   ctx;
   shell;
@@ -4815,8 +4816,8 @@ var SystemPlus = class {
             return;
           }
           if (warn) {
-            const ok = await this.feedback.confirmAlert({ title: "Empty Trash?", message: `${count} item${count === 1 ? "" : "s"} will be deleted permanently.`, confirmText: "Empty Trash", cancelText: "Cancel", variant: "danger" });
-            if (!ok) return;
+            const r = await this.osa(`display dialog ${q(`Are you sure you want to permanently erase the ${count} item${count === 1 ? "" : "s"} in the Trash?`)} with title "Empty Trash" buttons {"Cancel", "Empty Trash"} default button "Empty Trash" cancel button "Cancel" with icon caution`).catch(() => "cancel");
+            if (!/Empty Trash/.test(r)) return;
           }
           await this.osa('tell application "Finder" to empty trash');
           await this.hud("Trash Emptied");
