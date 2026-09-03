@@ -4948,7 +4948,9 @@ var SystemPlus = class {
   //      topmost normal window; asyar's own panel is excluded). Needs Accessibility for asyar.
   axwin(...args) {
     return this.run("/Users/nassimlecornet/Library/Application Support/org.asyar.app/extensions/com.nassim.systemplus/bin/axwin", args).then((r) => {
+      this.log.info(`[system+] axwin ${args.join(" ")} \u2192 ${r.trim()}`);
       const [app, x, y, w, h] = r.trim().split("|");
+      if (!(+w > 0 && +h > 0)) throw new Error(`${app}: window has no size`);
       return { app, x: +x, y: +y, w: +w, h: +h };
     });
   }

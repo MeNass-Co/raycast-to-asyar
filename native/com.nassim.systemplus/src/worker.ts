@@ -59,7 +59,7 @@ class SystemPlus implements Extension {
   // ---- Window management extras (Raycast parity) via bin/axwin (Accessibility API on the app owning the
   //      topmost normal window; asyar's own panel is excluded). Needs Accessibility for asyar.
   private axwin(...args: string[]): Promise<{ app: string; x: number; y: number; w: number; h: number }> {
-    return this.run(__AXWIN__, args).then((r) => { const [app, x, y, w, h] = r.trim().split('|'); return { app, x: +x, y: +y, w: +w, h: +h }; });
+    return this.run(__AXWIN__, args).then((r) => { this.log.info(`[system+] axwin ${args.join(' ')} → ${r.trim()}`); const [app, x, y, w, h] = r.trim().split('|'); if (!(+w > 0 && +h > 0)) throw new Error(`${app}: window has no size`); return { app, x: +x, y: +y, w: +w, h: +h }; });
   }
   private frontWindow() { return this.axwin('get'); }
   private async setFrontWindow(x: number, y: number, w: number, h: number) { await this.axwin('set', String(Math.round(x)), String(Math.round(y)), String(Math.round(w)), String(Math.round(h))); }
