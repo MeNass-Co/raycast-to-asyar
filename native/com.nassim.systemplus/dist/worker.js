@@ -4565,8 +4565,8 @@ var ExtensionContext2 = class extends ExtensionContextCore {
 var manifest_default = {
   id: "com.nassim.systemplus",
   name: "System+",
-  version: "1.0.0",
-  description: "Raycast's System commands for Asyar: Empty Trash, Open Trash, Sleep Displays, Screen Saver, Show Desktop, Hide/Quit apps, Eject Disks, Volume, Appearance, Hidden Files, Stage Manager, Do Not Disturb, Focus Session.",
+  version: "1.1.0",
+  description: "Raycast's System commands for Asyar: Empty Trash, Open Trash, Sleep Displays, Screen Saver, Show Desktop, Hide/Quit apps, Eject Disks, Volume, Appearance, Hidden Files, Stage Manager, Do Not Disturb, Focus Session, Window extras (fullscreen, larger/smaller, move, displays, sixths).",
   author: "Nassim Lecornet",
   icon: "icon:settings",
   type: "extension",
@@ -4785,6 +4785,97 @@ var manifest_default = {
       description: "Stop the running focus session and turn Do Not Disturb off.",
       icon: "icon:target",
       mode: "background"
+    },
+    {
+      id: "toggle-fullscreen",
+      name: "Toggle Fullscreen",
+      description: "Enter or leave native fullscreen for the front window.",
+      icon: "icon:maximize",
+      mode: "background"
+    },
+    {
+      id: "make-larger",
+      name: "Make Larger",
+      description: "Grow the front window by 10% around its center.",
+      icon: "icon:plus",
+      mode: "background"
+    },
+    {
+      id: "make-smaller",
+      name: "Make Smaller",
+      description: "Shrink the front window by 10% around its center.",
+      icon: "icon:minus",
+      mode: "background"
+    },
+    {
+      id: "maximize-height",
+      name: "Maximize Height",
+      description: "Stretch the front window to the full screen height.",
+      icon: "icon:layers",
+      mode: "background"
+    },
+    {
+      id: "maximize-width",
+      name: "Maximize Width",
+      description: "Stretch the front window to the full screen width.",
+      icon: "icon:layers",
+      mode: "background"
+    },
+    {
+      id: "move-left",
+      name: "Move Left",
+      description: "Nudge the front window 50 px left.",
+      icon: "icon:layers",
+      mode: "background"
+    },
+    {
+      id: "move-right",
+      name: "Move Right",
+      description: "Nudge the front window 50 px right.",
+      icon: "icon:layers",
+      mode: "background"
+    },
+    {
+      id: "move-up",
+      name: "Move Up",
+      description: "Nudge the front window 50 px up.",
+      icon: "icon:layers",
+      mode: "background"
+    },
+    {
+      id: "move-down",
+      name: "Move Down",
+      description: "Nudge the front window 50 px down.",
+      icon: "icon:layers",
+      mode: "background"
+    },
+    {
+      id: "next-display",
+      name: "Next Display",
+      description: "Move the front window to the next display, keeping its relative size and position.",
+      icon: "icon:layers",
+      mode: "background"
+    },
+    {
+      id: "previous-display",
+      name: "Previous Display",
+      description: "Move the front window to the previous display.",
+      icon: "icon:layers",
+      mode: "background"
+    },
+    {
+      id: "top-center-sixth",
+      name: "Top Center Sixth",
+      description: "Front window \u2192 top center sixth of the screen.",
+      icon: "icon:layers",
+      mode: "background"
+    },
+    {
+      id: "bottom-center-sixth",
+      name: "Bottom Center Sixth",
+      description: "Front window \u2192 bottom center sixth of the screen.",
+      icon: "icon:layers",
+      mode: "background"
     }
   ]
 };
@@ -4850,6 +4941,61 @@ var SystemPlus = class {
       return null;
     }
     return on;
+  }
+  // ---- Window management extras (Raycast parity). The launcher is a non-activating panel, so the
+  //      frontmost process is still the user's app; System Events reads/writes its window bounds.
+  async frontWindow() {
+    const r = await this.osa('tell application "System Events"\n set p to first process whose frontmost is true\n tell p\n set {x, y} to position of window 1\n set {w, h} to size of window 1\n return (name of p) & "|" & x & "|" & y & "|" & w & "|" & h\n end tell\nend tell');
+    const [app, x, y, w, h] = r.split("|");
+    return { app, x: +x, y: +y, w: +w, h: +h };
+  }
+  async setFrontWindow(x, y, w, h) {
+    await this.osa(`tell application "System Events" to tell (first process whose frontmost is true) to tell window 1
+ set position to {${Math.round(x)}, ${Math.round(y)}}
+ set size to {${Math.round(w)}, ${Math.round(h)}}
+ set position to {${Math.round(x)}, ${Math.round(y)}}
+end tell`);
+  }
+  /** Visible frames of every display in top-left window coordinates (menu bar excluded). */
+  async screens() {
+    const js = `ObjC.import("AppKit");const S=$.NSScreen.screens;const main=S.objectAtIndex(0).frame;const out=[];for(let i=0;i<S.count;i++){const f=S.objectAtIndex(i).visibleFrame;out.push({x:f.origin.x,y:main.size.height-(f.origin.y+f.size.height),w:f.size.width,h:f.size.height})}JSON.stringify(out)`;
+    return JSON.parse(await this.run(OSA, ["-l", "JavaScript", "-e", js]));
+  }
+  screenOf(win, screens) {
+    const cx = win.x + win.w / 2, cy = win.y + win.h / 2;
+    const i = screens.findIndex((s) => cx >= s.x && cx < s.x + s.w && cy >= s.y && cy < s.y + s.h);
+    return i >= 0 ? i : 0;
+  }
+  async resizeAround(factor) {
+    const f = await this.frontWindow();
+    const w = f.w * factor, h = f.h * factor;
+    await this.setFrontWindow(f.x - (w - f.w) / 2, f.y - (h - f.h) / 2, w, h);
+  }
+  async nudge(dx, dy) {
+    const f = await this.frontWindow();
+    await this.setFrontWindow(f.x + dx, f.y + dy, f.w, f.h);
+  }
+  async toDisplay(step) {
+    const f = await this.frontWindow();
+    const sc = await this.screens();
+    if (sc.length < 2) {
+      await this.hud("Only one display");
+      return;
+    }
+    const from = sc[this.screenOf(f, sc)], to = sc[(this.screenOf(f, sc) + step + sc.length) % sc.length];
+    const rx = (f.x - from.x) / from.w, ry = (f.y - from.y) / from.h, rw = Math.min(1, f.w / from.w), rh = Math.min(1, f.h / from.h);
+    await this.setFrontWindow(to.x + rx * to.w, to.y + ry * to.h, rw * to.w, rh * to.h);
+  }
+  async sixth(row) {
+    const f = await this.frontWindow();
+    const s = (await this.screens())[this.screenOf(f, await this.screens())];
+    await this.setFrontWindow(s.x + s.w / 3, row === "top" ? s.y : s.y + s.h / 2, s.w / 3, s.h / 2);
+  }
+  async maxAxis(axis) {
+    const f = await this.frontWindow();
+    const s = (await this.screens())[this.screenOf(f, await this.screens())];
+    if (axis === "h") await this.setFrontWindow(f.x, s.y, f.w, s.h);
+    else await this.setFrontWindow(s.x, f.y, s.w, f.h);
   }
   async volume() {
     return Number(await this.osa("output volume of (get volume settings)")) || 0;
@@ -5010,10 +5156,55 @@ return count of apps`;
           await this.hud("Focus session ended");
           return;
         }
+        case "toggle-fullscreen":
+          await this.osa('tell application "System Events" to tell (first process whose frontmost is true) to tell window 1 to set value of attribute "AXFullScreen" to not (value of attribute "AXFullScreen")');
+          return;
+        case "make-larger":
+          await this.resizeAround(1.1);
+          return;
+        case "make-smaller":
+          await this.resizeAround(1 / 1.1);
+          return;
+        case "maximize-height":
+          await this.maxAxis("h");
+          return;
+        case "maximize-width":
+          await this.maxAxis("w");
+          return;
+        case "move-left":
+          await this.nudge(-50, 0);
+          return;
+        case "move-right":
+          await this.nudge(50, 0);
+          return;
+        case "move-up":
+          await this.nudge(0, -50);
+          return;
+        case "move-down":
+          await this.nudge(0, 50);
+          return;
+        case "next-display":
+          await this.toDisplay(1);
+          return;
+        case "previous-display":
+          await this.toDisplay(-1);
+          return;
+        case "top-center-sixth":
+          await this.sixth("top");
+          return;
+        case "bottom-center-sixth":
+          await this.sixth("bottom");
+          return;
         default:
           this.log.warn(`[system+] unknown command ${commandId}`);
       }
     } catch (e) {
+      if (/assistive access|not allowed assistive|-25211|-1719/.test(e.message)) {
+        await this.hud("Grant Accessibility to Asyar (System Settings \u2192 Privacy & Security \u2192 Accessibility)");
+        await this.run("/usr/bin/open", ["x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"]).catch(() => {
+        });
+        return void 0;
+      }
       this.log.error(`[system+] ${commandId}: ${e.message}`);
       await this.feedback.sendBackground({ title: "System+", body: `${commandId}: ${e.message.slice(0, 200)}` }).catch(() => {
       });

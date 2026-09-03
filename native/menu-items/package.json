@@ -1,0 +1,13 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "menu-items",
+  "title": "Search Menu Items",
+  "description": "Search and run any menu bar item of the frontmost app, like Raycast's Search Menu Items.",
+  "icon": "icon.png",
+  "author": "nassim",
+  "license": "MIT",
+  "commands": [
+    { "name": "search-menu-items", "title": "Search Menu Items", "description": "Search the menu bar of the frontmost application", "mode": "view" }
+  ],
+  "dependencies": { "@raycast/api": "^1.100.0" }
+}

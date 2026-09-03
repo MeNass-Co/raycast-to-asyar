@@ -1,8 +1,8 @@
 {
  "id": "com.nassim.systemplus",
  "name": "System+",
- "version": "1.0.0",
- "description": "Raycast's System commands for Asyar: Empty Trash, Open Trash, Sleep Displays, Screen Saver, Show Desktop, Hide/Quit apps, Eject Disks, Volume, Appearance, Hidden Files, Stage Manager, Do Not Disturb, Focus Session.",
+ "version": "1.1.0",
+ "description": "Raycast's System commands for Asyar: Empty Trash, Open Trash, Sleep Displays, Screen Saver, Show Desktop, Hide/Quit apps, Eject Disks, Volume, Appearance, Hidden Files, Stage Manager, Do Not Disturb, Focus Session, Window extras (fullscreen, larger/smaller, move, displays, sixths).",
  "author": "Nassim Lecornet",
  "icon": "icon:settings",
  "type": "extension",
@@ -220,6 +220,97 @@
    "name": "End Focus Session",
    "description": "Stop the running focus session and turn Do Not Disturb off.",
    "icon": "icon:target",
+   "mode": "background"
+  },
+  {
+   "id": "toggle-fullscreen",
+   "name": "Toggle Fullscreen",
+   "description": "Enter or leave native fullscreen for the front window.",
+   "icon": "icon:maximize",
+   "mode": "background"
+  },
+  {
+   "id": "make-larger",
+   "name": "Make Larger",
+   "description": "Grow the front window by 10% around its center.",
+   "icon": "icon:plus",
+   "mode": "background"
+  },
+  {
+   "id": "make-smaller",
+   "name": "Make Smaller",
+   "description": "Shrink the front window by 10% around its center.",
+   "icon": "icon:minus",
+   "mode": "background"
+  },
+  {
+   "id": "maximize-height",
+   "name": "Maximize Height",
+   "description": "Stretch the front window to the full screen height.",
+   "icon": "icon:layers",
+   "mode": "background"
+  },
+  {
+   "id": "maximize-width",
+   "name": "Maximize Width",
+   "description": "Stretch the front window to the full screen width.",
+   "icon": "icon:layers",
+   "mode": "background"
+  },
+  {
+   "id": "move-left",
+   "name": "Move Left",
+   "description": "Nudge the front window 50 px left.",
+   "icon": "icon:layers",
+   "mode": "background"
+  },
+  {
+   "id": "move-right",
+   "name": "Move Right",
+   "description": "Nudge the front window 50 px right.",
+   "icon": "icon:layers",
+   "mode": "background"
+  },
+  {
+   "id": "move-up",
+   "name": "Move Up",
+   "description": "Nudge the front window 50 px up.",
+   "icon": "icon:layers",
+   "mode": "background"
+  },
+  {
+   "id": "move-down",
+   "name": "Move Down",
+   "description": "Nudge the front window 50 px down.",
+   "icon": "icon:layers",
+   "mode": "background"
+  },
+  {
+   "id": "next-display",
+   "name": "Next Display",
+   "description": "Move the front window to the next display, keeping its relative size and position.",
+   "icon": "icon:layers",
+   "mode": "background"
+  },
+  {
+   "id": "previous-display",
+   "name": "Previous Display",
+   "description": "Move the front window to the previous display.",
+   "icon": "icon:layers",
+   "mode": "background"
+  },
+  {
+   "id": "top-center-sixth",
+   "name": "Top Center Sixth",
+   "description": "Front window \u2192 top center sixth of the screen.",
+   "icon": "icon:layers",
+   "mode": "background"
+  },
+  {
+   "id": "bottom-center-sixth",
+   "name": "Bottom Center Sixth",
+   "description": "Front window \u2192 bottom center sixth of the screen.",
+   "icon": "icon:layers",
    "mode": "background"
   }
  ]
