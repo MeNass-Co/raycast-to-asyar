@@ -26,3 +26,5 @@ export const preferences: Record<string, { value: unknown }> = new Proxy({}, { g
 export const pasteText = (t: string) => Clipboard.paste(t);
 export const ListSection = List.Section;
 export const ListItem = List.Item;
+// Some extensions import `fetch` from @raycast/api (it is global in Raycast's Node).
+export const fetch = globalThis.fetch;

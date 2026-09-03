@@ -148,10 +148,15 @@ function swiftFunctionNames(pkgDir) {
 function* walk(dir) { if (!fs.existsSync(dir)) return; for (const e of fs.readdirSync(dir, { withFileTypes: true })) { const p = path.join(dir, e.name); if (e.isDirectory()) { if (e.name !== 'node_modules' && e.name !== '.build') yield* walk(p); } else yield p; } }
 
 // tsconfig `paths` (e.g. "@utils/*": ["./src/utils/*"]) used by ~5% of the store.
+const tsBaseUrl = (() => { try { const f = path.join(srcDir, 'tsconfig.json'); if (!fs.existsSync(f)) return null; const c = ts.parseConfigFileTextToJson(f, fs.readFileSync(f, 'utf8')).config?.compilerOptions ?? {}; return c.baseUrl ? path.resolve(srcDir, c.baseUrl) : null; } catch { return null; } })();
 const tsPaths = (() => { try { const f = path.join(srcDir, 'tsconfig.json'); if (!fs.existsSync(f)) return []; const t = ts.parseConfigFileTextToJson(f, fs.readFileSync(f, 'utf8')).config ?? {}; const base = path.resolve(srcDir, t.compilerOptions?.baseUrl ?? '.'); return Object.entries(t.compilerOptions?.paths ?? {}).map(([k, v]) => ({ re: new RegExp('^' + k.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace('*', '(.*)') + '$'), targets: v.map((x) => path.resolve(base, x)) })); } catch { return []; } })();
 // Make sure the extension's own deps are installed (for the sidecar bundle). `@raycast/*` packages are
 // never installed: the shim aliases `@raycast/api`, and `@raycast/utils` resolves from the shim's own
 // node_modules. Skipping them cuts the install to the extension's real runtime deps.
+// Re-run the install when node_modules exists but a declared dep is missing (an earlier run that failed
+// half-way leaves a partial tree; --resume would then skip the install forever).
+const missingDeclared = fs.existsSync(path.join(srcDir, 'node_modules')) && Object.keys(pkg.dependencies ?? {}).some((k) => !k.startsWith('@raycast/') && !fs.existsSync(path.join(srcDir, 'node_modules', k)));
+if (missingDeclared) fs.rmSync(path.join(srcDir, 'node_modules'), { recursive: true, force: true });
 if (!fs.existsSync(path.join(srcDir, 'node_modules'))) {
   const realDeps = Object.entries(pkg.dependencies ?? {}).filter(([k]) => !k.startsWith('@raycast/'));
   // Add bare imports used in src/ but missing from dependencies (Raycast hoisting used to hide this).
@@ -169,6 +174,7 @@ if (!fs.existsSync(path.join(srcDir, 'node_modules'))) {
       const spec = m[1]; if (/^(node|swift|rust|bun|data|https?):/.test(spec)) continue;
       const name = spec.startsWith('@') ? spec.split('/').slice(0, 2).join('/') : spec.split('/')[0];
       if (tsPaths.some(({ re }) => re.test(spec))) continue;
+      if (tsBaseUrl && ['', '.ts', '.tsx', '.js', '.jsx', '/index.ts', '/index.tsx', '/index.js'].some((x) => fs.existsSync(path.join(tsBaseUrl, spec) + x))) continue;
       if (!name.startsWith('@raycast/') && !declared.has(name) && !builtin.has(name)) undeclared.add(name);
     }
   }
@@ -213,6 +219,13 @@ const raycastApiPlugin = {
           for (const ext of ['', '.ts', '.tsx', '.js', '.jsx', '/index.ts', '/index.tsx', '/index.js']) if (fs.existsSync(cand + ext) && fs.statSync(cand + ext).isFile()) return { path: cand + ext };
         }
       }
+      return undefined;
+    });
+    // tsconfig `baseUrl` ("src"): bare imports like "Const" or "Managers/foo" resolve under it before npm.
+    build.onResolve({ filter: /^[^./@][^:]*$/ }, (a) => {
+      if (!tsBaseUrl || a.pluginData?.rcRequire) return undefined;
+      const cand = path.join(tsBaseUrl, a.path);
+      for (const ext of ['', '.ts', '.tsx', '.js', '.jsx', '/index.ts', '/index.tsx', '/index.js']) if (fs.existsSync(cand + ext) && fs.statSync(cand + ext).isFile()) return { path: cand + ext };
       return undefined;
     });
     build.onResolve({ filter: /^@raycast\/api$/ }, () => ({ path: path.join(PKG, 'api-node', 'index.ts') }));
