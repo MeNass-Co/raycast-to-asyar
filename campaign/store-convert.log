@@ -1,0 +1,74 @@
+[store] 3248 extensions, 3 jobs
+[1/3248] ok      1-click-confetti 0s
+[2/3248] ok      0x0 0s
+[3/3248] ok      1bookmark 0s
+[4/3248] ok      1loc 0s
+[5/3248] ok      1password 0s
+[6/3248] ok      2fa-directory 0s
+[7/3248] ok      2fas-authenticator 0s
+[8/3248] ok      40-questions 0s
+[9/3248] ok      42-api 0s
+[10/3248] ok      8-divide 0s
+[11/3248] ok      5devs 0s
+[12/3248] ok      8ball 0s
+[13/3248] ok      Bilibili 0s
+[14/3248] ok      CodeBlocks 0s
+[15/3248] ok      Splitwise 0s
+[16/3248] ok      ableton-live 0s
+[17/3248] ok      abstract-api 0s
+[18/3248] ok      aave-search 0s
+[19/3248] ok      accordance 0s
+[20/3248] ok      acqua 0s
+[21/3248] ok      active-mississaugua 0s
+[22/3248] ok      adb 0s
+[23/3248] ok      adguard-home 0s
+[24/3248] ok      adhan-time 0s
+[25/3248] ok      adonisjs-documentation 0s
+[26/3248] fail    ado-search 0s :: stderr: null
+[27/3248] ok      advanced-replace 0s
+[28/3248] ok      advanced-speech-to-text 0s
+[29/3248] ok      advice-slip 0s
+[30/3248] ok      aegis 0s
+[31/3248] ok      aerospace 0s
+[32/3248] ok      affine-raycast 0s
+[33/3248] ok      ag-audioflow 0s
+[34/3248] ok      agent-client-protocol 0s
+[35/3248] ok      agent-ecosystem-map 0s
+[36/3248] ok      agentcfg 0s
+[37/3248] ok      agent-usage 0s
+[38/3248] ok      ai-agency 0s
+[39/3248] ok      ai-by-vercel 0s
+[40/3248] ok      ai-code-namer 0s
+[41/3248] ok      ai-git-assistant 0s
+[42/3248] ok      agent-browser 2s
+[43/3248] ok      ai-humanizer 1s
+[44/3248] ok      ai-screenshot 1s
+[45/3248] fail    ai-gen 2s :: errors: [Getter/Setter],
+[46/3248] ok      ai-to-pdf 0s
+[47/3248] ok      ai-text-to-calendar 1s
+[48/3248] ok      ai-usage-tracker 0s
+[49/3248] ok      ai-voice-studio 0s
+[50/3248] ok      aimeflux 1s
+[51/3248] ok      ai-stats 2s
+[52/3248] ok      aimlab 1s
+[53/3248] fail    airbuddy 0s :: stderr: null
+[54/3248] ok      air-quality 1s
+[55/3248] ok      airpods-noise-control 0s
+[56/3248] ok      airport 0s
+[57/3248] ok      airsync 0s
+[58/3248] ok      airtable 0s
+[59/3248] ok      aiven 1s
+[60/3248] ok      akkoma 1s
+[61/3248] ok      airplane 3s
+[62/3248] ok      alacritty 0s
+[63/3248] ok      airsy 3s
+[64/3248] fail    aleph 1s :: errors: [Getter/Setter],
+[65/3248] fail    algolia 1s :: errors: [Getter/Setter],
+[66/3248] ok      align-rtl 0s :: [rc2asyar] wrote /Users/nassimlecornet/Developer/raycast-to-asyar/shim/out/raycast.jberrebi.alignrtl
+[67/3248] ok      alist-downloder 1s
+[68/3248] ok      aliyun-flow 0s
+[69/3248] ok      algorand 2s
+[70/3248] fail    alloy 0s :: stderr: null
+[71/3248] ok      alice-ai 3s
+[72/3248] ok      alpinejs-doc-search 1s
+[73/3248] fail    aliyun-oss 3s :: errors: [Getter/Setter],

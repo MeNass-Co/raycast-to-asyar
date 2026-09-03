@@ -1,72 +1,1202 @@
 {
- "startedAt": "2026-09-03T08:18:10.927Z",
+ "startedAt": "2026-09-03T09:08:25.366Z",
  "results": {
-  "messages": {
-   "id": "raycast.thomaslombart.messages",
+  "1-click-confetti": {
+   "id": "raycast.peduarte.clickconfetti",
    "status": "ok",
-   "ms": 1592,
+   "ms": 333,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1547509,
+    "view.js": 1095525,
+    "worker.js": 186695
+   },
+   "errors": [],
+   "deps": []
+  },
+  "0x0": {
+   "id": "raycast.pseudobun.x0",
+   "status": "ok",
+   "ms": 335,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1922763,
+    "view.js": 1095532,
+    "worker.js": 186702
+   },
+   "errors": [],
+   "deps": []
+  },
+  "1bookmark": {
+   "id": "raycast.onebookmark.bookmark",
+   "status": "ok",
+   "ms": 376,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 8129688,
+    "view.js": 1095676,
+    "worker.js": 186846
+   },
+   "errors": [],
+   "deps": [
+    "@tanstack/react-query",
+    "@trpc/client",
+    "@trpc/react-query",
+    "@trpc/server",
+    "axios",
+    "fuzzysort",
+    "ini",
+    "ms",
+    "qrcode-generator",
+    "simple-plist",
+    "sql.js",
+    "superjson",
+    "zod"
+   ]
+  },
+  "1loc": {
+   "id": "raycast.kud.loc",
+   "status": "ok",
+   "ms": 317,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2474133,
+    "view.js": 1095347,
+    "worker.js": 186517
+   },
+   "errors": [],
+   "deps": [
+    "change-case",
+    "gray-matter"
+   ]
+  },
+  "1password": {
+   "id": "raycast.khasbilegt.password",
+   "status": "ok",
+   "ms": 322,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2789218,
+    "view.js": 1098720,
+    "worker.js": 189890
+   },
+   "errors": [],
+   "deps": [
+    "@1password/sdk",
+    "fast-glob"
+   ]
+  },
+  "2fa-directory": {
+   "id": "raycast.andreaselia.fadirectory",
+   "status": "ok",
+   "ms": 323,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1976424,
+    "view.js": 1095120,
+    "worker.js": 186290
+   },
+   "errors": [],
+   "deps": []
+  },
+  "2fas-authenticator": {
+   "id": "raycast.lock.fasauthenticator",
+   "status": "ok",
+   "ms": 320,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1672516,
+    "view.js": 1095959,
+    "worker.js": 187129
+   },
+   "errors": [],
+   "deps": []
+  },
+  "40-questions": {
+   "id": "raycast.dnnsmnstrr.questions",
+   "status": "ok",
+   "ms": 314,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1598062,
+    "view.js": 1097479,
+    "worker.js": 188649
+   },
+   "errors": [],
+   "deps": []
+  },
+  "42-api": {
+   "id": "raycast.maujogue.api",
+   "status": "ok",
+   "ms": 304,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2112699,
+    "view.js": 1096109,
+    "worker.js": 187279
+   },
+   "errors": [],
+   "deps": []
+  },
+  "8-divide": {
+   "id": "raycast.pkliem.divide",
+   "status": "ok",
+   "ms": 318,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1550321,
+    "view.js": 1095185,
+    "worker.js": 186355
+   },
+   "errors": [],
+   "deps": []
+  },
+  "5devs": {
+   "id": "raycast.gustavofior.devs",
+   "status": "ok",
+   "ms": 335,
+   "code": 0,
+   "commands": 6,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4621641,
+    "view.js": 1096171,
+    "worker.js": 187341
+   },
+   "errors": [],
+   "deps": [
+    "@mihnea.dev/credit-card-generator",
+    "node-fetch",
+    "random-ipv6",
+    "react",
+    "uuid"
+   ]
+  },
+  "8ball": {
+   "id": "raycast.rocksack.ball",
+   "status": "ok",
+   "ms": 313,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1537544,
+    "view.js": 1095304,
+    "worker.js": 186474
+   },
+   "errors": [],
+   "deps": []
+  },
+  "Bilibili": {
+   "id": "raycast.fatpandac.bilibili",
+   "status": "ok",
+   "ms": 313,
    "code": 0,
    "commands": 5,
-   "tools": 4,
+   "tools": 0,
    "sizes": {
-    "sidecar.cjs": 3233127,
-    "view.js": 1101085,
-    "worker.js": 192433
+    "sidecar.cjs": 3747176,
+    "view.js": 1096687,
+    "worker.js": 187857
    },
    "errors": [],
    "deps": [
-    "date-fns"
+    "crypto-js",
+    "run-applescript"
    ]
   },
-  "mail": {
-   "id": "raycast.yug2005.mail",
+  "CodeBlocks": {
+   "id": "raycast.isfeng.codeblocks",
    "status": "ok",
-   "ms": 2433,
+   "ms": 303,
    "code": 0,
-   "commands": 11,
-   "tools": 7,
+   "commands": 1,
+   "tools": 0,
    "sizes": {
-    "sidecar.cjs": 23881774,
-    "view.js": 1103224,
-    "worker.js": 194572
+    "sidecar.cjs": 1550143,
+    "view.js": 1095121,
+    "worker.js": 186291
+   },
+   "errors": [],
+   "deps": []
+  },
+  "Splitwise": {
+   "id": "raycast.ilian.splitwise",
+   "status": "ok",
+   "ms": 315,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3883407,
+    "view.js": 1095876,
+    "worker.js": 187046
    },
    "errors": [],
    "deps": [
-    "execa",
-    "got",
-    "javascript-time-ago",
-    "json2md",
-    "juice",
-    "mailparser",
-    "mime-types",
-    "plist",
-    "string-strip-html",
-    "turndown",
-    "utf8"
+    "axios",
+    "got"
    ]
   },
-  "apple-notes": {
-   "id": "raycast.raycast.applenotes",
+  "ableton-live": {
+   "id": "raycast.dch09.abletonlive",
+   "status": "ok",
+   "ms": 358,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1975605,
+    "view.js": 1095692,
+    "worker.js": 186862
+   },
+   "errors": [],
+   "deps": [
+    "tildify",
+    "untildify"
+   ]
+  },
+  "abstract-api": {
+   "id": "raycast.andreaselia.abstractapi",
+   "status": "ok",
+   "ms": 355,
+   "code": 0,
+   "commands": 8,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2941891,
+    "view.js": 1098494,
+    "worker.js": 189664
+   },
+   "errors": [],
+   "deps": [
+    "axios"
+   ]
+  },
+  "aave-search": {
+   "id": "raycast.smbdy.aavesearch",
+   "status": "ok",
+   "ms": 493,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 8407699,
+    "view.js": 1095185,
+    "worker.js": 186355
+   },
+   "errors": [],
+   "deps": [
+    "@bgd-labs/toolbox",
+    "@leeoniya/ufuzzy"
+   ]
+  },
+  "accordance": {
+   "id": "raycast.entupo.accordance",
+   "status": "ok",
+   "ms": 292,
+   "code": 0,
+   "commands": 6,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2157599,
+    "view.js": 1097156,
+    "worker.js": 188326
+   },
+   "errors": [],
+   "deps": []
+  },
+  "acqua": {
+   "id": "raycast.fezvrasta.acqua",
+   "status": "ok",
+   "ms": 296,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1904722,
+    "view.js": 1095600,
+    "worker.js": 186770
+   },
+   "errors": [],
+   "deps": []
+  },
+  "active-mississaugua": {
+   "id": "raycast.aayush9029.activemississaugua",
+   "status": "ok",
+   "ms": 285,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2479162,
+    "view.js": 1095628,
+    "worker.js": 186798
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch"
+   ]
+  },
+  "adb": {
+   "id": "raycast.quentin23soleil.adb",
+   "status": "ok",
+   "ms": 295,
+   "code": 0,
+   "commands": 20,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2132836,
+    "view.js": 1101352,
+    "worker.js": 192522
+   },
+   "errors": [],
+   "deps": [
+    "expand-tilde",
+    "node-fetch"
+   ]
+  },
+  "adguard-home": {
+   "id": "raycast.theplgeek.adguardhome",
+   "status": "ok",
+   "ms": 295,
+   "code": 0,
+   "commands": 9,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3205728,
+    "view.js": 1097766,
+    "worker.js": 188936
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch"
+   ]
+  },
+  "adhan-time": {
+   "id": "raycast.mzaien.adhantime",
+   "status": "ok",
+   "ms": 282,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2010753,
+    "view.js": 1096915,
+    "worker.js": 188085
+   },
+   "errors": [],
+   "deps": []
+  },
+  "adonisjs-documentation": {
+   "id": "raycast.craigharman.adonisjsdocumentation",
+   "status": "ok",
+   "ms": 292,
+   "code": 0,
+   "commands": 6,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3106431,
+    "view.js": 1096516,
+    "worker.js": 187686
+   },
+   "errors": [],
+   "deps": [
+    "algoliasearch",
+    "lodash"
+   ]
+  },
+  "ado-search": {
+   "id": "raycast.willemvanlent.adosearch",
    "status": "fail",
-   "ms": 228644,
+   "ms": 387,
    "code": 1,
    "commands": 0,
    "tools": 0,
    "sizes": {},
    "errors": [
     "const err = new Error(message);",
-    "Error: Command failed: npm install --ignore-scripts --no-audit --no-fund --silent",
+    "Error: Command failed: npm install --ignore-scripts --no-audit --no-fund --silent --prefer-offline --no-package-lock",
+    "at genericNodeError (node:internal/errors:999:15)",
+    "at wrappedFn (node:internal/errors:544:14)",
+    "at checkExecSyncError (node:child_process:942:11)",
+    "stderr: null"
+   ],
+   "deps": []
+  },
+  "advanced-replace": {
+   "id": "raycast.rocksack.advancedreplace",
+   "status": "ok",
+   "ms": 279,
+   "code": 0,
+   "commands": 7,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2018520,
+    "view.js": 1098789,
+    "worker.js": 189959
+   },
+   "errors": [],
+   "deps": [
+    "lodash",
+    "nanoid"
+   ]
+  },
+  "advanced-speech-to-text": {
+   "id": "raycast.inakitajes.advancedspeechtotext",
+   "status": "ok",
+   "ms": 320,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 5941323,
+    "view.js": 1097712,
+    "worker.js": 188882
+   },
+   "errors": [],
+   "deps": [
+    "openai",
+    "title-case"
+   ]
+  },
+  "advice-slip": {
+   "id": "raycast.pernielsentikaer.adviceslip",
+   "status": "ok",
+   "ms": 294,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1955098,
+    "view.js": 1095092,
+    "worker.js": 186262
+   },
+   "errors": [],
+   "deps": []
+  },
+  "aegis": {
+   "id": "raycast.bfayers.aegis",
+   "status": "ok",
+   "ms": 297,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2138138,
+    "view.js": 1096473,
+    "worker.js": 187643
+   },
+   "errors": [],
+   "deps": [
+    "fast-fuzzy",
+    "hi-base32",
+    "node-fetch",
+    "node-forge",
+    "protobufjs",
+    "qrcode"
+   ]
+  },
+  "aerospace": {
+   "id": "raycast.limonkufu.aerospace",
+   "status": "ok",
+   "ms": 303,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2288845,
+    "view.js": 1097655,
+    "worker.js": 188825
+   },
+   "errors": [],
+   "deps": [
+    "smol-toml"
+   ]
+  },
+  "affine-raycast": {
+   "id": "raycast.yassinesouilmi.affine",
+   "status": "ok",
+   "ms": 294,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1589573,
+    "view.js": 1096878,
+    "worker.js": 188048
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ag-audioflow": {
+   "id": "raycast.adigold1.agaudioflow",
+   "status": "ok",
+   "ms": 304,
+   "code": 0,
+   "commands": 11,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2581539,
+    "view.js": 1098083,
+    "worker.js": 189253
+   },
+   "errors": [],
+   "deps": [
+    "fluent-ffmpeg"
+   ]
+  },
+  "agent-client-protocol": {
+   "id": "raycast.yukai.agentclientprotocol",
+   "status": "ok",
+   "ms": 321,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3303674,
+    "view.js": 1096219,
+    "worker.js": 187389
+   },
+   "errors": [],
+   "deps": [
+    "@zed-industries/agent-client-protocol",
+    "uuid"
+   ]
+  },
+  "agent-ecosystem-map": {
+   "id": "raycast.spyrae.agentecosystemmap",
+   "status": "ok",
+   "ms": 313,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2002509,
+    "view.js": 1096138,
+    "worker.js": 187308
+   },
+   "errors": [],
+   "deps": []
+  },
+  "agentcfg": {
+   "id": "raycast.jorgenosberg.agentcfg",
+   "status": "ok",
+   "ms": 325,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2021212,
+    "view.js": 1095723,
+    "worker.js": 186893
+   },
+   "errors": [],
+   "deps": []
+  },
+  "agent-usage": {
+   "id": "raycast.thuggyduck.agentusage",
+   "status": "ok",
+   "ms": 380,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 6896565,
+    "view.js": 1101570,
+    "worker.js": 192740
+   },
+   "errors": [],
+   "deps": [
+    "undici"
+   ]
+  },
+  "ai-agency": {
+   "id": "raycast.marcin91.aiagency",
+   "status": "ok",
+   "ms": 321,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1633003,
+    "view.js": 1095437,
+    "worker.js": 186607
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ai-by-vercel": {
+   "id": "raycast.ridemountainpig.aibyvercel",
+   "status": "ok",
+   "ms": 356,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 6945285,
+    "view.js": 1095979,
+    "worker.js": 187149
+   },
+   "errors": [],
+   "deps": [
+    "@ai-sdk/gateway",
+    "ai"
+   ]
+  },
+  "ai-code-namer": {
+   "id": "raycast.hunterji.aicodenamer",
+   "status": "ok",
+   "ms": 302,
+   "code": 0,
+   "commands": 9,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1570751,
+    "view.js": 1097665,
+    "worker.js": 188835
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ai-git-assistant": {
+   "id": "raycast.popalay.aigitassistant",
+   "status": "ok",
+   "ms": 278,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1943772,
+    "view.js": 1097275,
+    "worker.js": 188445
+   },
+   "errors": [],
+   "deps": []
+  },
+  "agent-browser": {
+   "id": "raycast.xdhrv.agentbrowser",
+   "status": "ok",
+   "ms": 1599,
+   "code": 0,
+   "commands": 1,
+   "tools": 5,
+   "sizes": {
+    "sidecar.cjs": 1709634,
+    "view.js": 1101960,
+    "worker.js": 193130
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ai-humanizer": {
+   "id": "raycast.frolik.aihumanizer",
+   "status": "ok",
+   "ms": 561,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3353019,
+    "view.js": 1095159,
+    "worker.js": 186329
+   },
+   "errors": [],
+   "deps": [
+    "axios"
+   ]
+  },
+  "ai-screenshot": {
+   "id": "raycast.jochemloedeman.aiscreenshot",
+   "status": "ok",
+   "ms": 1066,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 5889445,
+    "view.js": 1095283,
+    "worker.js": 186453
+   },
+   "errors": [],
+   "deps": [
+    "dedent",
+    "openai",
+    "uuid"
+   ]
+  },
+  "ai-gen": {
+   "id": "raycast.josephschmitt.aigen",
+   "status": "fail",
+   "ms": 1906,
+   "code": 1,
+   "commands": 0,
+   "tools": 0,
+   "sizes": {},
+   "errors": [
+    "✘ [ERROR] Top-level await is currently not supported with the \"cjs\" output format",
+    "let error = new Error(text);",
+    "Error: Build failed with 1 error:",
+    "node_modules/temp-dir/index.js:4:27: ERROR: Top-level await is currently not supported with the \"cjs\" output format",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)",
+    "errors: [Getter/Setter],"
+   ],
+   "deps": [
+    "axios",
+    "form-data",
+    "gpt3-tokenizer",
+    "image-size",
+    "openai",
+    "tempy"
+   ]
+  },
+  "ai-to-pdf": {
+   "id": "raycast.guus.aitopdf",
+   "status": "ok",
+   "ms": 276,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2056711,
+    "view.js": 1098374,
+    "worker.js": 189544
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ai-text-to-calendar": {
+   "id": "raycast.izm51.aitexttocalendar",
+   "status": "ok",
+   "ms": 831,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 5477585,
+    "view.js": 1096295,
+    "worker.js": 187465
+   },
+   "errors": [],
+   "deps": [
+    "openai"
+   ]
+  },
+  "ai-usage-tracker": {
+   "id": "raycast.cdeligny.aiusagetracker",
+   "status": "ok",
+   "ms": 276,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2005622,
+    "view.js": 1095346,
+    "worker.js": 186516
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ai-voice-studio": {
+   "id": "raycast.xianweizhang.aivoicestudio",
+   "status": "ok",
+   "ms": 302,
+   "code": 0,
+   "commands": 20,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2421961,
+    "view.js": 1102545,
+    "worker.js": 193715
+   },
+   "errors": [],
+   "deps": []
+  },
+  "aimeflux": {
+   "id": "raycast.erdiegoant.aimeflux",
+   "status": "ok",
+   "ms": 516,
+   "code": 0,
+   "commands": 17,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1938571,
+    "view.js": 1100249,
+    "worker.js": 191419
+   },
+   "errors": [],
+   "deps": [
+    "react"
+   ]
+  },
+  "ai-stats": {
+   "id": "raycast.jonathanrreed.aistats",
+   "status": "ok",
+   "ms": 2266,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4882920,
+    "view.js": 1095980,
+    "worker.js": 187150
+   },
+   "errors": [],
+   "deps": [
+    "@supabase/supabase-js"
+   ]
+  },
+  "aimlab": {
+   "id": "raycast.whitespace.aimlab",
+   "status": "ok",
+   "ms": 694,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3891169,
+    "view.js": 1096138,
+    "worker.js": 187308
+   },
+   "errors": [],
+   "deps": [
+    "axios"
+   ]
+  },
+  "airbuddy": {
+   "id": "raycast.chrismessina.airbuddy",
+   "status": "fail",
+   "ms": 389,
+   "code": 1,
+   "commands": 0,
+   "tools": 0,
+   "sizes": {},
+   "errors": [
+    "const err = new Error(message);",
+    "Error: Command failed: npm install --ignore-scripts --no-audit --no-fund --silent --prefer-offline --no-package-lock",
+    "at genericNodeError (node:internal/errors:999:15)",
+    "at wrappedFn (node:internal/errors:544:14)",
+    "at checkExecSyncError (node:child_process:942:11)",
+    "stderr: null"
+   ],
+   "deps": []
+  },
+  "air-quality": {
+   "id": "raycast.earthpyy.airquality",
+   "status": "ok",
+   "ms": 790,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3820392,
+    "view.js": 1095700,
+    "worker.js": 186870
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "dayjs"
+   ]
+  },
+  "airpods-noise-control": {
+   "id": "raycast.chrahe.airpodsnoisecontrol",
+   "status": "ok",
+   "ms": 269,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1939178,
+    "view.js": 1097622,
+    "worker.js": 188792
+   },
+   "errors": [],
+   "deps": []
+  },
+  "airport": {
+   "id": "raycast.siddharthsharma94.airport",
+   "status": "ok",
+   "ms": 262,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1553277,
+    "view.js": 1095155,
+    "worker.js": 186325
+   },
+   "errors": [],
+   "deps": []
+  },
+  "airsync": {
+   "id": "raycast.sameerasw.airsync",
+   "status": "ok",
+   "ms": 262,
+   "code": 0,
+   "commands": 9,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2035199,
+    "view.js": 1097188,
+    "worker.js": 188358
+   },
+   "errors": [],
+   "deps": []
+  },
+  "airtable": {
+   "id": "raycast.marks.raycastairtableextension",
+   "status": "ok",
+   "ms": 244,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2075608,
+    "view.js": 1096295,
+    "worker.js": 187465
+   },
+   "errors": [],
+   "deps": []
+  },
+  "aiven": {
+   "id": "raycast.xmok.aiven",
+   "status": "ok",
+   "ms": 1335,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2004611,
+    "view.js": 1095166,
+    "worker.js": 186336
+   },
+   "errors": [],
+   "deps": [
+    "filesize"
+   ]
+  },
+  "akkoma": {
+   "id": "raycast.sevichecc.akkoma",
+   "status": "ok",
+   "ms": 759,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3558036,
+    "view.js": 1096947,
+    "worker.js": 188117
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch",
+    "node-html-markdown"
+   ]
+  },
+  "airplane": {
+   "id": "raycast.pradeepb28.airplane",
+   "status": "ok",
+   "ms": 3319,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1807383,
+    "view.js": 1095488,
+    "worker.js": 186658
+   },
+   "errors": [],
+   "deps": [
+    "fix-path",
+    "manage-wifi",
+    "run-applescript"
+   ]
+  },
+  "alacritty": {
+   "id": "raycast.joseeliasalvarez.alacritty",
+   "status": "ok",
+   "ms": 275,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1559360,
+    "view.js": 1096645,
+    "worker.js": 187815
+   },
+   "errors": [],
+   "deps": []
+  },
+  "airsy": {
+   "id": "raycast.piotrzaborow.airsy",
+   "status": "ok",
+   "ms": 3269,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2907426,
+    "view.js": 1095387,
+    "worker.js": 186557
+   },
+   "errors": [],
+   "deps": [
+    "leaflet",
+    "node-fetch",
+    "react-leaflet",
+    "remove-accents"
+   ]
+  },
+  "aleph": {
+   "id": "raycast.d7mtg.aleph",
+   "status": "fail",
+   "ms": 691,
+   "code": 1,
+   "commands": 0,
+   "tools": 0,
+   "sizes": {},
+   "errors": [
+    "src/remove.tsx:1:20: ERROR: No matching export in \"../../../shim/packages/api-node/index.ts\" for import \"ToastStyle\"",
+    "src/reverse.tsx:1:20: ERROR: No matching export in \"../../../shim/packages/api-node/index.ts\" for import \"ToastStyle\"",
+    "src/to-hebrew.tsx:1:20: ERROR: No matching export in \"../../../shim/packages/api-node/index.ts\" for import \"ToastStyle\"",
+    "src/to-latin.tsx:1:20: ERROR: No matching export in \"../../../shim/packages/api-node/index.ts\" for import \"ToastStyle\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)",
+    "errors: [Getter/Setter],"
+   ],
+   "deps": [
+    "js-base64",
+    "run-applescript"
+   ]
+  },
+  "algolia": {
+   "id": "raycast.valentindotxyz.searchwithalgolia",
+   "status": "fail",
+   "ms": 878,
+   "code": 1,
+   "commands": 0,
+   "tools": 0,
+   "sizes": {},
+   "errors": [
+    "let error = new Error(text);",
+    "Error: Build failed with 2 errors:",
+    "src/index.tsx:1:49: ERROR: No matching export in \"../../../shim/packages/api-node/index.ts\" for import \"OpenInBrowserAction\"",
+    "src/index.tsx:1:81: ERROR: No matching export in \"../../../shim/packages/api-node/index.ts\" for import \"ToastStyle\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)",
+    "errors: [Getter/Setter],"
+   ],
+   "deps": [
+    "algoliasearch",
+    "prettier"
+   ]
+  },
+  "align-rtl": {
+   "id": "raycast.jberrebi.alignrtl",
+   "status": "ok",
+   "ms": 242,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1545121,
+    "view.js": 1095181,
+    "worker.js": 186351
+   },
+   "errors": [
+    "[rc2asyar] wrote /Users/nassimlecornet/Developer/raycast-to-asyar/shim/out/raycast.jberrebi.alignrtl"
+   ],
+   "deps": []
+  },
+  "alist-downloder": {
+   "id": "raycast.sggb0nd.alistdownloder",
+   "status": "ok",
+   "ms": 658,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3394806,
+    "view.js": 1095803,
+    "worker.js": 186973
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "path"
+   ]
+  },
+  "aliyun-flow": {
+   "id": "raycast.yggdrasil.aliyunflow",
+   "status": "ok",
+   "ms": 253,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2014301,
+    "view.js": 1095394,
+    "worker.js": 186564
+   },
+   "errors": [],
+   "deps": []
+  },
+  "algorand": {
+   "id": "raycast.raihankhan.algorand",
+   "status": "ok",
+   "ms": 2155,
+   "code": 0,
+   "commands": 8,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 5523827,
+    "view.js": 1097718,
+    "worker.js": 188888
+   },
+   "errors": [],
+   "deps": [
+    "@tinymanorg/tinyman-js-sdk",
+    "algosdk"
+   ]
+  },
+  "alloy": {
+   "id": "raycast.alloyprototyping.alloy",
+   "status": "fail",
+   "ms": 391,
+   "code": 1,
+   "commands": 0,
+   "tools": 0,
+   "sizes": {},
+   "errors": [
+    "const err = new Error(message);",
+    "Error: Command failed: npm install --ignore-scripts --no-audit --no-fund --silent --prefer-offline --no-package-lock",
     "at genericNodeError (node:internal/errors:999:15)",
     "at wrappedFn (node:internal/errors:544:14)",
     "at checkExecSyncError (node:child_process:942:11)",
     "stderr: null"
    ],
    "deps": [
-    "date-fns",
-    "node-html-markdown",
-    "pinyin-pro"
+    "zod"
    ]
   }
- },
- "finishedAt": "2026-09-03T08:21:59.573Z"
+ }
 }

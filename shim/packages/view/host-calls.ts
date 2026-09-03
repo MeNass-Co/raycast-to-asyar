@@ -59,6 +59,12 @@ export class HostCalls {
         return;
       }
       case 'createSnippet': return;
+      case 'updateCommandMetadata': {
+        const cmds = this.ctx.getService<import('asyar-sdk/contracts').ICommandService>('commands');
+        const id = `cmd_${this.extensionId}_${String(p.commandId ?? '')}`;
+        await cmds.updateCommandMetadata(id, { subtitle: (p.subtitle as string | null) ?? undefined }).catch(() => {});
+        return;
+      }
       case 'aiAsk': throw new Error('AI.ask: no provider wired yet');
       case 'browserTabs': return [];
       default: throw new Error(`unknown host method ${method}`);

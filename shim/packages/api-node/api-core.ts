@@ -103,6 +103,9 @@ export async function launchCommand(options: { name: string; type: string; argum
   await runtime.host('launchCommand', options);
 }
 export async function openExtensionPreferences() { await runtime.host('openPreferences', {}); }
+/** Raycast: update the subtitle shown next to the command in the root search. */
+export async function updateCommandMetadata(metadata: { subtitle?: string | null }) { await runtime.host('updateCommandMetadata', { commandId: runtime.currentCommand?.id, subtitle: metadata?.subtitle ?? null }); }
+export async function clearSearchBarAndPopToRoot() { await popToRoot({ clearSearchBar: true }); }
 export async function openCommandPreferences() { await runtime.host('openPreferences', { command: runtime.currentCommand?.id }); }
 
 // ── shell helpers ───────────────────────────────────────────────────────

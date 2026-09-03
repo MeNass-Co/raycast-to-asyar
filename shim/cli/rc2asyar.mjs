@@ -150,6 +150,21 @@ function* walk(dir) { if (!fs.existsSync(dir)) return; for (const e of fs.readdi
 // node_modules. Skipping them cuts the install to the extension's real runtime deps.
 if (!fs.existsSync(path.join(srcDir, 'node_modules'))) {
   const realDeps = Object.entries(pkg.dependencies ?? {}).filter(([k]) => !k.startsWith('@raycast/'));
+  // Add bare imports used in src/ but missing from dependencies (Raycast hoisting used to hide this).
+  const declared = new Set(Object.keys(pkg.dependencies ?? {}));
+  const devRanges = pkg.devDependencies ?? {};
+  const builtin = new Set(['fs', 'path', 'os', 'crypto', 'child_process', 'util', 'url', 'events', 'stream', 'buffer', 'http', 'https', 'net', 'zlib', 'readline', 'assert', 'tty', 'dns', 'querystring', 'string_decoder', 'timers', 'worker_threads', 'perf_hooks', 'module', 'process', 'constants', 'vm', 'punycode', 'v8', 'async_hooks', 'diagnostics_channel', 'react', 'react-dom']);
+  const undeclared = new Set();
+  for (const f of walk(path.join(srcDir, 'src'))) {
+    if (!/\.(t|j)sx?$/.test(f)) continue;
+    for (const m of fs.readFileSync(f, 'utf8').matchAll(/(?:from\s+|require\()\s*["']([^"'./][^"']*)["']/g)) {
+      const spec = m[1]; if (spec.startsWith('node:') || spec.startsWith('swift:')) continue;
+      const name = spec.startsWith('@') ? spec.split('/').slice(0, 2).join('/') : spec.split('/')[0];
+      if (!name.startsWith('@raycast/') && !declared.has(name) && !builtin.has(name)) undeclared.add(name);
+    }
+  }
+  for (const n of undeclared) realDeps.push([n, devRanges[n] ?? 'latest']);
+  if (undeclared.size) log('undeclared deps:', [...undeclared].join(', '));
   if (realDeps.length) {
     log(`npm install (${realDeps.length} deps)`);
     const tmpPkg = path.join(srcDir, 'package.json');
