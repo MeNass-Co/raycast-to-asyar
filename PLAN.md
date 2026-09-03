@@ -155,3 +155,12 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
   and indexed: 88 scripts, no InvalidHeader issues.
 - messages + mail reinstalled from the current shim (same ids, agent tool bindings intact; 4 + 7 tools
   registered). My Messages view verified live (50 rows) — `iCloud temp/asyar-handoff/asyar-messages-live.png`.
+- **Install path from git (no disk transit):** `node shim/cli/rc-install.mjs <id|raycast-name>` reads
+  `index.json` from the store repo, downloads the release `.asyar`, checks sha256, unzips into Asyar's
+  extensions dir, writes `enabled` + `consent` (from the manifest) into settings.dat **with Asyar
+  quit**, trusts the sidecar binaries, relaunches. `--search <text>` lists index entries. Verified
+  live with `raycast.peduarte.clickconfetti` (2 commands indexed, no PermissionGate block).
+  `publish-index.mjs` is safe to re-run any time (contents-API PUT with sha).
+- Converter: optional native modules (electron, canvas, better-sqlite3, proxy-agent, fsevents, `.node`)
+  stubbed as empty modules → 3223 ok / 25 fail. Remaining 25 = Swift/Rust helpers not built (8),
+  `rust:`/`bun:` imports (7), missing npm packages (lodash/html2pug/ts-reset), 2 registry 404s.
