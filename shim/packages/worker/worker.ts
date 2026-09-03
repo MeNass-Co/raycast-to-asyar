@@ -102,6 +102,9 @@ class Worker implements Extension {
   // ── MenuBarExtra → Asyar status bar ────────────────────────────────────
   private renderMenuBar(tree: RNode | null) {
     if (!this.currentMenuCommand) return;
+    // Menu-bar mirroring is OFF by design (Nassim: nothing in the menu bar). Raycast menu-bar commands still run
+    // in the background (their side effects and tools work); only the status-bar item is not registered.
+    if (!MIRROR_MENU_BAR) return;
     const statusBar = this.ctx.getService<IStatusBarService>('statusBar');
     const id = `rc-${this.currentMenuCommand}`;
     if (!tree || tree.type !== 'MenuBarExtra') { if (this.menuTrees.has(id)) { statusBar.unregisterItem(id); this.menuTrees.delete(id); } return; }
@@ -130,6 +133,7 @@ function iconOf(v: unknown): string | undefined {
   return undefined;
 }
 
+const MIRROR_MENU_BAR = false;
 const extensionId = extensionIdFromLocation(__SHIM_CONFIG__.extensionId);
 const workerContext = new WorkerExtensionContext();
 workerContext.setExtensionId(extensionId);

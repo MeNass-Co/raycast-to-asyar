@@ -64,7 +64,9 @@ const manifestCommands = commands.map((c) => {
   if (c.arguments?.length) base.arguments = argsOf(c);
   if (mode === 'view') return { ...base, mode: 'view', component: c.name };
   const bg = { ...base, mode: 'background' };
-  if (mode === 'menu-bar') { const s = intervalSeconds(c.interval); if (s) bg.schedule = { intervalSeconds: s }; }
+  // Menu-bar commands are not mirrored to the status bar (nothing in the menu bar, by design), so they get no
+  // refresh schedule either: no timer ticks, no sidecar wake-ups. They stay runnable on demand.
+  if (mode === 'menu-bar') { /* no schedule */ }
   return bg;
 });
 function intervalSeconds(iv) { if (!iv) return 0; const m = /^(\d+)([smhd])$/.exec(iv); if (!m) return 0; const n = +m[1]; const mult = { s: 1, m: 60, h: 3600, d: 86400 }[m[2]]; return Math.min(86400, Math.max(10, n * mult)); }
