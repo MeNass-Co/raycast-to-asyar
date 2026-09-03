@@ -29,7 +29,7 @@ html, body { margin: 0; height: 100%; background: transparent; color: var(--rc-t
 /* Split list + detail (Raycast: divider at 38% of width) */
 .rc-split { display: flex; flex: 1; min-height: 0; }
 .rc-split-detail .rc-list { width: 38%; flex: none; border-right: 1px solid #303030; }
-.rc-detail-pane { flex: 1; min-width: 0; overflow: auto; padding: 14px 16px; background: rgba(0,0,0,.08); }
+.rc-detail-pane { flex: 1; min-width: 0; overflow: auto; padding: 14px 16px; background: rgba(0,0,0,.10); }
 
 /* List */
 .rc-list { flex: 1; overflow-y: auto; padding: 8px var(--rc-row-inset) 8px; }
@@ -76,8 +76,8 @@ html, body { margin: 0; height: 100%; background: transparent; color: var(--rc-t
 
 /* Detail */
 .rc-detail { display: flex; flex: 1; min-height: 0; }
-.rc-detail-main { flex: 1; overflow: auto; padding: 16px 18px; min-width: 0; }
-.rc-detail-meta { width: 300px; flex: none; border-left: 1px solid #303030; overflow: auto; padding: 16px 16px; }
+.rc-detail-main { flex: 1; overflow: auto; padding: 16px 18px; min-width: 0; background: rgba(0,0,0,.10); }
+.rc-detail-meta { width: 300px; flex: none; border-left: 1px solid #303030; overflow: auto; padding: 14px 16px; background: rgba(0,0,0,.10); }
 .rc-markdown { line-height: 1.5; font-size: 13px; }
 .rc-markdown h1 { font-size: 22px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em; } .rc-markdown h2 { font-size: 17px; font-weight: 600; margin: 16px 0 8px; } .rc-markdown h3 { font-size: 14px; font-weight: 600; margin: 14px 0 6px; }
 .rc-markdown p { margin: 0 0 10px; } .rc-markdown img { max-width: 100%; border-radius: 8px; }
@@ -90,7 +90,7 @@ html, body { margin: 0; height: 100%; background: transparent; color: var(--rc-t
 .rc-meta { display: flex; flex-direction: column; font-size: 12px; }
 .rc-meta-row { display: flex; justify-content: space-between; gap: 12px; align-items: center; min-height: 28px; border-bottom: 1px solid #282828; }
 .rc-meta-row:last-child { border-bottom: none; }
-.rc-meta-title { color: var(--rc-text-2); flex: none; }
+.rc-meta-title { color: #9d9d9d; flex: none; }
 .rc-meta-value { display: inline-flex; align-items: center; gap: 6px; text-align: right; min-width: 0; word-break: break-word; color: var(--rc-text); }
 .rc-meta-link { color: var(--rc-text); text-decoration: underline; text-decoration-color: var(--rc-text-3); text-align: right; }
 .rc-meta-sep { border-top: 1px solid var(--rc-sep); margin: 6px 0; }
