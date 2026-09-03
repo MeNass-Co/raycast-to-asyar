@@ -29,7 +29,8 @@ const save = () => fs.writeFileSync(REPORT, JSON.stringify(report, null, 1));
 let names = fs.readdirSync(STORE).filter((n) => fs.existsSync(path.join(STORE, n, 'package.json')) && fs.existsSync(path.join(STORE, n, 'src')));
 if (only) names = names.filter((n) => only.includes(n));
 if (filter) names = names.filter((n) => n.includes(filter));
-if (resume) names = names.filter((n) => !report.results[n] || report.results[n].status === 'timeout');
+// --resume keeps the report; without --only it skips everything already done (fails included), with --only it re-runs exactly the listed names.
+if (resume && !only) names = names.filter((n) => !report.results[n] || report.results[n].status === 'timeout');
 if (limit) names = names.slice(0, limit);
 console.log(`[store] ${names.length} extensions, ${jobs} jobs`);
 
@@ -56,7 +57,7 @@ function convertOne(name) {
       const sizes = status === 'ok' ? Object.fromEntries(['sidecar.cjs', 'view.js', 'worker.js'].filter((f) => fs.existsSync(path.join(outDir, f))).map((f) => [f, fs.statSync(path.join(outDir, f)).size])) : {};
       const manifest = status === 'ok' && fs.existsSync(path.join(outDir, 'manifest.json')) ? JSON.parse(fs.readFileSync(path.join(outDir, 'manifest.json'), 'utf8')) : null;
       // Keep the error tail compact: last meaningful esbuild/npm lines.
-      const tail = (err + '\n' + out).split('\n').filter((l) => /error|Error|ERR|✘|Cannot|not found|failed/i.test(l)).slice(-6).map((l) => l.trim().slice(0, 300));
+      const tail = (err + '\n' + out).split('\n').filter((l) => /error|Error|ERR|✘|Cannot|not found|failed/i.test(l) && !/\[Getter\/Setter\]|^\s*errors: \[/.test(l)).slice(-6).map((l) => l.trim().slice(0, 300));
       report.results[name] = { id, status, ms, code, commands: manifest?.commands?.length ?? 0, tools: manifest?.tools?.length ?? 0, sizes, errors: tail, deps: Object.keys(pkg.dependencies ?? {}).filter((d) => !d.startsWith('@raycast/')) };
       resolve();
     });

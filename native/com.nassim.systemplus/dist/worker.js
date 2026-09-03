@@ -4566,7 +4566,7 @@ var manifest_default = {
   id: "com.nassim.systemplus",
   name: "System+",
   version: "1.0.0",
-  description: "Raycast's System commands for Asyar: Empty Trash, Open Trash, Sleep Displays, Screen Saver, Show Desktop, Hide/Quit apps, Eject Disks, Volume, Appearance, Hidden Files, Stage Manager.",
+  description: "Raycast's System commands for Asyar: Empty Trash, Open Trash, Sleep Displays, Screen Saver, Show Desktop, Hide/Quit apps, Eject Disks, Volume, Appearance, Hidden Files, Stage Manager, Do Not Disturb, Focus Session.",
   author: "Nassim Lecornet",
   icon: "icon:settings",
   type: "extension",
@@ -4590,7 +4590,8 @@ var manifest_default = {
       "/usr/bin/pmset",
       "/usr/bin/defaults",
       "/usr/bin/killall",
-      "/usr/bin/open"
+      "/usr/bin/open",
+      "/usr/bin/shortcuts"
     ]
   },
   preferences: [
@@ -4600,6 +4601,13 @@ var manifest_default = {
       title: "Show Warning Before Emptying Trash",
       description: "Ask for confirmation before the Trash is emptied.",
       default: true
+    },
+    {
+      name: "focusMinutes",
+      type: "textfield",
+      title: "Focus Session Length (minutes)",
+      description: "Length of a focus session started with Start Focus Session.",
+      default: "25"
     }
   ],
   commands: [
@@ -4756,6 +4764,27 @@ var manifest_default = {
       description: "Clear every banner in Notification Center.",
       icon: "icon:info",
       mode: "background"
+    },
+    {
+      id: "toggle-do-not-disturb",
+      name: "Toggle Do Not Disturb",
+      description: "Turn Do Not Disturb on or off (runs your 'Toggle Do Not Disturb' Shortcut).",
+      icon: "icon:moon",
+      mode: "background"
+    },
+    {
+      id: "start-focus-session",
+      name: "Start Focus Session",
+      description: "25 minutes: Do Not Disturb on, other apps hidden, a notification when time is up.",
+      icon: "icon:target",
+      mode: "background"
+    },
+    {
+      id: "end-focus-session",
+      name: "End Focus Session",
+      description: "Stop the running focus session and turn Do Not Disturb off.",
+      icon: "icon:target",
+      mode: "background"
     }
   ]
 };
@@ -4797,6 +4826,22 @@ var SystemPlus = class {
   }
   hud(t) {
     return this.feedback.showHUD(t);
+  }
+  focusTimer;
+  /** Do Not Disturb has no public CLI: run the user's Shortcut ("Toggle Do Not Disturb" / "Do Not Disturb On" / "Do Not Disturb Off",
+   *  each = the Shortcuts "Set Focus" action). Missing shortcut → HUD with the recipe and open Shortcuts. Returns the new state when known. */
+  async dnd(mode) {
+    const name = mode === "toggle" ? "Toggle Do Not Disturb" : mode === "on" ? "Do Not Disturb On" : "Do Not Disturb Off";
+    try {
+      await this.run("/usr/bin/shortcuts", ["run", name]);
+    } catch {
+      await this.hud(`Create a Shortcut named "${name}" (Set Focus \u2192 Do Not Disturb)`);
+      await this.run("/usr/bin/open", ["-a", "Shortcuts"]).catch(() => {
+      });
+      return null;
+    }
+    const active = await this.osa('do shell script "grep -c donotdisturb.mode.default ~/Library/DoNotDisturb/DB/Assertions.json || true"').catch(() => "");
+    return mode === "toggle" ? Number(active) > 0 : mode === "on";
   }
   async volume() {
     return Number(await this.osa("output volume of (get volume settings)")) || 0;
@@ -4923,6 +4968,40 @@ return count of apps`;
           await this.osa('tell application "System Events" to tell process "NotificationCenter" to try\n perform action "AXPress" of (every button whose description contains "Clear" or description contains "Close") of (every window)\nend try').catch(() => {
           });
           return;
+        case "toggle-do-not-disturb": {
+          const on = await this.dnd("toggle");
+          if (on !== null) await this.hud(on ? "Do Not Disturb on" : "Do Not Disturb off");
+          return;
+        }
+        case "start-focus-session": {
+          const mins = Math.max(1, Number(this.ctx.preferences.values.focusMinutes) || 25);
+          if (this.focusTimer) {
+            clearTimeout(this.focusTimer);
+            this.focusTimer = void 0;
+          }
+          await this.osa('tell application "System Events" to set visible of every process whose frontmost is false and name is not "Finder" to false').catch(() => {
+          });
+          await this.dnd("on");
+          this.focusTimer = setTimeout(() => {
+            void (async () => {
+              this.focusTimer = void 0;
+              await this.dnd("off");
+              await this.feedback.sendBackground({ title: "Focus session complete", body: `${mins} minutes are up. Nice work.` }).catch(() => {
+              });
+            })();
+          }, mins * 6e4);
+          await this.hud(`Focus: ${mins} min`);
+          return;
+        }
+        case "end-focus-session": {
+          if (this.focusTimer) {
+            clearTimeout(this.focusTimer);
+            this.focusTimer = void 0;
+          }
+          await this.dnd("off");
+          await this.hud("Focus session ended");
+          return;
+        }
         default:
           this.log.warn(`[system+] unknown command ${commandId}`);
       }

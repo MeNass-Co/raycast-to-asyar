@@ -161,7 +161,11 @@ if (!fs.existsSync(path.join(srcDir, 'node_modules'))) {
   const undeclared = new Set();
   for (const f of walk(path.join(srcDir, 'src'))) {
     if (!/\.(t|j)sx?$/.test(f)) continue;
-    for (const m of fs.readFileSync(f, 'utf8').matchAll(/(?:from\s+|require\()\s*["']([^"'./][^"']*)["']/g)) {
+    // ts.preProcessFile parses real import/require specifiers; a regex on `from "` also matched
+    // template strings and prose ("${baseBranch || " etc.) and produced bogus npm installs.
+    const specs = ts.preProcessFile(fs.readFileSync(f, 'utf8'), true, true).importedFiles.map((i) => [null, i.fileName]);
+    for (const m of specs) {
+      if (!m[1] || m[1].startsWith('.') || m[1].startsWith('/')) continue;
       const spec = m[1]; if (spec.startsWith('node:') || spec.startsWith('swift:')) continue;
       const name = spec.startsWith('@') ? spec.split('/').slice(0, 2).join('/') : spec.split('/')[0];
       if (tsPaths.some(({ re }) => re.test(spec))) continue;

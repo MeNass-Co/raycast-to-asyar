@@ -33,7 +33,8 @@ class Worker implements Extension {
       try { await Promise.race([tools.registerTool(t, async (args) => this.callTool(t.id, args)), new Promise((_, rej) => setTimeout(() => rej(new Error('registerTool timeout')), 8000))]); this.log.info(`[rc-worker] registered ${t.id}`); }
       catch (e) { this.log.error(`[rc-worker] registerTool ${t.id} failed: ${e}`); }
     }
-    const listed = await tools.listTools().catch((e) => { this.log.warn('[rc-worker] listTools failed ' + e); return []; });
+    // listTools needs `tools:register`, which the manifest declares only when the extension ships tools.
+    const listed = __SHIM_CONFIG__.tools.length ? await tools.listTools().catch((e) => { this.log.warn('[rc-worker] listTools failed ' + e); return []; }) : [];
     this.log.info(`[raycast-shim] worker ready, ${manifestTools.length} tools registered; registry has ${listed.filter((t) => typeof t.source === 'object' && 'extensionId' in t.source && t.source.extensionId === extensionId).length} for this extension`);
   }
   async activate() {}

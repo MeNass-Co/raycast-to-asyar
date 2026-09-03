@@ -35,6 +35,16 @@ class SystemPlus implements Extension {
   private osa(script: string) { return this.run(OSA, ['-e', script]); }
   private hud(t: string) { return this.feedback.showHUD(t); }
 
+  private focusTimer: ReturnType<typeof setTimeout> | undefined;
+  /** Do Not Disturb has no public CLI: run the user's Shortcut ("Toggle Do Not Disturb" / "Do Not Disturb On" / "Do Not Disturb Off",
+   *  each = the Shortcuts "Set Focus" action). Missing shortcut → HUD with the recipe and open Shortcuts. Returns the new state when known. */
+  private async dnd(mode: 'toggle' | 'on' | 'off'): Promise<boolean | null> {
+    const name = mode === 'toggle' ? 'Toggle Do Not Disturb' : mode === 'on' ? 'Do Not Disturb On' : 'Do Not Disturb Off';
+    try { await this.run('/usr/bin/shortcuts', ['run', name]); }
+    catch { await this.hud(`Create a Shortcut named "${name}" (Set Focus → Do Not Disturb)`); await this.run('/usr/bin/open', ['-a', 'Shortcuts']).catch(() => {}); return null; }
+    const active = await this.osa('do shell script "grep -c donotdisturb.mode.default ~/Library/DoNotDisturb/DB/Assertions.json || true"').catch(() => '');
+    return mode === 'toggle' ? Number(active) > 0 : mode === 'on';
+  }
   private async volume(): Promise<number> { return Number(await this.osa('output volume of (get volume settings)')) || 0; }
   private async setVolume(n: number) { await this.osa(`set volume output volume ${Math.max(0, Math.min(100, n))}`); await this.hud(`Volume ${Math.max(0, Math.min(100, n))}%`); }
 
@@ -91,6 +101,16 @@ return count of apps`;
           await this.hud(ok.trim() === '1' ? 'Bluetooth on' : 'Bluetooth off'); return;
         }
         case 'dismiss-notifications': await this.osa('tell application "System Events" to tell process "NotificationCenter"\n try\n click (every button of every group of every scroll area of every window whose description is "Clear All" or name is "Clear All")\n end try\nend tell').catch(() => {}); await this.osa('tell application "System Events" to tell process "NotificationCenter" to try\n perform action "AXPress" of (every button whose description contains "Clear" or description contains "Close") of (every window)\nend try').catch(() => {}); return;
+        case 'toggle-do-not-disturb': { const on = await this.dnd('toggle'); if (on !== null) await this.hud(on ? 'Do Not Disturb on' : 'Do Not Disturb off'); return; }
+        case 'start-focus-session': {
+          const mins = Math.max(1, Number((this.ctx.preferences.values as { focusMinutes?: string }).focusMinutes) || 25);
+          if (this.focusTimer) { clearTimeout(this.focusTimer); this.focusTimer = undefined; }
+          await this.osa('tell application "System Events" to set visible of every process whose frontmost is false and name is not "Finder" to false').catch(() => {});
+          await this.dnd('on');
+          this.focusTimer = setTimeout(() => { void (async () => { this.focusTimer = undefined; await this.dnd('off'); await this.feedback.sendBackground({ title: 'Focus session complete', body: `${mins} minutes are up. Nice work.` }).catch(() => {}); })(); }, mins * 60_000);
+          await this.hud(`Focus: ${mins} min`); return;
+        }
+        case 'end-focus-session': { if (this.focusTimer) { clearTimeout(this.focusTimer); this.focusTimer = undefined; } await this.dnd('off'); await this.hud('Focus session ended'); return; }
         default: this.log.warn(`[system+] unknown command ${commandId}`);
       }
     } catch (e) {
