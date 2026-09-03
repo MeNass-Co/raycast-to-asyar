@@ -217,3 +217,25 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 - Lunar principles kept: neutrals cooled (no warm tint), one accent, moonlight shadows.
 - `com.nassim.lunar` remains as the cool-cyan alternative; `com.nassim.raycast` (glass) is active on MBA + MBP.
 - Captures: `iCloud temp/asyar-handoff/theme/raycast-glass-*.png` next to `raycast-live-root.png`.
+
+## 2026-09-03 night — essentials, agents split, no menu bar, glass tiles
+- `com.menass.ai-messages-mail` (+ `ai-local` MCP, `ai-messages.sh`, combined agent) retired on MBA + MBP via
+  `campaign/retire-custom-ai.py`. Two agents now: **Messages** (4 tools of `raycast.thomaslombart.messages`)
+  and **Mail** (7 tools of the ported Mail ext, id `raycast.raycast.mail` on MBA / `raycast.yug2005.mail` on MBP).
+- 33 essentials installed on both Macs via `rc-install.mjs` (Apple Reminders/Notes/Calendar, Dictionary,
+  Browser Bookmarks, Brew, GitHub, Kill Process, Timers, Coffee, Emoji, Audio Device, AirPods, Wi-Fi,
+  Speedtest, Port Manager, Image Modification, PDF Tools, UUID, QR, Currency, JSON, Change Case, Word Count,
+  Folder Search, Screenshot, Spotify Controls, Things, Notion, WhatsApp, Anki, Zotero, Ghostty).
+- **No menu bar, ever**: shim worker no longer mirrors MenuBarExtra to the status bar (`MIRROR_MENU_BAR=false`),
+  converter emits no refresh schedule, `rc-install` strips schedules, `extension_timers` cleared. Every
+  installed worker rebuilt on both Macs; 0 asyar windows in the menu-bar strip on both.
+- Status-bar crash fixed on the way (ids with ':' / duplicate siblings → sanitized, guarded).
+- Glass icons: `tools/glass-icon.py` (hue-coded tile, top highlight, rim, glyph shadow; lucide via rsvg,
+  emoji via CoreText). System+ ships 38 per-command tiles. Built-in feature tiles in `theme/glass-tiles/`
+  (need an Asyar build to wire). Ported extensions keep their own Raycast PNGs (each its own colour).
+- Ask AI chip purple: hardcoded `#7c3aed` in agents/index.ts; patched on branch `nassim/lunar-polish` of the
+  asyar checkout to `var(--accent-primary-fill)`; needs an app build (pnpm now installed).
+- Themes: Lunar 1.1 = glass (active on both); Raycast 1.1 = glass.
+- Open: blank icon tiles for some ported extensions in the launcher list (files valid; investigating the
+  asyar-extension:// image path vs index), Toggle Fullscreen (-25200), Reminders EventKit accessDenied
+  (ad-hoc Swift helper has no usage string → macOS denies silently).
