@@ -4,7 +4,7 @@
  "version": "1.1.0",
  "description": "Raycast's System commands for Asyar: Empty Trash, Open Trash, Sleep Displays, Screen Saver, Show Desktop, Hide/Quit apps, Eject Disks, Volume, Appearance, Hidden Files, Stage Manager, Do Not Disturb, Focus Session, Window extras (fullscreen, larger/smaller, move, displays, sixths).",
  "author": "Nassim Lecornet",
- "icon": "icon:settings",
+ "icon": "asyar-extension://com.nassim.systemplus/assets/icon.png",
  "type": "extension",
  "asyarSdk": "^4.10.0",
  "platforms": [
@@ -52,266 +52,266 @@
    "id": "empty-trash",
    "name": "Empty Trash",
    "description": "Empty the Trash.",
-   "icon": "icon:trash",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/empty-trash.png",
    "mode": "background"
   },
   {
    "id": "open-trash",
    "name": "Open Trash",
    "description": "Open the Trash in Finder.",
-   "icon": "icon:folder",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/open-trash.png",
    "mode": "background"
   },
   {
    "id": "sleep-displays",
    "name": "Sleep Displays",
    "description": "Put the displays to sleep.",
-   "icon": "icon:moon",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/sleep-displays.png",
    "mode": "background"
   },
   {
    "id": "show-screen-saver",
    "name": "Show Screen Saver",
    "description": "Start the screen saver.",
-   "icon": "icon:sparkles",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/show-screen-saver.png",
    "mode": "background"
   },
   {
    "id": "show-desktop",
    "name": "Show Desktop",
    "description": "Hide every app and show the desktop.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/show-desktop.png",
    "mode": "background"
   },
   {
    "id": "hide-all-except-frontmost",
    "name": "Hide All Apps Except Frontmost",
    "description": "Hide every app except the one in front.",
-   "icon": "icon:eye",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/hide-all-except-frontmost.png",
    "mode": "background"
   },
   {
    "id": "quit-all-apps",
    "name": "Quit All Apps",
    "description": "Quit every open application.",
-   "icon": "icon:power",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/quit-all-apps.png",
    "mode": "background"
   },
   {
    "id": "quit-all-except-frontmost",
    "name": "Quit All Apps Except Frontmost",
    "description": "Quit every app except the one in front.",
-   "icon": "icon:power",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/quit-all-except-frontmost.png",
    "mode": "background"
   },
   {
    "id": "eject-all-disks",
    "name": "Eject All Disks",
    "description": "Eject every ejectable disk.",
-   "icon": "icon:server",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/eject-all-disks.png",
    "mode": "background"
   },
   {
    "id": "toggle-mute",
    "name": "Toggle Mute",
    "description": "Mute or unmute the speaker.",
-   "icon": "🔇",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/toggle-mute.png",
    "mode": "background"
   },
   {
    "id": "volume-up",
    "name": "Turn Volume Up",
    "description": "Raise the volume by 10%.",
-   "icon": "🔊",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/volume-up.png",
    "mode": "background"
   },
   {
    "id": "volume-down",
    "name": "Turn Volume Down",
    "description": "Lower the volume by 10%.",
-   "icon": "🔉",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/volume-down.png",
    "mode": "background"
   },
   {
    "id": "volume-0",
    "name": "Set Volume to 0%",
    "description": "Set the output volume to 0%.",
-   "icon": "🔇",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/volume-0.png",
    "mode": "background"
   },
   {
    "id": "volume-25",
    "name": "Set Volume to 25%",
    "description": "Set the output volume to 25%.",
-   "icon": "🔈",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/volume-25.png",
    "mode": "background"
   },
   {
    "id": "volume-50",
    "name": "Set Volume to 50%",
    "description": "Set the output volume to 50%.",
-   "icon": "🔉",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/volume-50.png",
    "mode": "background"
   },
   {
    "id": "volume-75",
    "name": "Set Volume to 75%",
    "description": "Set the output volume to 75%.",
-   "icon": "🔊",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/volume-75.png",
    "mode": "background"
   },
   {
    "id": "volume-100",
    "name": "Set Volume to 100%",
    "description": "Set the output volume to 100%.",
-   "icon": "🔊",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/volume-100.png",
    "mode": "background"
   },
   {
    "id": "toggle-appearance",
    "name": "Toggle System Appearance",
    "description": "Switch between light and dark mode.",
-   "icon": "icon:moon",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/toggle-appearance.png",
    "mode": "background"
   },
   {
    "id": "toggle-hidden-files",
    "name": "Toggle Hidden Files",
    "description": "Show or hide hidden files in Finder.",
-   "icon": "icon:folder-search",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/toggle-hidden-files.png",
    "mode": "background"
   },
   {
    "id": "toggle-stage-manager",
    "name": "Toggle Stage Manager",
    "description": "Turn Stage Manager on or off.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/toggle-stage-manager.png",
    "mode": "background"
   },
   {
    "id": "toggle-bluetooth",
    "name": "Toggle Bluetooth",
    "description": "Turn Bluetooth on or off (uses blueutil if installed, else opens Bluetooth settings).",
-   "icon": "icon:activity",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/toggle-bluetooth.png",
    "mode": "background"
   },
   {
    "id": "dismiss-notifications",
    "name": "Dismiss Notifications",
    "description": "Clear every banner in Notification Center.",
-   "icon": "icon:info",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/dismiss-notifications.png",
    "mode": "background"
   },
   {
    "id": "toggle-do-not-disturb",
    "name": "Toggle Do Not Disturb",
    "description": "Turn Do Not Disturb on or off (runs your 'Toggle Do Not Disturb' Shortcut).",
-   "icon": "icon:moon",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/toggle-do-not-disturb.png",
    "mode": "background"
   },
   {
    "id": "start-focus-session",
    "name": "Start Focus Session",
    "description": "25 minutes: Do Not Disturb on, other apps hidden, a notification when time is up.",
-   "icon": "icon:target",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/start-focus-session.png",
    "mode": "background"
   },
   {
    "id": "end-focus-session",
    "name": "End Focus Session",
    "description": "Stop the running focus session and turn Do Not Disturb off.",
-   "icon": "icon:target",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/end-focus-session.png",
    "mode": "background"
   },
   {
    "id": "toggle-fullscreen",
    "name": "Toggle Fullscreen",
    "description": "Enter or leave native fullscreen for the front window.",
-   "icon": "icon:maximize",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/toggle-fullscreen.png",
    "mode": "background"
   },
   {
    "id": "make-larger",
    "name": "Make Larger",
    "description": "Grow the front window by 10% around its center.",
-   "icon": "icon:plus",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/make-larger.png",
    "mode": "background"
   },
   {
    "id": "make-smaller",
    "name": "Make Smaller",
    "description": "Shrink the front window by 10% around its center.",
-   "icon": "icon:minus",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/make-smaller.png",
    "mode": "background"
   },
   {
    "id": "maximize-height",
    "name": "Maximize Height",
    "description": "Stretch the front window to the full screen height.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/maximize-height.png",
    "mode": "background"
   },
   {
    "id": "maximize-width",
    "name": "Maximize Width",
    "description": "Stretch the front window to the full screen width.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/maximize-width.png",
    "mode": "background"
   },
   {
    "id": "move-left",
    "name": "Move Left",
    "description": "Nudge the front window 50 px left.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/move-left.png",
    "mode": "background"
   },
   {
    "id": "move-right",
    "name": "Move Right",
    "description": "Nudge the front window 50 px right.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/move-right.png",
    "mode": "background"
   },
   {
    "id": "move-up",
    "name": "Move Up",
    "description": "Nudge the front window 50 px up.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/move-up.png",
    "mode": "background"
   },
   {
    "id": "move-down",
    "name": "Move Down",
    "description": "Nudge the front window 50 px down.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/move-down.png",
    "mode": "background"
   },
   {
    "id": "next-display",
    "name": "Next Display",
    "description": "Move the front window to the next display, keeping its relative size and position.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/next-display.png",
    "mode": "background"
   },
   {
    "id": "previous-display",
    "name": "Previous Display",
    "description": "Move the front window to the previous display.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/previous-display.png",
    "mode": "background"
   },
   {
    "id": "top-center-sixth",
    "name": "Top Center Sixth",
    "description": "Front window → top center sixth of the screen.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/top-center-sixth.png",
    "mode": "background"
   },
   {
    "id": "bottom-center-sixth",
    "name": "Bottom Center Sixth",
    "description": "Front window → bottom center sixth of the screen.",
-   "icon": "icon:layers",
+   "icon": "asyar-extension://com.nassim.systemplus/assets/bottom-center-sixth.png",
    "mode": "background"
   }
  ]

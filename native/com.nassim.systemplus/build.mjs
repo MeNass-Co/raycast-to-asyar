@@ -11,6 +11,7 @@ fs.writeFileSync(path.join(out, 'worker.html'), '<!DOCTYPE html><html><head><met
 // native to this Mac; its absolute install path goes into permissionArgs (Asyar wants absolute programs).
 import { execFileSync } from 'node:child_process'; import os from 'node:os';
 fs.mkdirSync(path.join(out, 'bin'), { recursive: true });
+fs.cpSync(path.join(here, 'assets'), path.join(out, 'assets'), { recursive: true });
 execFileSync('swiftc', ['-O', '-import-objc-header', path.join(here, 'swift/axwin-bridge.h'), path.join(here, 'swift/axwin.swift'), '-o', path.join(out, 'bin/axwin')], { stdio: ['ignore', 'ignore', 'inherit'] });
 const manifest = JSON.parse(fs.readFileSync(path.join(here, 'manifest.json'), 'utf8'));
 const axwinPath = path.join(os.homedir(), 'Library/Application Support/org.asyar.app/extensions', manifest.id, 'bin/axwin');
