@@ -10,20 +10,20 @@ Three delivery channels, in order of preference:
 | Raycast command | Asyar | Delivery |
 |---|---|---|
 | Sleep, Restart, Shut Down, Log Out, Lock Screen | built-in `system` (sleep, hibernate, lockScreen, logOut, restart, shutDown) | done |
-| **Empty Trash** | missing | native ext `com.nassim.system-plus` (Finder AppleScript, confirm dialog, pref "warn before emptying") |
-| Open Trash | missing | system-plus: `open ~/.Trash` |
-| Sleep Displays | missing | system-plus: `pmset displaysleepnow` |
-| Show Screen Saver | missing | system-plus: `open -a ScreenSaverEngine` |
-| Show Desktop | missing | system-plus: AppleScript `tell application "System Events" to key code 103` (F11 mission control) fallback `open -a Finder` + hide others |
-| Hide All Apps Except Frontmost | missing | system-plus: System Events `set visible of every process whose frontmost is false to false` |
-| Quit All Apps / Except Frontmost | missing | system-plus: System Events quit loop (skip Finder, asyar) |
-| Eject All Disks | missing | system-plus: Finder `eject (every disk whose ejectable is true)` |
-| Set Volume 0/25/50/75/100, Turn Volume Up/Down, Toggle Mute | missing | system-plus: `osascript -e 'set volume output volume N'` / `output muted` |
-| Toggle System Appearance | missing | system-plus: System Events `tell appearance preferences to set dark mode to not dark mode` |
-| Toggle Hidden Files | missing | system-plus: `defaults write com.apple.finder AppleShowAllFiles` + `killall Finder` |
-| Toggle Bluetooth | missing | system-plus: needs `blueutil` (brew) → declare as optional; fall back to opening System Settings pane |
-| Toggle Stage Manager | missing | system-plus: `defaults write com.apple.WindowManager GloballyEnabled -bool` + restart WindowManager |
-| Dismiss Notifications | missing | system-plus: System Events click "Clear All" in Notification Center (best effort) |
+| **Empty Trash** | ✅ System+ | `com.nassim.systemplus` (Finder AppleScript, native confirm dialog, pref "warn before emptying") — live-verified |
+| Open Trash | ✅ System+ | system-plus: `open ~/.Trash` |
+| Sleep Displays | ✅ System+ | system-plus: `pmset displaysleepnow` |
+| Show Screen Saver | ✅ System+ | system-plus: `open -a ScreenSaverEngine` |
+| Show Desktop | ✅ System+ | system-plus: AppleScript `tell application "System Events" to key code 103` (F11 mission control) fallback `open -a Finder` + hide others |
+| Hide All Apps Except Frontmost | ✅ System+ | system-plus: System Events `set visible of every process whose frontmost is false to false` |
+| Quit All Apps / Except Frontmost | ✅ System+ | system-plus: System Events quit loop (skip Finder, asyar) |
+| Eject All Disks | ✅ System+ | system-plus: Finder `eject (every disk whose ejectable is true)` |
+| Set Volume 0/25/50/75/100, Turn Volume Up/Down, Toggle Mute | ✅ System+ | system-plus: `osascript -e 'set volume output volume N'` / `output muted` |
+| Toggle System Appearance | ✅ System+ | system-plus: System Events `tell appearance preferences to set dark mode to not dark mode` |
+| Toggle Hidden Files | ✅ System+ | system-plus: `defaults write com.apple.finder AppleShowAllFiles` + `killall Finder` |
+| Toggle Bluetooth | ✅ System+ (blueutil, else opens the Bluetooth pane) | system-plus: needs `blueutil` (brew) → declare as optional; fall back to opening System Settings pane |
+| Toggle Stage Manager | ✅ System+ | system-plus: `defaults write com.apple.WindowManager GloballyEnabled -bool` + restart WindowManager |
+| Dismiss Notifications | ✅ System+ | system-plus: System Events click "Clear All" in Notification Center (best effort) |
 
 ## Other Raycast core extensions → Asyar
 | Raycast | Asyar | Gap |
@@ -39,11 +39,11 @@ Three delivery channels, in order of preference:
 | Kill Process | official ext `org.asyar.kill-process` | none |
 | Search Menu Items | missing | native ext (System Events menu bar walk) — later |
 | Calendar / Reminders / Contacts | store: `calendar`, `apple-reminders`, `contacts` (converted) | campaign |
-| Dictionary / Translate | store: `dictionary`, `google-translate` (official ext exists) | campaign |
+| Dictionary / Translate | `raycast.gebeto.translate` converted + installed (live-verified), `raycast.drchai.dictionary` built | done |
 | Screenshots | store: `screenshots` | campaign |
 | Color Picker | store: `color-picker` | campaign |
-| Focus | Raycast-only (subscription) | dead |
-| Raycast AI / Quick AI | Asyar agents + MCP | done (different UX) |
+| Focus | System+ `Toggle Do Not Disturb`, `Start/End Focus Session` (DND via signed Shortcuts, hides other apps, timer + notification) | done (no website blocking) |
+| Raycast AI / Quick AI / AI Commands / Presets | Asyar agents: 14 stock AI Commands (`rc-ai-*`, silent, ⌘⇧L/⌘⇧E) + 39 ray.so presets (`rc-preset-*`) seeded, DeepSeek key | done — `selection` input needs Accessibility for asyar (Nassim: one toggle) |
 | Browser Bookmarks / Tabs | Asyar browser ext + store `browser-bookmarks` | campaign |
 | Script Commands | Asyar scripts (`@asyar.*` headers) | converter for Raycast script-commands repo — later |
 
@@ -54,3 +54,15 @@ campaign output goes to a **GitHub org repo per extension is too many**; instead
 `.asyar`. Build in CI (GitHub Actions on the MBA is not needed): the MBA runs the campaign, but
 artifacts are uploaded straight to the Release with `gh release upload` from `shim/out/` and the
 local copy deleted. The `--install` path stays for dev only.
+
+## Raycast Pro → Asyar (2026-09-03)
+| Pro feature | Asyar | Status |
+|---|---|---|
+| Raycast AI (Quick AI, AI Chat, AI Commands, Presets, AI Extensions/tools) | agents (chat + silent) on his DeepSeek key; converted store tools callable by agents; MCP servers | done |
+| Always-on ChatGPT / model picker | provider list per agent (DeepSeek v4 flash/pro/vision) | done (his keys) |
+| Translator | Google Translate converted (`Quick Translate`, `Translate`, `Translate Form`, instant copy/paste) + `Translate to French/English` silent agents | done |
+| Cloud Sync | Asyar `cloud_sync_*` tables exist (E2EE) — not configured | later |
+| Clipboard History, Snippets, Quicklinks, Notes, Window Management, Calculator, File Search | built-in | done |
+| Custom Themes | `com.nassim.raycast` 1:1 theme (measured) | done |
+| Focus | System+ DND + Focus Session | partial (no app/website blocking) |
+| Window Management extras (Next/Previous Display, Toggle Fullscreen, Make Larger/Smaller, Maximize Height/Width, Move) | System+ (System Events window bounds + NSScreen) | in progress |
