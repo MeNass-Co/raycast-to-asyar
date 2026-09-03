@@ -18,7 +18,9 @@ const APP = path.join(os.homedir(), 'Library/Application Support/org.asyar.app')
 const args = process.argv.slice(2);
 const log = (...a) => console.log('[rc-install]', ...a);
 
-const index = await (await fetch(INDEX)).json();
+// raw.githubusercontent.com caches the branch file for minutes; the contents API is always current.
+const API = `https://api.github.com/repos/${REPO}/contents/index.json`;
+const index = await (await fetch(API, { headers: { Accept: 'application/vnd.github.raw+json' } }).then((r) => (r.ok ? r : fetch(INDEX)))).json();
 const byId = new Map(index.extensions.map((e) => [e.id, e]));
 if (args[0] === '--search') { const q = args.slice(1).join(' ').toLowerCase(); for (const e of index.extensions) if ((e.id + ' ' + e.name + ' ' + (e.description ?? '')).toLowerCase().includes(q)) console.log(`${e.id.padEnd(48)} ${e.name} — ${(e.description ?? '').slice(0, 80)}`); process.exit(0); }
 
