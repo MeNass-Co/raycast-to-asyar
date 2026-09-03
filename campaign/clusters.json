@@ -1,0 +1,250 @@
+{
+ "counts": {
+  "ok": 3214,
+  "fail": 34,
+  "timeout": 0
+ },
+ "clusters": [
+  {
+   "sig": "npm-install",
+   "extensions": [
+    "arcane-wallpaper",
+    "browser-tabs",
+    "clean-keyboard",
+    "coffee",
+    "finder-file-actions",
+    "lunaris",
+    "nepali-typing",
+    "script-commands",
+    "yap"
+   ],
+   "sample": [
+    "catch (e) { const tail = String(e.stderr ?? '').split('\\n').filter((l) => /npm (error|ERR)/i.test(l)).slice(0, 4).join(' | '); throw new Error('npm install failed: ' + (tail || e.message)); }",
+    "Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name \"rust:..\" of package \"rust:..@latest\": name can only contain URL-friendly characters. | npm error A complete log of this run can be found in: /Users/nassimlecornet/.npm-rc2asyar/_logs/2026-09-03T10_53_59_3"
+   ]
+  },
+  {
+   "sig": "unresolved:proxy-agent",
+   "extensions": [
+    "aliyun-oss",
+    "oss-browser"
+   ],
+   "sample": [
+    "node_modules/urllib/lib/detect_proxy_agent.js:24:51: ERROR: Could not resolve \"proxy-agent\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "missing-export:default",
+   "extensions": [
+    "cilium-docs",
+    "doccheck"
+   ],
+   "sample": [
+    "src/index.tsx:3:7: ERROR: No matching export in \"node_modules/cheerio/dist/esm/index.js\" for import \"default\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:electron",
+   "extensions": [
+    "copy-gcp-icons",
+    "xcodes"
+   ],
+   "sample": [
+    "node_modules/got/index.js:91:28: ERROR: Could not resolve \"electron\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "swift:../swift/blackr-overlay",
+   "extensions": [
+    "blackr"
+   ],
+   "sample": [
+    "src/blackr.ts:20:45: ERROR: [plugin: raycast-api-alias] swift package not built for ../swift/blackr-overlay",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "swift:../swift/color-picker",
+   "extensions": [
+    "color-picker"
+   ],
+   "sample": [
+    "src/pick-color.ts:16:57: ERROR: [plugin: raycast-api-alias] swift package not built for ../swift/color-picker",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:@raycast/utils/dist/handle-error-toast-action",
+   "extensions": [
+    "comet"
+   ],
+   "sample": [
+    "src/hooks/useHistorySearch.tsx:5:39: ERROR: Could not resolve \"@raycast/utils/dist/handle-error-toast-action\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "missing-export:fetch",
+   "extensions": [
+    "coze"
+   ],
+   "sample": [
+    "src/services/api.tsx:15:9: ERROR: No matching export in \"../../../shim/packages/api-node/index.ts\" for import \"fetch\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:@total-typescript/ts-reset",
+   "extensions": [
+    "date-converter"
+   ],
+   "sample": [
+    "src/index.tsx:4:7: ERROR: Could not resolve \"@total-typescript/ts-reset\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "swift:../swift/dimmer-helper",
+   "extensions": [
+    "dimmer"
+   ],
+   "sample": [
+    "src/state.ts:155:39: ERROR: [plugin: raycast-api-alias] swift package not built for ../swift/dimmer-helper",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:lodash",
+   "extensions": [
+    "fake-financial-data"
+   ],
+   "sample": [
+    "utils/index.ts:2:40: ERROR: Could not resolve \"lodash\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "swift:../swift/cursor-helper",
+   "extensions": [
+    "mouse-cursor-toggle"
+   ],
+   "sample": [
+    "src/toggle-cursor.ts:5:42: ERROR: [plugin: raycast-api-alias] swift package not built for ../swift/cursor-helper",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "missing-export:createOpencode",
+   "extensions": [
+    "opencode-sessions"
+   ],
+   "sample": [
+    "src/lib/clients.ts:2:9: ERROR: No matching export in \"node_modules/@opencode-ai/sdk/dist/v2/index.d.ts\" for import \"createOpencode\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:blessed/lib/colors",
+   "extensions": [
+    "pm2"
+   ],
+   "sample": [
+    "node_modules/fsevents/fsevents.js:13:23: ERROR: No loader is configured for \".node\" files: node_modules/fsevents/fsevents.node",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:better-sqlite3",
+   "extensions": [
+    "raycast-focus-stats"
+   ],
+   "sample": [
+    "node_modules/drizzle-orm/better-sqlite3/driver.cjs:35:44: ERROR: Could not resolve \"better-sqlite3\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:rust:../../rust",
+   "extensions": [
+    "raycast-wallpaper"
+   ],
+   "sample": [
+    "src/utils/platform-utils.ts:7:57: ERROR: Could not resolve \"rust:../../rust\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "swift:../swift/Ruler",
+   "extensions": [
+    "ruler"
+   ],
+   "sample": [
+    "src/ruler.ts:13:69: ERROR: [plugin: raycast-api-alias] swift package not built for ../swift/Ruler",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "swift:../swift/simple-draw",
+   "extensions": [
+    "simple-draw"
+   ],
+   "sample": [
+    "src/simple-draw.ts:46:40: ERROR: [plugin: raycast-api-alias] swift package not built for ../swift/simple-draw",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:rust:../rust",
+   "extensions": [
+    "soundboard"
+   ],
+   "sample": [
+    "src/utils.ts:13:7: ERROR: Could not resolve \"rust:../rust\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:@babel/preset-typescript/package.json",
+   "extensions": [
+    "svgr"
+   ],
+   "sample": [
+    "node_modules/@babel/core/lib/config/files/module-types.js:165:36: ERROR: Could not resolve \"@babel/preset-typescript/package.json\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:html2pug",
+   "extensions": [
+    "transform"
+   ],
+   "sample": [
+    "src/markdown-to-pug.tsx:3:21: ERROR: Could not resolve \"html2pug\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:@cashu/cashu-ts/dist/lib/es6/utils",
+   "extensions": [
+    "vortex"
+   ],
+   "sample": [
+    "src/utils/cashuRedeemUtils.ts:5:26: ERROR: Could not resolve \"@cashu/cashu-ts/dist/lib/es6/utils\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  },
+  {
+   "sig": "unresolved:canvas",
+   "extensions": [
+    "webkit-developer-docs"
+   ],
+   "sample": [
+    "node_modules/jsdom/lib/jsdom/level2/html.js:1478:31: ERROR: Could not resolve \"canvas\"",
+    "at failureErrorWithLog (/Users/nassimlecornet/Developer/raycast-to-asyar/shim/node_modules/esbuild/lib/main.js:1752:15)"
+   ]
+  }
+ ]
+}

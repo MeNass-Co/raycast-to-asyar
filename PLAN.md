@@ -167,3 +167,16 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 - Swift/Rust cluster: dynamic `await import("swift:…")` is now detected (was `from` only) and
   `rust:` helpers (Windows-only) resolve to rejecting stubs → the 13 Swift/Rust extensions convert;
   Color Picker (Raycast core) installed and verified live (`asyar-color-picker-live.png`).
+
+## 2026-09-03 — store wave closed
+- **3242 / 3248 converted (99.8 %), 3242 published** as GitHub Releases in `MeNass-Co/asyar-raycast-store`,
+  `index.json` live (contents API, body via `--input`: a 2 MB argv hit E2BIG). Local `shim/out` empty.
+- The 6 dead ones and why (not worth more converter work):
+  - `comet`: imports `@raycast/utils/dist/handle-error-toast-action`, a private file that no longer exists in @raycast/utils.
+  - `date-converter`: imports `@total-typescript/ts-reset` (types-only package, no runtime).
+  - `opencode-sessions`: package.json pins `@opencode-ai/sdk ^1.17`, npm resolves 1.18.27 whose `v2` export map has no `createOpencode` at the path esbuild picks (types file) — upstream breakage.
+  - `pm2`: `@pm2/blessed` deep-imports `blessed/lib/colors`, not installed (pm2's own optional dep tree).
+  - `transform`: `html2pug` is a GitHub dependency shipped without its `dist/` build.
+  - `vortex`: deep import `@cashu/cashu-ts/dist/lib/es6/utils`, path removed in cashu-ts 2.9.
+- Chains: rebuild-and-publish, after-publish (messages republished with the fixed shim), final-fails
+  all finished; the two follow-ups crashed only on the index step (same E2BIG), now fixed and re-run.
