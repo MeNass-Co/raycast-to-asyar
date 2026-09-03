@@ -145,3 +145,13 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
   rust:/bun: schemes, cheerio-style CJS default via require condition, .wasm loader, legacy
   pasteText/ListSection/ListItem). Full rebuild + publish + index chain running detached
   (`campaign/rebuild-and-publish.sh`, log `campaign/rebuild-and-publish.log`).
+- Store rebuild with the fixed converter: **3214 ok / 34 fail / 3248** (99.0%). Publishing to
+  `MeNass-Co/asyar-raycast-store` at ~20 releases/min (rate-limit sleeps handled), local builds
+  deleted as they go; then `index.json` is pushed. Log: `campaign/rebuild-and-publish.log`.
+- Script Commands: `cli/rc-scripts.mjs` converts `# @raycast.*` headers to `# @asyar.*` (title, mode,
+  icon emoji, refreshTime, argumentN → argument:N with name/placeholder/required/data). 825/825
+  converted into `scripts/raycast/<category>/` (git-ignored, regenerable). Asyar scans one level deep
+  → nested folders flattened to `sub--file`. `system` category registered (`script_directories`)
+  and indexed: 88 scripts, no InvalidHeader issues.
+- messages + mail reinstalled from the current shim (same ids, agent tool bindings intact; 4 + 7 tools
+  registered). My Messages view verified live (50 rows) — `iCloud temp/asyar-handoff/asyar-messages-live.png`.

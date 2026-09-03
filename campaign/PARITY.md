@@ -37,7 +37,7 @@ Three delivery channels, in order of preference:
 | Floating Notes / Notes | built-in notes + sticky | none |
 | Emoji & Symbols | official ext `org.asyar.emoji` | none |
 | Kill Process | official ext `org.asyar.kill-process` | none |
-| Search Menu Items | missing | native ext (System Events menu bar walk) — later |
+| Search Menu Items | `com.nassim.menu-items` (native/menu-items, Raycast-API ext converted by rc2asyar; 2-level menu walk, shortcuts, click to run) | done — needs Accessibility for asyar |
 | Calendar / Reminders / Contacts | store: `calendar`, `apple-reminders`, `contacts` (converted) | campaign |
 | Dictionary / Translate | `raycast.gebeto.translate` converted + installed (live-verified), `raycast.drchai.dictionary` built | done |
 | Screenshots | store: `screenshots` | campaign |
@@ -45,7 +45,7 @@ Three delivery channels, in order of preference:
 | Focus | System+ `Toggle Do Not Disturb`, `Start/End Focus Session` (DND via signed Shortcuts, hides other apps, timer + notification) | done (no website blocking) |
 | Raycast AI / Quick AI / AI Commands / Presets | Asyar agents: 14 stock AI Commands (`rc-ai-*`, silent, ⌘⇧L/⌘⇧E) + 39 ray.so presets (`rc-preset-*`) seeded, DeepSeek key | done — `selection` input needs Accessibility for asyar (Nassim: one toggle) |
 | Browser Bookmarks / Tabs | Asyar browser ext + store `browser-bookmarks` | campaign |
-| Script Commands | Asyar scripts (`@asyar.*` headers) | converter for Raycast script-commands repo — later |
+| Script Commands | `shim/cli/rc-scripts.mjs`: 825/825 scripts of raycast/script-commands converted (`scripts/raycast/<category>/`, flattened one level); `system` category registered in Asyar and indexed (88) | done |
 
 ## Distribution without transiting his disk
 Asyar installs from GitHub Releases (`asyar publish` = GitHub Release with a `.asyar` zip). The store
@@ -65,4 +65,4 @@ local copy deleted. The `--install` path stays for dev only.
 | Clipboard History, Snippets, Quicklinks, Notes, Window Management, Calculator, File Search | built-in | done |
 | Custom Themes | `com.nassim.raycast` 1:1 theme (measured) | done |
 | Focus | System+ DND + Focus Session | partial (no app/website blocking) |
-| Window Management extras (Next/Previous Display, Toggle Fullscreen, Make Larger/Smaller, Maximize Height/Width, Move) | System+ (System Events window bounds + NSScreen) | in progress |
+| Window Management extras (Next/Previous Display, Toggle Fullscreen, Make Larger/Smaller, Maximize Height/Width, Move, Center Sixths) | System+ 1.1 | done — needs Accessibility for asyar |
