@@ -50,5 +50,5 @@ PY
 python3 "$ROOT/native/ai-commands/seed-ai-commands.py" && python3 "$ROOT/native/ai-commands/seed-presets.py"
 
 # 6. converted store extensions from GitHub (rc-install quits/relaunches Asyar itself)
-(cd "$ROOT/shim" && node cli/rc-install.mjs raycast.thomaslombart.messages raycast.raycast.mail raycast.gebeto.translate raycast.thomas.colorpicker)
+(cd "$ROOT/shim" && node cli/rc-install.mjs raycast.thomaslombart.messages raycast.yug2005.mail raycast.gebeto.translate raycast.thomas.colorpicker)
 say "done — Asyar relaunched. Grant Accessibility to asyar if not already."
