@@ -128,3 +128,20 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 - DeepSeek note: v4-flash spends a reasoning budget before answering; with max_tokens 400 one call
   in three hit `finish_reason=length` and returned ''. Asyar sends 393216 so it does not bite there.
   `thinking:{type:"disabled"}` is accepted by the API but Asyar has no way to pass it.
+
+## 2026-09-03 — afternoon
+- **The one gate: Accessibility for `org.asyar.app`.** Everything Asyar spawns (osascript, node sidecars)
+  runs under Asyar's TCC identity, so without that grant: silent agents cannot read the selection,
+  System+ window extras / hide / quit / dismiss-notifications and Search Menu Items all fail with
+  "osascript is not allowed assistive access". System+ now HUDs the fix and opens the pane. The toggle
+  asks for the admin password → Nassim flips it once; nothing else to change afterwards.
+- System+ 1.1: +13 window commands (Toggle Fullscreen, Make Larger/Smaller, Maximize Height/Width,
+  Move ←→↑↓, Next/Previous Display, Top/Bottom Center Sixth) = Raycast's full Window Management set
+  on top of Asyar's 17 built-ins. Do Not Disturb + Focus Session verified live (DND 1→0→1).
+- `native/menu-items`: Raycast-API extension (System Events menu walk, 2 levels, shortcuts shown,
+  click to run) converted by rc2asyar → `com.nassim.menu-items`; sidecar renders 63 TextEdit items
+  locally; inside Asyar it needs the Accessibility grant above.
+- Store: retry wave 3143 ok / 105 fail; fixes shipped for the top clusters (TS-parsed imports,
+  rust:/bun: schemes, cheerio-style CJS default via require condition, .wasm loader, legacy
+  pasteText/ListSection/ListItem). Full rebuild + publish + index chain running detached
+  (`campaign/rebuild-and-publish.sh`, log `campaign/rebuild-and-publish.log`).
