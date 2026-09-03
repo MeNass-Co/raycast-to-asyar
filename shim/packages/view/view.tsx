@@ -76,10 +76,12 @@ class ViewShell implements Extension {
   async deactivate() {}
 
   private prefs(): Record<string, unknown> {
-    const p = { ...(context.preferences as unknown as Record<string, unknown>) } as Record<string, unknown> & { commands?: Record<string, Record<string, unknown>> };
+    // `.values` only: spreading the facade itself leaks its `proxy`/`values` fields into the extension's preferences.
+    const p = { ...(context.preferences.values as unknown as Record<string, unknown>) } as Record<string, unknown> & { commands?: Record<string, Record<string, unknown>> };
     const cmdPrefs = this.activeCommand ? p.commands?.[this.activeCommand] : undefined;
     delete p.commands;
-    return { ...p, ...(cmdPrefs ?? {}) };
+    const d = __SHIM_CONFIG__.prefDefaults;
+    return { ...d.global, ...(this.activeCommand ? d.commands[this.activeCommand] : undefined), ...p, ...(cmdPrefs ?? {}) };
   }
 
   /** Returns the bridge and whether the command must be (re)run. Reuses a live sidecar when possible. */

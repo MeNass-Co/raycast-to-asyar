@@ -6,6 +6,7 @@ export interface ShimConfig {
   /** Raycast command name → { mode, component } */
   commands: Record<string, { mode: 'view' | 'no-view' | 'menu-bar'; title: string; interval?: string }>;
   tools: string[];
+  prefDefaults: { global: Record<string, unknown>; commands: Record<string, Record<string, unknown>> };
 }
 export function extensionIdFromLocation(fallback: string): string {
   const host = window.location.hostname;

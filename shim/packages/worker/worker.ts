@@ -54,7 +54,13 @@ class Worker implements Extension {
       return b;
     });
   }
-  private prefs(): Record<string, unknown> { return { ...(this.ctx.preferences as unknown as Record<string, unknown>) }; }
+  private prefs(commandId?: string): Record<string, unknown> {
+    const p = { ...(this.ctx.preferences.values as unknown as Record<string, unknown>) } as Record<string, unknown> & { commands?: Record<string, Record<string, unknown>> };
+    const cmdPrefs = commandId ? p.commands?.[commandId] : undefined;
+    delete p.commands;
+    const d = __SHIM_CONFIG__.prefDefaults;
+    return { ...d.global, ...(commandId ? d.commands[commandId] : undefined), ...p, ...(cmdPrefs ?? {}) };
+  }
 
   private async callTool(toolId: string, args: unknown): Promise<unknown> {
     const b = await this.ensureBridge();
@@ -87,7 +93,7 @@ class Worker implements Extension {
     this.currentMenuCommand = cmd.mode === 'menu-bar' ? commandId : this.currentMenuCommand;
     return new Promise((resolve, reject) => {
       this.pending.set(runId, { resolve, reject });
-      b.send({ t: 'run', runId, commandId, mode: cmd.mode, launchType: (args?.__launchType as 'userInitiated' | 'background') ?? 'userInitiated', arguments: (args?.arguments as Record<string, unknown>) ?? {}, launchContext: args?.launchContext as Record<string, unknown> | undefined, preferences: this.prefs() });
+      b.send({ t: 'run', runId, commandId, mode: cmd.mode, launchType: (args?.__launchType as 'userInitiated' | 'background') ?? 'userInitiated', arguments: (args?.arguments as Record<string, unknown>) ?? {}, launchContext: args?.launchContext as Record<string, unknown> | undefined, preferences: this.prefs(commandId) });
     });
   }
   private currentMenuCommand: string | null = null;

@@ -233,10 +233,14 @@ await esbuild.build({
 });
 fs.unlinkSync(sidecarEntry);
 
+// Raycast applies a preference's `default` when the user never set it; Asyar returns nothing. Embed the
+// defaults so getPreferenceValues() matches Raycast (checkbox → boolean, others verbatim).
+const prefDefaults = (list) => Object.fromEntries((list ?? []).filter((p) => p.default !== undefined || p.type === 'checkbox').map((p) => [p.name, p.type === 'checkbox' ? Boolean(p.default) : p.default]));
 const shimConfig = {
   extensionId, extensionName: pkg.name, ownerOrAuthorName: pkg.owner ?? pkg.author ?? '', nodePath,
   commands: Object.fromEntries(commands.map((c) => [c.name, { mode: modeOf(c), title: c.title, interval: c.interval }])),
   tools: toolFiles.map((t) => t.name),
+  prefDefaults: { global: prefDefaults(pkg.preferences), commands: Object.fromEntries(commands.map((c) => [c.name, prefDefaults(c.preferences)])) },
 };
 const defines = { '__SHIM_CONFIG__': JSON.stringify(shimConfig), '__MANIFEST__': JSON.stringify(manifest), 'process.env.NODE_ENV': '"production"' };
 const iframeCommon = { bundle: true, platform: 'browser', format: 'esm', target: 'es2022', jsx: 'automatic', define: defines, logLevel: 'warning', nodePaths: [path.join(SHIM, 'node_modules')], absWorkingDir: SHIM, loader: { '.json': 'json', '.css': 'css' }, sourcemap: false, minify: false };
