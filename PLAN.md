@@ -164,3 +164,6 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 - Converter: optional native modules (electron, canvas, better-sqlite3, proxy-agent, fsevents, `.node`)
   stubbed as empty modules → 3223 ok / 25 fail. Remaining 25 = Swift/Rust helpers not built (8),
   `rust:`/`bun:` imports (7), missing npm packages (lodash/html2pug/ts-reset), 2 registry 404s.
+- Swift/Rust cluster: dynamic `await import("swift:…")` is now detected (was `from` only) and
+  `rust:` helpers (Windows-only) resolve to rejecting stubs → the 13 Swift/Rust extensions convert;
+  Color Picker (Raycast core) installed and verified live (`asyar-color-picker-live.png`).
