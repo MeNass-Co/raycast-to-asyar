@@ -221,6 +221,7 @@ if (fs.existsSync(path.join(srcDir, 'assets'))) fs.cpSync(path.join(srcDir, 'ass
 fs.writeFileSync(path.join(outDir, 'package.json'), JSON.stringify({ name: pkg.name, title: pkg.title, owner: pkg.owner, author: pkg.author, commands: pkg.commands, preferences: pkg.preferences, tools: pkg.tools }, null, 1));
 // keep the Python MCP server if the source ships one (v1 compat)
 if (pkg.ai?.instructions) fs.writeFileSync(path.join(outDir, 'agent-instructions.md'), String(pkg.ai.instructions));
+fs.writeFileSync(path.join(outDir, 'rc2asyar-agent.json'), JSON.stringify({ suggestedTools: manifestTools.map((t) => `${extensionId}:${t.id}`), instructions: pkg.ai?.instructions ?? null }, null, 1));
 fs.writeFileSync(path.join(outDir, 'rc2asyar.json'), JSON.stringify({ source: srcDir, raycastName: pkg.name, builtAt: new Date().toISOString(), swiftBins: [...swiftBins] }, null, 2));
 try { execFileSync('xattr', ['-dr', 'com.apple.quarantine', outDir]); } catch { /* fine */ }
 log('wrote', outDir);
