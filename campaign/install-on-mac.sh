@@ -51,4 +51,9 @@ python3 "$ROOT/native/ai-commands/seed-ai-commands.py" && python3 "$ROOT/native/
 
 # 6. converted store extensions from GitHub (rc-install quits/relaunches Asyar itself)
 (cd "$ROOT/shim" && node cli/rc-install.mjs raycast.thomaslombart.messages raycast.yug2005.mail raycast.gebeto.translate raycast.thomas.colorpicker)
+# essentials (Apple apps, dev, system, media, his apps) — one relaunch at the end
+(cd "$ROOT/shim" && node cli/rc-install.mjs raycast.raycast.applereminders raycast.raycast.applenotes raycast.fuksman.calendar raycast.drchai.dictionary raycast.raycast.browserbookmarks raycast.nhojb.brew raycast.raycast.github raycast.rolandleth.killprocess raycast.thatnerd.timers raycast.mooxl.coffee raycast.fezvrasta.emoji raycast.benvp.audiodevice raycast.chrahe.airpodsnoisecontrol raycast.koinzhang.wifi raycast.tonka3000.speedtest raycast.lucaschultz.portmanager raycast.helloimsteven.sips raycast.xilopaint.pdftools raycast.jmaeso.uuidgenerator raycast.melvynx.qrcodegenerator raycast.xeric.currencyexchange raycast.destiner.jsonformat raycast.erics118.changecase raycast.itsmingjie.wordcount raycast.gastrogeek.foldersearch raycast.aayush9029.screenshot raycast.thomas.spotifycontrols raycast.loris.things raycast.notion.notion raycast.vimtor.whatsapp raycast.antonsuprun.anki raycast.reckoningdev.zotero raycast.jarrychung.ghostty)
+# one agent per ported Messages / Mail extension; retires the hand-made AI ext if present
+osascript -e 'tell application "asyar" to quit' 2>/dev/null; sleep 2; pkill -x asyar 2>/dev/null; sleep 1
+python3 "$ROOT/campaign/retire-custom-ai.py" raycast.yug2005.mail; open -a /Applications/asyar.app
 say "done — Asyar relaunched. Grant Accessibility to asyar if not already."
