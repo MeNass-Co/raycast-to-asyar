@@ -159,8 +159,8 @@ if (!fs.existsSync(path.join(srcDir, 'node_modules'))) {
   const devRanges = pkg.devDependencies ?? {};
   const builtin = new Set(['fs', 'path', 'os', 'crypto', 'child_process', 'util', 'url', 'events', 'stream', 'buffer', 'http', 'https', 'net', 'zlib', 'readline', 'assert', 'tty', 'dns', 'querystring', 'string_decoder', 'timers', 'worker_threads', 'perf_hooks', 'module', 'process', 'constants', 'vm', 'punycode', 'v8', 'async_hooks', 'diagnostics_channel', 'react', 'react-dom']);
   const undeclared = new Set();
-  for (const f of walk(path.join(srcDir, 'src'))) {
-    if (!/\.(t|j)sx?$/.test(f)) continue;
+  for (const f of walk(srcDir)) {
+    if (!/\.(t|j)sx?$/.test(f) || /\/(node_modules|assets|swift|rust)\//.test(f)) continue;
     // ts.preProcessFile parses real import/require specifiers; a regex on `from "` also matched
     // template strings and prose ("${baseBranch || " etc.) and produced bogus npm installs.
     const specs = ts.preProcessFile(fs.readFileSync(f, 'utf8'), true, true).importedFiles.map((i) => [null, i.fileName]);
@@ -216,6 +216,12 @@ const raycastApiPlugin = {
       return undefined;
     });
     build.onResolve({ filter: /^@raycast\/api$/ }, () => ({ path: path.join(PKG, 'api-node', 'index.ts') }));
+    // Optional native/desktop-only modules that libraries probe at runtime (got→electron, jsdom→canvas,
+    // drizzle→better-sqlite3, urllib→proxy-agent, chokidar→fsevents): Raycast's bundler leaves them
+    // unresolved too. Stub them as empty modules so the bundle builds; the code paths guard with try/catch.
+    build.onResolve({ filter: /^(electron|canvas|better-sqlite3|proxy-agent|fsevents|bufferutil|utf-8-validate|@babel\/preset-typescript\/package\.json)$/ }, (a) => ({ path: a.path, namespace: 'rc-stub' }));
+    build.onResolve({ filter: /\.node$/ }, (a) => ({ path: a.path, namespace: 'rc-stub' }));
+    build.onLoad({ filter: /.*/, namespace: 'rc-stub' }, () => ({ contents: 'module.exports = {};', loader: 'js' }));
     // Raycast bundles for Node/CJS, where `import x from "pkg"` on a dual package yields module.exports.
     // esbuild's ESM output picks the "import" condition (no default export → build error). Resolve bare
     // dual packages through the "require" condition so `default` exists like it does in Raycast.
