@@ -4828,10 +4828,17 @@ var SystemPlus = class {
     return this.feedback.showHUD(t);
   }
   focusTimer;
-  /** Do Not Disturb has no public CLI: run the user's Shortcut ("Toggle Do Not Disturb" / "Do Not Disturb On" / "Do Not Disturb Off",
-   *  each = the Shortcuts "Set Focus" action). Missing shortcut → HUD with the recipe and open Shortcuts. Returns the new state when known. */
+  /** Do Not Disturb has no public CLI. State = a `storeAssertionRecords` entry for the default DND mode in
+   *  ~/Library/DoNotDisturb/DB/Assertions.json; switching runs the user's "Do Not Disturb On" / "Do Not Disturb Off"
+   *  Shortcuts (each = the Shortcuts "Set Focus" action). Missing shortcut → HUD recipe + open Shortcuts. */
+  async dndActive() {
+    const py = "import json,os;d=json.load(open(os.path.expanduser('~/Library/DoNotDisturb/DB/Assertions.json')))['data'][0];print(int(any(r.get('assertionDetails',{}).get('assertionDetailsModeIdentifier')=='com.apple.donotdisturb.mode.default' for r in d.get('storeAssertionRecords',[]))))";
+    const out = await this.osa(`do shell script ${q(`/usr/bin/python3 -c ${JSON.stringify(py)}`)}`).catch(() => "0");
+    return out.trim() === "1";
+  }
   async dnd(mode) {
-    const name = mode === "toggle" ? "Toggle Do Not Disturb" : mode === "on" ? "Do Not Disturb On" : "Do Not Disturb Off";
+    const on = mode === "toggle" ? !await this.dndActive() : mode === "on";
+    const name = on ? "Do Not Disturb On" : "Do Not Disturb Off";
     try {
       await this.run("/usr/bin/shortcuts", ["run", name]);
     } catch {
@@ -4840,8 +4847,7 @@ var SystemPlus = class {
       });
       return null;
     }
-    const active = await this.osa('do shell script "grep -c donotdisturb.mode.default ~/Library/DoNotDisturb/DB/Assertions.json || true"').catch(() => "");
-    return mode === "toggle" ? Number(active) > 0 : mode === "on";
+    return on;
   }
   async volume() {
     return Number(await this.osa("output volume of (get volume settings)")) || 0;
