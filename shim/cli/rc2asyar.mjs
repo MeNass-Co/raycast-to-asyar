@@ -11,6 +11,7 @@ import os from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import esbuild from 'esbuild';
+import ts from 'typescript';
 import { toolSchema } from './schema.mjs';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
@@ -134,7 +135,8 @@ function buildSwift(pkgDir) {
   return bin;
 }
 function swiftProductName(pkgDir) {
-  const m = /\.executable\(\s*name:\s*"([^"]+)"/.exec(fs.readFileSync(path.join(pkgDir, 'Package.swift'), 'utf8'));
+  const src = fs.readFileSync(path.join(pkgDir, 'Package.swift'), 'utf8');
+  const m = /\.executable\(\s*name:\s*"([^"]+)"/.exec(src) ?? /\.executableTarget\(\s*name:\s*"([^"]+)"/.exec(src);
   if (!m) throw new Error('no executable product in ' + pkgDir);
   return m[1];
 }
@@ -145,6 +147,8 @@ function swiftFunctionNames(pkgDir) {
 }
 function* walk(dir) { if (!fs.existsSync(dir)) return; for (const e of fs.readdirSync(dir, { withFileTypes: true })) { const p = path.join(dir, e.name); if (e.isDirectory()) { if (e.name !== 'node_modules' && e.name !== '.build') yield* walk(p); } else yield p; } }
 
+// tsconfig `paths` (e.g. "@utils/*": ["./src/utils/*"]) used by ~5% of the store.
+const tsPaths = (() => { try { const f = path.join(srcDir, 'tsconfig.json'); if (!fs.existsSync(f)) return []; const t = ts.parseConfigFileTextToJson(f, fs.readFileSync(f, 'utf8')).config ?? {}; const base = path.resolve(srcDir, t.compilerOptions?.baseUrl ?? '.'); return Object.entries(t.compilerOptions?.paths ?? {}).map(([k, v]) => ({ re: new RegExp('^' + k.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace('*', '(.*)') + '$'), targets: v.map((x) => path.resolve(base, x)) })); } catch { return []; } })();
 // Make sure the extension's own deps are installed (for the sidecar bundle). `@raycast/*` packages are
 // never installed: the shim aliases `@raycast/api`, and `@raycast/utils` resolves from the shim's own
 // node_modules. Skipping them cuts the install to the extension's real runtime deps.
@@ -160,6 +164,7 @@ if (!fs.existsSync(path.join(srcDir, 'node_modules'))) {
     for (const m of fs.readFileSync(f, 'utf8').matchAll(/(?:from\s+|require\()\s*["']([^"'./][^"']*)["']/g)) {
       const spec = m[1]; if (spec.startsWith('node:') || spec.startsWith('swift:')) continue;
       const name = spec.startsWith('@') ? spec.split('/').slice(0, 2).join('/') : spec.split('/')[0];
+      if (tsPaths.some(({ re }) => re.test(spec))) continue;
       if (!name.startsWith('@raycast/') && !declared.has(name) && !builtin.has(name)) undeclared.add(name);
     }
   }
@@ -171,7 +176,8 @@ if (!fs.existsSync(path.join(srcDir, 'node_modules'))) {
     const backup = fs.readFileSync(tmpPkg, 'utf8');
     try {
       fs.writeFileSync(tmpPkg, JSON.stringify({ name: pkg.name, private: true, dependencies: Object.fromEntries(realDeps) }));
-      execFileSync('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', '--silent', '--prefer-offline', '--no-package-lock'], { cwd: srcDir, stdio: 'inherit', env: { ...process.env, npm_config_cache: path.join(os.homedir(), '.npm-rc2asyar') } });
+      try { execFileSync('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', '--prefer-offline', '--no-package-lock', '--loglevel=error'], { cwd: srcDir, stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, npm_config_cache: path.join(os.homedir(), '.npm-rc2asyar') } }); }
+      catch (e) { const tail = String(e.stderr ?? '').split('\n').filter((l) => /npm (error|ERR)/i.test(l)).slice(0, 4).join(' | '); throw new Error('npm install failed: ' + (tail || e.message)); }
     } finally { fs.writeFileSync(tmpPkg, backup); }
   }
 }
@@ -195,6 +201,16 @@ fs.writeFileSync(sidecarEntry, [
 const raycastApiPlugin = {
   name: 'raycast-api-alias',
   setup(build) {
+    build.onResolve({ filter: /.*/ }, (a) => {
+      for (const { re, targets } of tsPaths) {
+        const m = re.exec(a.path); if (!m) continue;
+        for (const t of targets) {
+          const cand = t.replace('*', m[1] ?? '');
+          for (const ext of ['', '.ts', '.tsx', '.js', '.jsx', '/index.ts', '/index.tsx', '/index.js']) if (fs.existsSync(cand + ext) && fs.statSync(cand + ext).isFile()) return { path: cand + ext };
+        }
+      }
+      return undefined;
+    });
     build.onResolve({ filter: /^@raycast\/api$/ }, () => ({ path: path.join(PKG, 'api-node', 'index.ts') }));
     // One React only: the reconciler and the extension must share the shim's copy.
     build.onResolve({ filter: /^(react|react\/jsx-runtime|react\/jsx-dev-runtime|react-reconciler|react-reconciler\/constants(\.js)?)$/ }, (a) => ({ path: require.resolve(a.path, { paths: [SHIM] }) }));
@@ -204,8 +220,9 @@ const raycastApiPlugin = {
 
 await esbuild.build({
   entryPoints: [sidecarEntry],
-  bundle: true, platform: 'node', format: 'cjs', target: 'node22',
+  bundle: true, platform: 'node', format: 'esm', target: 'node22',
   outfile: path.join(outDir, 'sidecar.cjs'),
+  banner: { js: "import { createRequire as __rcCreateRequire } from 'node:module'; const require = __rcCreateRequire(import.meta.url); const __filename = new URL(import.meta.url).pathname; const __dirname = __filename.slice(0, __filename.lastIndexOf('/'));" },
   jsx: 'automatic', sourcemap: 'inline', logLevel: 'warning',
   define: { 'process.env.NODE_ENV': '"production"' },
   loader: { '.json': 'json', '.png': 'file', '.svg': 'file' },
