@@ -4,7 +4,9 @@ import './view.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ExtensionContext, extensionBridge, searchBarAccessory } from 'asyar-sdk/view';
-import type { Extension, IExtensionManager, IShellService, ILogService, IStorageService, IExtensionManager as IEM } from 'asyar-sdk/contracts';
+import type { Extension, IExtensionManager, IShellService, ILogService, IStorageService, IExtensionManager as IEM, IActionService } from 'asyar-sdk/contracts';
+import { ActionContext } from 'asyar-sdk/contracts';
+import type { FlatSection, FlatAction } from './app';
 import { Bridge } from '../common/bridge';
 import type { SidecarMsg, ToastState, AlertRequest } from '../common/protocol';
 import { extensionIdFromLocation, type ShimConfig } from '../common/env';
@@ -14,6 +16,9 @@ import { setImageContext } from './image';
 import type { FormHandle } from './form';
 
 const SPAWN_KEY = 'rc:view:spawnId';
+const MOD: Record<string, string> = { cmd: 'Super', ctrl: 'Control', opt: 'Alt', alt: 'Alt', shift: 'Shift' };
+const KEY: Record<string, string> = { return: 'Enter', enter: 'Enter', delete: 'Backspace', backspace: 'Backspace', deleteForward: 'Delete', tab: 'Tab', arrowUp: 'ArrowUp', arrowDown: 'ArrowDown', arrowLeft: 'ArrowLeft', arrowRight: 'ArrowRight', space: 'Space', escape: 'Escape' };
+function toHostShortcut(s: { modifiers: string[]; key: string }): string { return [...s.modifiers.map((m) => MOD[m] ?? m), KEY[s.key] ?? s.key.toUpperCase()].join('+'); }
 async function loadSidecarSource(): Promise<string> { const r = await fetch(new URL('sidecar.cjs', window.location.href).toString()); if (!r.ok) throw new Error('sidecar.cjs ' + r.status); return r.text(); }
 
 declare const __SHIM_CONFIG__: ShimConfig;
@@ -28,6 +33,8 @@ class ViewShell implements Extension {
   private em!: IExtensionManager;
   private log!: ILogService;
   private storage!: IStorageService;
+  private actions!: IActionService;
+  private registeredActionIds: string[] = [];
   private bridge?: Bridge;
   private hostCalls!: HostCalls;
   private state: AppState = { stack: [], toasts: [], searchText: '' };
@@ -42,6 +49,7 @@ class ViewShell implements Extension {
     this.em = ctx.getService<IEM>('extensions');
     this.log = ctx.getService<ILogService>('log');
     this.storage = ctx.getService<IStorageService>('storage');
+    this.actions = ctx.getService<IActionService>('actions');
     this.hostCalls = new HostCalls(ctx, 'view', () => this.bridge!, extensionId);
     this.hostCalls.viewHandlers = {
       popToRoot: () => { this.em.goBack(); },
@@ -58,6 +66,7 @@ class ViewShell implements Extension {
       if (type === 'asyar:view:search') { this.state = { ...this.state, searchText: String(payload?.query ?? '') }; this.render(); }
       else if (type === 'asyar:view:keydown' && payload) { this.log.info(`[rc-view] hostKey ${payload.key}`); this.state = { ...this.state, hostKey: { ...payload, seq: ++this.keySeq } }; this.render(); setTimeout(() => { const sel = document.querySelector('.rc-row[data-selected="true"]'); this.log.info(`[rc-dom] after key sel="${(sel?.textContent ?? '').slice(0, 60)}" depth=${this.state.stack.length}`); }, 150); }
     });
+    (window as unknown as { __rcLog?: (m: string) => void }).__rcLog = (m) => this.log.info('[rc-dbg] ' + m);
     this.render();
     // The host mounts view.html?view=<component> and does not dispatch executeCommand to Tier 2 views.
     const view = new URLSearchParams(window.location.search).get('view');
@@ -147,10 +156,24 @@ class ViewShell implements Extension {
     pop: () => this.bridge?.send({ t: 'nav', depth: this.state.stack.length - 1 }),
     alertResult: (id, ok) => { this.bridge?.send({ t: 'alert-result', id, confirmed: ok }); this.state = { ...this.state, alert: undefined }; this.render(); },
     registerFormHandle: (h) => { this.formHandle = h; },
+    syncActions: (sections, run) => this.syncActions(sections, run),
     storeGet: (k) => this.storage.get(k),
     storeSet: (k, v) => this.storage.set(k, v),
   };
 
+  /** Mirror the current ActionPanel into Asyar's ⌘K drawer (skipping the primary, which sits on Enter). */
+  private syncActions(sections: FlatSection[], run: (a: FlatAction) => void) {
+    for (const id of this.registeredActionIds) this.actions.unregisterAction(id);
+    this.registeredActionIds = [];
+    let n = 0;
+    sections.forEach((sec, si) => sec.actions.forEach((a, ai) => {
+      const id = `rc-${si}-${ai}-${a.node.k}`;
+      const shortcut = a.shortcut ? toHostShortcut(a.shortcut) : (si === 0 && ai === 0 ? 'Enter' : undefined);
+      this.actions.registerAction({ id, title: a.title + (a.submenu ? ' ›' : ''), icon: typeof a.node.props.icon === 'string' && !a.node.props.icon.endsWith('-16') ? a.node.props.icon : undefined, extensionId, category: sec.title ?? (si === 0 ? __SHIM_CONFIG__.extensionName : 'More'), context: ActionContext.EXTENSION_VIEW, shortcut, destructive: a.style === 'destructive', execute: () => { run(a); } });
+      this.registeredActionIds.push(id); n++;
+    }));
+    return n;
+  }
   private render() { this.reactRoot.render(<App state={this.state} host={this.host} />); }
   onUnload = () => { this.bridge?.stop(); };
 }

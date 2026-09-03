@@ -16,7 +16,8 @@ export function ActionPanelPopup({ sections, onRun, onClose }: { sections: FlatS
     for (const s of current) for (const a of s.actions) if (!q || a.title.toLowerCase().includes(q)) out.push({ section: s.title, a });
     return out;
   }, [current, query]);
-  useEffect(() => { inputRef.current?.focus(); }, [path]);
+  // Focus after the opening ⌘K keyup so the 'k' keypress does not land in the query.
+  useEffect(() => { const t = setTimeout(() => inputRef.current?.focus(), 30); return () => clearTimeout(t); }, [path]);
   useEffect(() => { setSel(0); }, [query, path]);
   const run = (a: FlatAction) => { if (a.submenu) { setPath([...path, a]); setQuery(''); } else onRun(a); };
   const onKey = (e: React.KeyboardEvent) => {
@@ -53,7 +54,7 @@ export function ActionPanelPopup({ sections, onRun, onClose }: { sections: FlatS
         </div>
         <div className="rc-ap-search">
           {path.length ? <span className="rc-ap-crumb">{path[path.length - 1].title} ›</span> : null}
-          <input ref={inputRef} value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search for actions…" />
+          <input ref={inputRef} value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => { if ((e.key === 'k' || e.key === 'K') && e.metaKey) { e.preventDefault(); e.stopPropagation(); onClose(); } }} placeholder="Search for actions…" />
         </div>
       </div>
     </div>

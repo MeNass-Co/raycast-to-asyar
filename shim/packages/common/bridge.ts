@@ -71,12 +71,21 @@ export class Bridge {
     h.onDone((code) => { this.ready = undefined; this.handle = undefined; this.o.onExit(code); });
   }
 
-  /** The host registers the spawn asynchronously; the first write can race it. */
+  private registered = false;
+  /** The host registers the spawn asynchronously; wait for it to appear in shell.list() before writing. */
   private async writeRetry(data: string): Promise<void> {
+    if (!this.handle) throw new Error('sidecar handle gone');
+    if (!this.registered) {
+      for (let i = 0; i < 100; i++) {
+        const live = await this.o.shell.list().catch(() => []);
+        if (live.some((d) => d.spawnId === this.spawnId)) { this.registered = true; break; }
+        await new Promise((r) => setTimeout(r, 40));
+      }
+    }
     let lastErr: unknown;
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 10; i++) {
       if (!this.handle) throw new Error('sidecar handle gone');
-      try { await this.handle.write(data); return; } catch (e) { lastErr = e; await new Promise((r) => setTimeout(r, 50)); }
+      try { await this.handle.write(data); return; } catch (e) { lastErr = e; await new Promise((r) => setTimeout(r, 80)); }
     }
     throw lastErr;
   }
@@ -88,6 +97,6 @@ export class Bridge {
     void this.writeRetry(line).catch((e) => console.error('[bridge] write failed', e));
   }
 
-  stop(): void { try { this.send({ t: 'stop' }); this.handle?.abort(); } catch { /* ignore */ } this.handle = undefined; this.ready = undefined; this.bundleSent = false; this.queue = []; }
+  stop(): void { try { this.send({ t: 'stop' }); this.handle?.abort(); } catch { /* ignore */ } this.handle = undefined; this.ready = undefined; this.bundleSent = false; this.registered = false; this.queue = []; }
   get alive() { return !!this.handle; }
 }

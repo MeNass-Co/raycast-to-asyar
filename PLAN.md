@@ -79,3 +79,14 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 ## Status log
 - 22:40 handoff read; RESTORE.sh run; Asyar relaunched with restored config.
 - 23:05 SSH mbpn.local OK. Raycast sources sparse-cloned; asyar repo cloned; SDK unpacked.
+
+- 01:50 (03/09) rc2asyar WORKS end-to-end: messages + mail converted (0 edits to src/), both
+  installed + enabled, 11 AI tools registered in Asyar's ToolRegistry, DeepSeek answered
+  "dernier message de Margotte" correctly after 19 self-directed tool calls through the worker
+  sidecar. View: List/Form/Detail render, arrows/Enter/Escape/⌘K OK, contact names + photos via
+  AddressBook fallback (Asyar has no Contacts TCC). Fixes that mattered: `file` scheme is denied
+  in permissionArgs; bundle line must precede any JSON on stdin; sidecar sends `ready` at boot;
+  Cache methods bound (useSyncExternalStore); statusBar item needs string text + icon;
+  DeepSeek provider maxTokens 1000000 → 8192 (API rejects >393216).
+- Known: Mail.app AppleEvents time out on this Mac (-1712) even from plain osascript → mail
+  views show empty; mail tools (search-emails via Envelope Index + ripgrep) work. Not a shim bug.

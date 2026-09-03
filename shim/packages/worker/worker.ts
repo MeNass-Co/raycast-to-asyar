@@ -38,6 +38,7 @@ class Worker implements Extension {
   }
   async activate() {}
   async deactivate() { this.bridge?.stop(); }
+  async search() { return []; }
 
   private ensureBridge(): Promise<Bridge> {
     if (this.bridge?.alive) return this.bridge.start().then(() => this.bridge!);

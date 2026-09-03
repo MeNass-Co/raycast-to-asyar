@@ -48,10 +48,11 @@ const prefToAsyar = (p) => {
   if (type === 'dropdown' && p.data) out.data = p.data.map((d) => ({ value: String(d.value), title: d.title }));
   return out;
 };
+// The host renders manifest icons as text unless they are an image URL; use the extension scheme.
 const iconOf = (icon) => {
   if (!icon) return undefined;
   const f = path.join(srcDir, 'assets', icon);
-  return fs.existsSync(f) ? path.posix.join('assets', icon) : undefined;
+  return fs.existsSync(f) ? `asyar-extension://${extensionId}/assets/${icon}` : undefined;
 };
 const argsOf = (c) => (c.arguments ?? []).slice(0, 3).map((a) => ({ name: a.name, type: a.type === 'dropdown' ? 'dropdown' : a.type === 'password' ? 'password' : 'text', placeholder: a.placeholder, required: !!a.required, ...(a.type === 'dropdown' && a.data ? { data: a.data.map((d) => ({ value: String(d.value), title: d.title })) } : {}) }));
 
@@ -77,7 +78,7 @@ const manifestTools = toolFiles.map((t) => ({ id: t.name, name: t.title ?? t.nam
 
 const permissions = ['shell:spawn', 'shell:open-url', 'shell:open-path', 'clipboard:read', 'clipboard:write', 'storage:read', 'storage:write', 'cache:read', 'cache:write', 'preferences:read', 'network', 'fs:read', 'fs:write', 'selection:read', 'extension:invoke', 'application:read', 'notifications:send'];
 if (manifestTools.length) permissions.push('tools:register');
-const hasBg = manifestCommands.some((c) => c.mode === 'background') || manifestTools.length > 0;
+const hasBg = true; // always ship a worker: `searchable: true` (host search bar drives List filtering) requires background.main
 
 const manifest = {
   id: extensionId,
@@ -89,15 +90,14 @@ const manifest = {
   type: 'extension',
   asyarSdk: '^4.10.0',
   platforms: ['macos'],
-  searchable: false,
-  ...(hasBg ? { background: { main: 'worker.js' } } : {}),
+  searchable: true,
+  background: { main: 'worker.js' },
   permissions,
   permissionArgs: { 'shell:spawn': [nodePath], 'shell:open-url': ['imessage', 'sms', 'message', 'mailto', 'message-mail', 'x-apple.systempreferences', 'raycast', 'asyar'] },
   ...(pkg.preferences?.length ? { preferences: pkg.preferences.map(prefToAsyar) } : {}),
   commands: manifestCommands,
   ...(manifestTools.length ? { tools: manifestTools } : {}),
 };
-if (!manifest.commands.length && !hasBg) manifest.searchable = false;
 
 // ── 2. bundles ──────────────────────────────────────────────────────────
 fs.rmSync(outDir, { recursive: true, force: true });
