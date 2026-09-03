@@ -55,8 +55,8 @@ for (const { e, dir, manifest } of staged) {
   // Nothing in the menu bar: drop any refresh schedule a release may still carry (older builds).
   let touched = false; for (const c of manifest.commands ?? []) { if (c.background && typeof c.background === 'object' && 'schedule' in c.background) { delete c.background.schedule; touched = true; } }
   if (touched) fs.writeFileSync(path.join(dest, 'manifest.json'), JSON.stringify(manifest, null, 1));
-  // PNG icons need colour metadata to render in the launcher's WKWebView; normalize at install time.
-  try { execFileSync(path.join(SHIMDIR, '..', 'tools', 'normalize-png.sh'), [path.join(dest, 'assets')], { stdio: 'ignore' }); } catch {}
+  // Launcher rows do not load asyar-extension:// images; inline 64 px data URIs into the manifest icons.
+  try { execFileSync('python3', [path.join(SHIMDIR, '..', 'tools', 'inline-icons.py'), '--single', dest], { stdio: 'ignore' }); } catch {}
   ext.enabled[manifest.id] = true;
   ext.consent[manifest.id] = { consentedAt: Date.now(), grandfathered: false, permissionArgs: manifest.permissionArgs ?? {}, permissions: manifest.permissions ?? [] };
   for (const bin of manifest.permissionArgs?.['shell:spawn'] ?? []) db.prepare('insert or ignore into shell_trusted_binaries(extension_id,binary_path,trusted_at) values(?,?,?)').run(manifest.id, bin, Math.floor(Date.now() / 1000));
