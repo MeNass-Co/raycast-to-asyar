@@ -4840,7 +4840,9 @@ var SystemPlus = class {
     const on = mode === "toggle" ? !await this.dndActive() : mode === "on";
     const name = on ? "Do Not Disturb On" : "Do Not Disturb Off";
     try {
-      await this.run("/usr/bin/shortcuts", ["run", name]);
+      await this.osa(`do shell script ${q(`/usr/bin/shortcuts run ${JSON.stringify(name)} </dev/null 2>&1`)}`).then((out) => {
+        if (/Couldn.t find shortcut/i.test(out)) throw new Error(out);
+      });
     } catch {
       await this.hud(`Create a Shortcut named "${name}" (Set Focus \u2192 Do Not Disturb)`);
       await this.run("/usr/bin/open", ["-a", "Shortcuts"]).catch(() => {

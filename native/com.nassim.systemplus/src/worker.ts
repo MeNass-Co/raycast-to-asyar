@@ -47,7 +47,9 @@ class SystemPlus implements Extension {
   private async dnd(mode: 'toggle' | 'on' | 'off'): Promise<boolean | null> {
     const on = mode === 'toggle' ? !(await this.dndActive()) : mode === 'on';
     const name = on ? 'Do Not Disturb On' : 'Do Not Disturb Off';
-    try { await this.run('/usr/bin/shortcuts', ['run', name]); }
+    // `shortcuts run` reads its input from stdin when stdin is a pipe (Asyar keeps it open) → run it through
+    // osascript with stdin closed, and with a timeout so a missing shortcut cannot hang the worker.
+    try { await this.osa(`do shell script ${q(`/usr/bin/shortcuts run ${JSON.stringify(name)} </dev/null 2>&1`)}`).then((out) => { if (/Couldn.t find shortcut/i.test(out)) throw new Error(out); }); }
     catch { await this.hud(`Create a Shortcut named "${name}" (Set Focus → Do Not Disturb)`); await this.run('/usr/bin/open', ['-a', 'Shortcuts']).catch(() => {}); return null; }
     return on;
   }
