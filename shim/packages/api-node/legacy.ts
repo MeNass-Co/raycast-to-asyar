@@ -1,6 +1,6 @@
 // Raycast 1.x API names still used by older store extensions.
-import { Action, ActionPanel } from './components';
-import { Toast, Image, Keyboard, Alert } from './api-core';
+import { Action, ActionPanel, List } from './components';
+import { Toast, Image, Keyboard, Alert, Clipboard } from './api-core';
 import { runtime } from './runtime';
 import type { ReactNode } from 'react';
 
@@ -21,3 +21,8 @@ export const ActionPanelSubmenu = ActionPanel.Submenu;
 export function render(el: ReactNode): void { runtime.mountRoot(el); }
 export function randomId(): string { return Math.random().toString(36).slice(2) + Date.now().toString(36); }
 export const preferences: Record<string, { value: unknown }> = new Proxy({}, { get: (_t, k) => ({ value: runtime.preferences[k as string] }) });
+
+// More Raycast 1.x names still used by a few store extensions.
+export const pasteText = (t: string) => Clipboard.paste(t);
+export const ListSection = List.Section;
+export const ListItem = List.Item;

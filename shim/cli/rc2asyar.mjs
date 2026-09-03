@@ -216,6 +216,17 @@ const raycastApiPlugin = {
       return undefined;
     });
     build.onResolve({ filter: /^@raycast\/api$/ }, () => ({ path: path.join(PKG, 'api-node', 'index.ts') }));
+    // Raycast bundles for Node/CJS, where `import x from "pkg"` on a dual package yields module.exports.
+    // esbuild's ESM output picks the "import" condition (no default export → build error). Resolve bare
+    // dual packages through the "require" condition so `default` exists like it does in Raycast.
+    build.onResolve({ filter: /^[^./][^:]*$/, namespace: 'file' }, async (a) => {
+      if (a.pluginData?.rcRequire || a.kind !== 'import-statement' || a.path.startsWith('@raycast/') || a.path.startsWith('node:') || a.path === 'react' || a.path === 'react/jsx-runtime' || a.path === 'react-reconciler') return undefined;
+      const name = a.path.startsWith('@') ? a.path.split('/').slice(0, 2).join('/') : a.path.split('/')[0];
+      let pkgJson; for (const base of [path.join(srcDir, 'node_modules', name), path.join(SHIM, 'node_modules', name)]) { const f = path.join(base, 'package.json'); if (fs.existsSync(f)) { pkgJson = JSON.parse(fs.readFileSync(f, 'utf8')); break; } }
+      const exp = pkgJson?.exports?.['.'] ?? pkgJson?.exports; if (!exp || typeof exp !== 'object' || !('require' in exp)) return undefined;
+      const r = await build.resolve(a.path, { kind: 'require-call', resolveDir: a.resolveDir, importer: a.importer, pluginData: { rcRequire: true } });
+      return r.errors.length ? undefined : { path: r.path };
+    });
     // One React only: the reconciler and the extension must share the shim's copy.
     build.onResolve({ filter: /^(react|react\/jsx-runtime|react\/jsx-dev-runtime|react-reconciler|react-reconciler\/constants(\.js)?)$/ }, (a) => ({ path: require.resolve(a.path, { paths: [SHIM] }) }));
     build.onResolve({ filter: /^swift:/ }, (a) => { const rel = a.path.slice('swift:'.length); const s = swiftAliases[rel]; if (!s) return { errors: [{ text: `swift package not built for ${rel}` }] }; return { path: s }; });
@@ -229,7 +240,7 @@ await esbuild.build({
   banner: { js: "import { createRequire as __rcCreateRequire } from 'node:module'; const require = __rcCreateRequire(import.meta.url); const __filename = new URL(import.meta.url).pathname; const __dirname = __filename.slice(0, __filename.lastIndexOf('/'));" },
   jsx: 'automatic', sourcemap: 'inline', logLevel: 'warning',
   define: { 'process.env.NODE_ENV': '"production"' },
-  loader: { '.json': 'json', '.png': 'file', '.svg': 'file' },
+  loader: { '.json': 'json', '.png': 'file', '.svg': 'file', '.wasm': 'binary' },
   plugins: [raycastApiPlugin],
   nodePaths: [path.join(SHIM, 'node_modules'), path.join(srcDir, 'node_modules')],
   absWorkingDir: srcDir,
