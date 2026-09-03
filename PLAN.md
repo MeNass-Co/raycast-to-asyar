@@ -194,3 +194,14 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 - MBP (`mbpn.local`) synced: repo clone `~/Developer/raycast-to-asyar-mba`, theme active, System+ 1.2,
   Search Menu Items, messages/mail/translate/color-picker from the store index, 55 agents, script
   commands `system` category. `campaign/install-on-mac.sh` reproduces this on any Mac.
+
+## 2026-09-03 night — Lunar theme
+- New theme package `theme/com.nassim.lunar` (the 1:1 Raycast theme stays as-is). Lunar rules applied:
+  cool near-black surfaces (#0B0D12 → #16192 2), silver text ramp (#ECF0F6 / #96A0B2 / #606A7C),
+  ONE accent = Instrument Cyan `rgb(47,214,194)` (caret, primary fill, focus ring, ext icon), moonlit
+  selection tint `rgba(196,220,255,.11)` instead of grey, cool soft shadows, cyan haze on the ⌘K popup.
+  Dark text on the cyan fill (10.8:1); secondary text 7.3:1; tertiary 3.5:1 (labels only).
+- Metrics untouched (Raycast 40 pt rows, Inter, JetBrains Mono). Active on MBA + MBP.
+- Shim view.css: last hardcoded greys routed through host tokens, so converted extensions follow any theme.
+- Captures + before/after sheet: `iCloud temp/asyar-handoff/theme/lunar-*.png`.
+- Switch back to the Raycast look: `appearance.activeTheme = com.nassim.raycast` in settings.dat (Asyar quit).
