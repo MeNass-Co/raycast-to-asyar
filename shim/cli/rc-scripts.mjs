@@ -53,7 +53,9 @@ for (const f of files) {
   const { text: converted, title } = convertHeader(text);
   const rel = fs.statSync(src).isDirectory() ? path.relative(src, f) : path.basename(f);
   // Flatten "<category>/commands/<file>" (raycast/script-commands layout) to "<category>/<file>".
-  const target = path.join(dest, rel.replace(/\/commands\//, '/').replace(/^commands\//, ''));
+  // Asyar scans a script directory one level deep: flatten "<category>/<sub>/<file>" to "<category>/<sub>--<file>".
+  const parts = rel.replace(/\/commands\//, '/').replace(/^commands\//, '').split('/');
+  const target = path.join(dest, parts.length > 2 ? path.join(parts[0], parts.slice(1).join('--')) : parts.join('/'));
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, converted); fs.chmodSync(target, 0o755); ok++;
   // Sibling assets (icons/images referenced relatively) travel along.
