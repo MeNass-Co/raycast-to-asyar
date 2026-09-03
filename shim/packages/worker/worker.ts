@@ -105,15 +105,20 @@ class Worker implements Extension {
     const statusBar = this.ctx.getService<IStatusBarService>('statusBar');
     const id = `rc-${this.currentMenuCommand}`;
     if (!tree || tree.type !== 'MenuBarExtra') { if (this.menuTrees.has(id)) { statusBar.unregisterItem(id); this.menuTrees.delete(id); } return; }
+    // Asyar validates status-bar ids: no ':' and unique among siblings; React keys (n.k) may contain ':' and
+    // sections flatten into the parent's sibling list, so build ids from a per-level counter instead.
+    const seen = new Set<string>();
+    const sid = (n: RNode) => { let base = `${id}-${String(n.k ?? '').replace(/[^A-Za-z0-9_-]/g, '_')}`; let c = base, i = 1; while (seen.has(c)) c = `${base}_${i++}`; seen.add(c); return c; };
     const toItems = (nodes: RNode[]): IStatusBarItem[] => nodes.flatMap((n): IStatusBarItem[] => {
-      if (n.type === 'MenuBarExtra.Item') return [{ id: `${id}-${n.k}`, text: [n.props.title, n.props.subtitle].filter(Boolean).join('  ') || ' ', icon: iconOf(n.props.icon), onClick: () => { const cb = n.props.onAction; if (isCallbackRef(cb)) this.bridge?.send({ t: 'cb', id: cb.$cb, args: [{ type: 'left-click' }] }); } }];
+      if (n.type === 'MenuBarExtra.Item') return [{ id: sid(n), text: [n.props.title, n.props.subtitle].filter(Boolean).join('  ') || ' ', icon: iconOf(n.props.icon), onClick: () => { const cb = n.props.onAction; if (isCallbackRef(cb)) this.bridge?.send({ t: 'cb', id: cb.$cb, args: [{ type: 'left-click' }] }); } }];
       if (n.type === 'MenuBarExtra.Separator') return [{ separator: true }];
       if (n.type === 'MenuBarExtra.Section') return [...(n.props.title ? [{ text: String(n.props.title), enabled: false }] : []), ...toItems(n.children)];
-      if (n.type === 'MenuBarExtra.Submenu') return [{ id: `${id}-${n.k}`, text: String(n.props.title ?? ''), submenu: toItems(n.children) }];
+      if (n.type === 'MenuBarExtra.Submenu') return [{ id: sid(n), text: String(n.props.title ?? ''), submenu: toItems(n.children) }];
       return [];
     });
     const item: IStatusBarItem = { id, text: tree.props.title ? String(tree.props.title) : '', icon: iconOf(tree.props.icon) ?? (typeof __MANIFEST__.icon === 'string' && !__MANIFEST__.icon.includes('/') ? __MANIFEST__.icon : '💬'), submenu: toItems(tree.children) };
-    if (this.menuTrees.has(id)) statusBar.updateItem(id, item); else statusBar.registerItem(item);
+    try { if (this.menuTrees.has(id)) statusBar.updateItem(id, item); else statusBar.registerItem(item); }
+    catch (e) { this.log.warn(`[rc-worker] status bar item rejected: ${(e as Error).message}`); return; }
     this.menuTrees.set(id, tree);
   }
 
