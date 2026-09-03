@@ -205,3 +205,15 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 - Shim view.css: last hardcoded greys routed through host tokens, so converted extensions follow any theme.
 - Captures + before/after sheet: `iCloud temp/asyar-handoff/theme/lunar-*.png`.
 - Switch back to the Raycast look: `appearance.activeTheme = com.nassim.raycast` in settings.dat (Asyar quit).
+
+## 2026-09-03 late — Raycast theme 1.1 = liquid glass
+- Source of truth: raycast.com's own CSS (`RaycastWindow-module` rules): window = `backdrop-filter: blur(36px)`
+  over `rgba(0,0,0,.56)`, border `#8e8c90` @20%, cast `0 4px 40px 8px rgba(0,0,0,.4)` + `inset 0 1px #ffffff1a`;
+  action bar = blur(48) over `rgba(0,0,0,.1)` with the same hairline; chips/panels = white @10% fills.
+- Asyar composites a HudWindow NSVisualEffectView behind the webview, so alpha on `--bg-*` IS the glass.
+  The theme now sets header/body/footer at 60/64/72% alpha; measured on the same desktop as live Raycast:
+  header 27 vs 29, body 26 vs 26, footer 31 vs 35. Hairline cool-grey `rgba(142,140,144,.28)`, rim
+  `rgba(255,255,255,.10)`, selection white @10%, hover white @6%.
+- Lunar principles kept: neutrals cooled (no warm tint), one accent, moonlight shadows.
+- `com.nassim.lunar` remains as the cool-cyan alternative; `com.nassim.raycast` (glass) is active on MBA + MBP.
+- Captures: `iCloud temp/asyar-handoff/theme/raycast-glass-*.png` next to `raycast-live-root.png`.
