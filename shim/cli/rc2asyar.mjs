@@ -110,7 +110,7 @@ const swiftAliases = {};
 const swiftBins = new Set();
 for (const f of walk(path.join(srcDir, 'src'))) {
   const src = fs.readFileSync(f, 'utf8');
-  for (const m of src.matchAll(/from\s+["']swift:([^"']+)["']/g)) {
+  for (const m of src.matchAll(/(?:from\s+|import\()\s*["']swift:([^"']+)["']/g)) {
     const rel = m[1];
     const pkgDir = path.resolve(path.dirname(f), rel);
     if (swiftAliases[rel]) continue;
@@ -235,6 +235,15 @@ const raycastApiPlugin = {
     });
     // One React only: the reconciler and the extension must share the shim's copy.
     build.onResolve({ filter: /^(react|react\/jsx-runtime|react\/jsx-dev-runtime|react-reconciler|react-reconciler\/constants(\.js)?)$/ }, (a) => ({ path: require.resolve(a.path, { paths: [SHIM] }) }));
+    // `rust:` helpers are Raycast-for-Windows binaries (extensions-rust-tools); on macOS the extension code
+    // takes the Swift branch. Resolve them to a stub whose functions reject at call time, so the bundle builds.
+    build.onResolve({ filter: /^rust:/ }, (a) => ({ path: path.resolve(a.resolveDir, a.path.slice('rust:'.length)), namespace: 'rc-rust' }));
+    build.onLoad({ filter: /.*/, namespace: 'rc-rust' }, (a) => {
+      const names = new Set();
+      for (const f of fs.existsSync(a.path) ? walk(a.path) : []) if (f.endsWith('.rs')) for (const m of fs.readFileSync(f, 'utf8').matchAll(/#\[raycast\][^\n]*\n\s*(?:pub\s+)?(?:async\s+)?fn\s+(\w+)/g)) names.add(m[1]);
+      const body = [...names].map((n) => `export const ${n} = async () => { throw new Error('rust helper "${n}" is not available on macOS'); };`).join('\n');
+      return { contents: body + '\nexport default {};', loader: 'js' };
+    });
     build.onResolve({ filter: /^swift:/ }, (a) => { const rel = a.path.slice('swift:'.length); const s = swiftAliases[rel]; if (!s) return { errors: [{ text: `swift package not built for ${rel}` }] }; return { path: s }; });
   },
 };
