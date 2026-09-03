@@ -10,7 +10,7 @@ say(){ echo "[install] $*"; }
 [ -d "$ROOT/shim/node_modules" ] || (cd "$ROOT/shim" && npm install --no-audit --no-fund --loglevel=error)
 
 # 1. builds (native)
-(cd "$ROOT/native/com.nassim.systemplus" && node build.mjs >/dev/null) && say "System+ built"
+(cd "$ROOT/native/com.nassim.systemplus" && node build.mjs >/dev/null) && say "System+ built (axwin compiled)"
 (cd "$ROOT/shim" && node cli/rc2asyar.mjs ../native/menu-items --id com.nassim.menu-items >/dev/null 2>&1) && say "menu-items built"
 (cd "$ROOT/shim" && node cli/rc-scripts.mjs /tmp/sc-repo/script-commands-master "$ROOT/scripts/raycast" >/dev/null 2>&1) || true
 
