@@ -1,12 +1,14 @@
 {
   "id": "com.nassim.raycast",
   "name": "Raycast",
-  "version": "1.0.0",
-  "description": "Pixel-measured Raycast 1.104 dark theme: surfaces, text ramps, Inter + JetBrains Mono, popup chrome.",
+  "version": "1.1.0",
+  "description": "Raycast 1.104 metrics with the raycast.com glass: blur over 58% black, cool-grey hairline, white inset rim, soft cast. Inter + JetBrains Mono.",
   "author": "Nassim Lecornet",
   "type": "theme",
   "icon": "icon:palette",
   "asyarSdk": "^4.10.0",
-  "platforms": ["macos"],
+  "platforms": [
+    "macos"
+  ],
   "commands": []
 }
