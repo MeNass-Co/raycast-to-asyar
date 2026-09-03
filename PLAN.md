@@ -180,3 +180,17 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
   - `vortex`: deep import `@cashu/cashu-ts/dist/lib/es6/utils`, path removed in cashu-ts 2.9.
 - Chains: rebuild-and-publish, after-publish (messages republished with the fixed shim), final-fails
   all finished; the two follow-ups crashed only on the index step (same E2BIG), now fixed and re-run.
+
+## 2026-09-03 evening — System+ window commands, Accessibility, MBP
+- Accessibility for asyar granted (TCC=2). ⌘⇧L on a real selection verified: text replaced in place.
+- Window commands rewritten around `bin/axwin` (Swift, AX API). Two findings that cost the afternoon:
+  1. While the launcher is open, **no process is `frontmost`** (asyar owns the menu bar, loginwindow is
+     "front"): the target is the first normal window in CGWindowList z-order whose AX twin has a size.
+  2. On the MBA with the lid closed, **AX to the target app dies ~8 s after activation** (-25205 on
+     every attribute, even System Events -1719). Not a System+ bug: on the MBP (screen on) the same
+     commands move/resize correctly (Top Center Sixth, Move Right, Make Smaller/Larger, Maximize
+     Height, Next Display all measured). Window tests belong on the MBP.
+- Open: Toggle Fullscreen (AXFullScreen write returns -25200 on TextEdit even when active; probing).
+- MBP (`mbpn.local`) synced: repo clone `~/Developer/raycast-to-asyar-mba`, theme active, System+ 1.2,
+  Search Menu Items, messages/mail/translate/color-picker from the store index, 55 agents, script
+  commands `system` category. `campaign/install-on-mac.sh` reproduces this on any Mac.
