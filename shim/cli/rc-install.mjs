@@ -11,6 +11,8 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { execFileSync, spawnSync } from 'node:child_process';
 import Database from 'better-sqlite3';
+import { fileURLToPath } from 'node:url';
+const SHIMDIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const REPO = process.env.RC_RELEASE_REPO ?? 'MeNass-Co/asyar-raycast-store';
 const INDEX = `https://raw.githubusercontent.com/${REPO}/main/index.json`;
@@ -53,6 +55,8 @@ for (const { e, dir, manifest } of staged) {
   // Nothing in the menu bar: drop any refresh schedule a release may still carry (older builds).
   let touched = false; for (const c of manifest.commands ?? []) { if (c.background && typeof c.background === 'object' && 'schedule' in c.background) { delete c.background.schedule; touched = true; } }
   if (touched) fs.writeFileSync(path.join(dest, 'manifest.json'), JSON.stringify(manifest, null, 1));
+  // PNG icons need colour metadata to render in the launcher's WKWebView; normalize at install time.
+  try { execFileSync(path.join(SHIMDIR, '..', 'tools', 'normalize-png.sh'), [path.join(dest, 'assets')], { stdio: 'ignore' }); } catch {}
   ext.enabled[manifest.id] = true;
   ext.consent[manifest.id] = { consentedAt: Date.now(), grandfathered: false, permissionArgs: manifest.permissionArgs ?? {}, permissions: manifest.permissions ?? [] };
   for (const bin of manifest.permissionArgs?.['shell:spawn'] ?? []) db.prepare('insert or ignore into shell_trusted_binaries(extension_id,binary_path,trusted_at) values(?,?,?)').run(manifest.id, bin, Math.floor(Date.now() / 1000));
