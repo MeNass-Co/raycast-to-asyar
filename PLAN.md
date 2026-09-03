@@ -109,6 +109,19 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 - **Blocker**: `selection` input needs Accessibility for `org.asyar.app` (TCC auth_value=0). The
   toggle asks for the admin password → Nassim must flip it once (System Settings → Privacy &
   Security → Accessibility → asyar). Until then the ⌘⇧ commands HUD "Could not read selection".
+  (AppleEvents "asyar → System Events" prompt was accepted by me; that one needed no password.)
+- **Shim fix (all converted exts)**: Raycast applies a preference's `default` when unset, Asyar
+  returns nothing → `prefDefaults` embedded in `__SHIM_CONFIG__` and merged in view/worker
+  `prefs()`. Also `prefs()` spread the PreferencesFacade *object* (leaking `proxy`/`values`
+  fields into `getPreferenceValues()`, which broke google-translate's HttpsProxyAgent) → now
+  spreads `.values`. Google Translate Quick Translate verified live in Asyar (EN+FR rows, detail
+  pane, Copy Translation) — screenshot `iCloud temp/asyar-handoff/asyar-google-translate-live.png`.
+- Converted-ext install checklist (until the store index does it): copy `out/<id>` to
+  `~/Library/Application Support/org.asyar.app/extensions/<id>`; settings.dat
+  `extensions.enabled[<id>]=true` + `extensions.consent[<id>]={consentedAt,grandfathered:false,
+  permissionArgs,permissions}` (from manifest); `shell_trusted_binaries` row for
+  `/opt/homebrew/bin/node`; restart Asyar. Missing consent → `[PermissionGate] BLOCKED`; missing
+  trust → in-window "wants to access the terminal" dialog and a 10 s spawn timeout.
 - **Translator**: converted `raycast.gebeto.translate` (Google Translate, 6 commands) installed,
   enabled + consented in settings.dat (consent record = `{consentedAt, grandfathered, permissionArgs,
   permissions}` from the manifest; missing consent → `[PermissionGate] BLOCKED`).
