@@ -50,6 +50,9 @@ const db = new Database(path.join(APP, 'asyar_data.db'));
 for (const { e, dir, manifest } of staged) {
   const dest = path.join(APP, 'extensions', manifest.id);
   fs.rmSync(dest, { recursive: true, force: true }); fs.cpSync(dir, dest, { recursive: true }); fs.rmSync(dir, { recursive: true, force: true });
+  // Nothing in the menu bar: drop any refresh schedule a release may still carry (older builds).
+  let touched = false; for (const c of manifest.commands ?? []) { if (c.background && typeof c.background === 'object' && 'schedule' in c.background) { delete c.background.schedule; touched = true; } }
+  if (touched) fs.writeFileSync(path.join(dest, 'manifest.json'), JSON.stringify(manifest, null, 1));
   ext.enabled[manifest.id] = true;
   ext.consent[manifest.id] = { consentedAt: Date.now(), grandfathered: false, permissionArgs: manifest.permissionArgs ?? {}, permissions: manifest.permissions ?? [] };
   for (const bin of manifest.permissionArgs?.['shell:spawn'] ?? []) db.prepare('insert or ignore into shell_trusted_binaries(extension_id,binary_path,trusted_at) values(?,?,?)').run(manifest.id, bin, Math.floor(Date.now() / 1000));
