@@ -8,7 +8,7 @@ MAIL_ID = sys.argv[1] if len(sys.argv) > 1 else 'raycast.yug2005.mail'
 MSG_ID = 'raycast.thomaslombart.messages'
 p = os.path.join(APP, 'settings.dat'); d = json.load(open(p)); s = d['settings']
 for E in ('com.menass.ai-messages-mail',):
-    s['extensions']['enabled'].pop(E, None); s['extensions']['consent'].pop(E, None)
+    s.setdefault('extensions', {}).setdefault('enabled', {}).pop(E, None); s['extensions'].setdefault('consent', {}).pop(E, None)
     shutil.rmtree(os.path.join(APP, 'extensions', E), ignore_errors=True)
 con = sqlite3.connect(os.path.join(APP, 'asyar_data.db'))
 con.execute("delete from agents where id in ('ai-messages-mail','raycast-messages-mail')")
