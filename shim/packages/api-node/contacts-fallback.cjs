@@ -69,5 +69,5 @@ exports.fetchContactPhotosForContactIds = async function (contactIds) {
 };
 exports.fetchAllContacts = async function () {
   const { byId } = load();
-  return [...byId.values()].filter((c) => c.displayName && (c.phoneNumbers.length || c.emailAddresses.length)).map((c) => ({ ...c, imageData: null })).sort((a, b) => a.displayName.localeCompare(b.displayName));
+  return [...byId.values()].filter((c) => c.displayName && (c.phoneNumbers.length || c.emailAddresses.length)).sort((a, b) => a.displayName.localeCompare(b.displayName));
 };
