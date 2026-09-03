@@ -98,3 +98,20 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
   store/ (git sparse checkout abandoned: 6 GB objects in 42 min); runner store-convert.mjs,
   triage store-triage.mjs, agent brief campaign/AGENT-BRIEF.md. npm registry is slow from here
   (TLS 4-8 s): converter now installs only non-@raycast deps with a shared cache.
+
+## 2026-09-03 — Raycast Pro parity, pass 1 (AI)
+- **AI Commands**: `native/ai-commands/seed-ai-commands.py` seeds Raycast's 14 stock AI Commands
+  (prompts verbatim from the Raycast binary; input=selection; output replace/copy/HUD) as Asyar
+  silent agents `rc-ai-*`, hotkeys ⌘⇧L (Fix Spelling) and ⌘⇧E (Explain). Verified through Asyar's
+  silent pipeline (clipboard input → HUD): "I received your message yesterday and I'll respond ASAP."
+- **Chat presets**: `seed-presets.py` seeds the 39 official ray.so presets (verbatim instructions,
+  `raycast-presets.json`) as chat agents `rc-preset-*`.
+- **Blocker**: `selection` input needs Accessibility for `org.asyar.app` (TCC auth_value=0). The
+  toggle asks for the admin password → Nassim must flip it once (System Settings → Privacy &
+  Security → Accessibility → asyar). Until then the ⌘⇧ commands HUD "Could not read selection".
+- **Translator**: converted `raycast.gebeto.translate` (Google Translate, 6 commands) installed,
+  enabled + consented in settings.dat (consent record = `{consentedAt, grandfathered, permissionArgs,
+  permissions}` from the manifest; missing consent → `[PermissionGate] BLOCKED`).
+- DeepSeek note: v4-flash spends a reasoning budget before answering; with max_tokens 400 one call
+  in three hit `finish_reason=length` and returned ''. Asyar sends 393216 so it does not bite there.
+  `thinking:{type:"disabled"}` is accepted by the API but Asyar has no way to pass it.
