@@ -4944,17 +4944,19 @@ var SystemPlus = class {
   }
   // ---- Window management extras (Raycast parity). The launcher is a non-activating panel, so the
   //      frontmost process is still the user's app; System Events reads/writes its window bounds.
-  async frontWindow() {
-    const r = await this.osa('tell application "System Events"\n set p to first process whose frontmost is true\n tell p\n set {x, y} to position of window 1\n set {w, h} to size of window 1\n return (name of p) & "|" & x & "|" & y & "|" & w & "|" & h\n end tell\nend tell');
-    const [app, x, y, w, h] = r.split("|");
-    return { app, x: +x, y: +y, w: +w, h: +h };
+  // ---- Window management extras (Raycast parity) via bin/axwin (Accessibility API on the app owning the
+  //      topmost normal window; asyar's own panel is excluded). Needs Accessibility for asyar.
+  axwin(...args) {
+    return this.run("/Users/nassimlecornet/Library/Application Support/org.asyar.app/extensions/com.nassim.systemplus/bin/axwin", args).then((r) => {
+      const [app, x, y, w, h] = r.trim().split("|");
+      return { app, x: +x, y: +y, w: +w, h: +h };
+    });
+  }
+  frontWindow() {
+    return this.axwin("get");
   }
   async setFrontWindow(x, y, w, h) {
-    await this.osa(`tell application "System Events" to tell (first process whose frontmost is true) to tell window 1
- set position to {${Math.round(x)}, ${Math.round(y)}}
- set size to {${Math.round(w)}, ${Math.round(h)}}
- set position to {${Math.round(x)}, ${Math.round(y)}}
-end tell`);
+    await this.axwin("set", String(Math.round(x)), String(Math.round(y)), String(Math.round(w)), String(Math.round(h)));
   }
   /** Visible frames of every display in top-left window coordinates (menu bar excluded). */
   async screens() {
@@ -4988,12 +4990,14 @@ end tell`);
   }
   async sixth(row) {
     const f = await this.frontWindow();
-    const s = (await this.screens())[this.screenOf(f, await this.screens())];
+    const sc = await this.screens();
+    const s = sc[this.screenOf(f, sc)];
     await this.setFrontWindow(s.x + s.w / 3, row === "top" ? s.y : s.y + s.h / 2, s.w / 3, s.h / 2);
   }
   async maxAxis(axis) {
     const f = await this.frontWindow();
-    const s = (await this.screens())[this.screenOf(f, await this.screens())];
+    const sc = await this.screens();
+    const s = sc[this.screenOf(f, sc)];
     if (axis === "h") await this.setFrontWindow(f.x, s.y, f.w, s.h);
     else await this.setFrontWindow(s.x, f.y, s.w, f.h);
   }
@@ -5157,7 +5161,7 @@ return count of apps`;
           return;
         }
         case "toggle-fullscreen":
-          await this.osa('tell application "System Events" to tell (first process whose frontmost is true) to tell window 1 to set value of attribute "AXFullScreen" to not (value of attribute "AXFullScreen")');
+          await this.axwin("fullscreen");
           return;
         case "make-larger":
           await this.resizeAround(1.1);
@@ -5199,7 +5203,8 @@ return count of apps`;
           this.log.warn(`[system+] unknown command ${commandId}`);
       }
     } catch (e) {
-      if (/assistive access|not allowed assistive|-25211|-1719/.test(e.message)) {
+      this.log.error(`[system+] ${commandId}: ${e.message}`);
+      if (/assistive access|not allowed assistive|-25211/.test(e.message)) {
         await this.hud("Grant Accessibility to Asyar (System Settings \u2192 Privacy & Security \u2192 Accessibility)");
         await this.run("/usr/bin/open", ["x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"]).catch(() => {
         });

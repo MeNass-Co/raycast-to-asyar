@@ -27,7 +27,8 @@
    "/usr/bin/defaults",
    "/usr/bin/killall",
    "/usr/bin/open",
-   "/usr/bin/shortcuts"
+   "/usr/bin/shortcuts",
+   "/Users/nassimlecornet/Library/Application Support/org.asyar.app/extensions/com.nassim.systemplus/bin/axwin"
   ]
  },
  "preferences": [
@@ -114,56 +115,56 @@
    "id": "toggle-mute",
    "name": "Toggle Mute",
    "description": "Mute or unmute the speaker.",
-   "icon": "\ud83d\udd07",
+   "icon": "🔇",
    "mode": "background"
   },
   {
    "id": "volume-up",
    "name": "Turn Volume Up",
    "description": "Raise the volume by 10%.",
-   "icon": "\ud83d\udd0a",
+   "icon": "🔊",
    "mode": "background"
   },
   {
    "id": "volume-down",
    "name": "Turn Volume Down",
    "description": "Lower the volume by 10%.",
-   "icon": "\ud83d\udd09",
+   "icon": "🔉",
    "mode": "background"
   },
   {
    "id": "volume-0",
    "name": "Set Volume to 0%",
    "description": "Set the output volume to 0%.",
-   "icon": "\ud83d\udd07",
+   "icon": "🔇",
    "mode": "background"
   },
   {
    "id": "volume-25",
    "name": "Set Volume to 25%",
    "description": "Set the output volume to 25%.",
-   "icon": "\ud83d\udd08",
+   "icon": "🔈",
    "mode": "background"
   },
   {
    "id": "volume-50",
    "name": "Set Volume to 50%",
    "description": "Set the output volume to 50%.",
-   "icon": "\ud83d\udd09",
+   "icon": "🔉",
    "mode": "background"
   },
   {
    "id": "volume-75",
    "name": "Set Volume to 75%",
    "description": "Set the output volume to 75%.",
-   "icon": "\ud83d\udd0a",
+   "icon": "🔊",
    "mode": "background"
   },
   {
    "id": "volume-100",
    "name": "Set Volume to 100%",
    "description": "Set the output volume to 100%.",
-   "icon": "\ud83d\udd0a",
+   "icon": "🔊",
    "mode": "background"
   },
   {
@@ -302,14 +303,14 @@
   {
    "id": "top-center-sixth",
    "name": "Top Center Sixth",
-   "description": "Front window \u2192 top center sixth of the screen.",
+   "description": "Front window → top center sixth of the screen.",
    "icon": "icon:layers",
    "mode": "background"
   },
   {
    "id": "bottom-center-sixth",
    "name": "Bottom Center Sixth",
-   "description": "Front window \u2192 bottom center sixth of the screen.",
+   "description": "Front window → bottom center sixth of the screen.",
    "icon": "icon:layers",
    "mode": "background"
   }

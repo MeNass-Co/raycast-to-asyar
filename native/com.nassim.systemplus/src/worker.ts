@@ -5,6 +5,7 @@ import type { Extension, ExtensionContext, IShellService, IFeedbackService, ILog
 import manifest from '../manifest.json';
 
 const OSA = '/usr/bin/osascript';
+declare const __AXWIN__: string; // absolute path of bin/axwin, injected by build.mjs
 const q = (s: string) => '"' + s.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
 
 class SystemPlus implements Extension {
@@ -55,13 +56,13 @@ class SystemPlus implements Extension {
   }
   // ---- Window management extras (Raycast parity). The launcher is a non-activating panel, so the
   //      frontmost process is still the user's app; System Events reads/writes its window bounds.
-  private async frontWindow(): Promise<{ app: string; x: number; y: number; w: number; h: number }> {
-    const r = await this.osa('tell application "System Events"\n set p to first process whose frontmost is true\n tell p\n set {x, y} to position of window 1\n set {w, h} to size of window 1\n return (name of p) & "|" & x & "|" & y & "|" & w & "|" & h\n end tell\nend tell');
-    const [app, x, y, w, h] = r.split('|'); return { app, x: +x, y: +y, w: +w, h: +h };
+  // ---- Window management extras (Raycast parity) via bin/axwin (Accessibility API on the app owning the
+  //      topmost normal window; asyar's own panel is excluded). Needs Accessibility for asyar.
+  private axwin(...args: string[]): Promise<{ app: string; x: number; y: number; w: number; h: number }> {
+    return this.run(__AXWIN__, args).then((r) => { const [app, x, y, w, h] = r.trim().split('|'); return { app, x: +x, y: +y, w: +w, h: +h }; });
   }
-  private async setFrontWindow(x: number, y: number, w: number, h: number) {
-    await this.osa(`tell application "System Events" to tell (first process whose frontmost is true) to tell window 1\n set position to {${Math.round(x)}, ${Math.round(y)}}\n set size to {${Math.round(w)}, ${Math.round(h)}}\n set position to {${Math.round(x)}, ${Math.round(y)}}\nend tell`);
-  }
+  private frontWindow() { return this.axwin('get'); }
+  private async setFrontWindow(x: number, y: number, w: number, h: number) { await this.axwin('set', String(Math.round(x)), String(Math.round(y)), String(Math.round(w)), String(Math.round(h))); }
   /** Visible frames of every display in top-left window coordinates (menu bar excluded). */
   private async screens(): Promise<{ x: number; y: number; w: number; h: number }[]> {
     const js = `ObjC.import("AppKit");const S=$.NSScreen.screens;const main=S.objectAtIndex(0).frame;const out=[];for(let i=0;i<S.count;i++){const f=S.objectAtIndex(i).visibleFrame;out.push({x:f.origin.x,y:main.size.height-(f.origin.y+f.size.height),w:f.size.width,h:f.size.height})}JSON.stringify(out)`;
@@ -85,11 +86,11 @@ class SystemPlus implements Extension {
     await this.setFrontWindow(to.x + rx * to.w, to.y + ry * to.h, rw * to.w, rh * to.h);
   }
   private async sixth(row: 'top' | 'bottom') {
-    const f = await this.frontWindow(); const s = (await this.screens())[this.screenOf(f, await this.screens())];
+    const f = await this.frontWindow(); const sc = await this.screens(); const s = sc[this.screenOf(f, sc)];
     await this.setFrontWindow(s.x + s.w / 3, row === 'top' ? s.y : s.y + s.h / 2, s.w / 3, s.h / 2);
   }
   private async maxAxis(axis: 'w' | 'h') {
-    const f = await this.frontWindow(); const s = (await this.screens())[this.screenOf(f, await this.screens())];
+    const f = await this.frontWindow(); const sc = await this.screens(); const s = sc[this.screenOf(f, sc)];
     if (axis === 'h') await this.setFrontWindow(f.x, s.y, f.w, s.h); else await this.setFrontWindow(s.x, f.y, s.w, f.h);
   }
   private async volume(): Promise<number> { return Number(await this.osa('output volume of (get volume settings)')) || 0; }
@@ -158,7 +159,7 @@ return count of apps`;
           await this.hud(`Focus: ${mins} min`); return;
         }
         case 'end-focus-session': { if (this.focusTimer) { clearTimeout(this.focusTimer); this.focusTimer = undefined; } await this.dnd('off'); await this.hud('Focus session ended'); return; }
-        case 'toggle-fullscreen': await this.osa('tell application "System Events" to tell (first process whose frontmost is true) to tell window 1 to set value of attribute "AXFullScreen" to not (value of attribute "AXFullScreen")'); return;
+        case 'toggle-fullscreen': await this.axwin('fullscreen'); return;
         case 'make-larger': await this.resizeAround(1.1); return;
         case 'make-smaller': await this.resizeAround(1 / 1.1); return;
         case 'maximize-height': await this.maxAxis('h'); return;
@@ -174,7 +175,8 @@ return count of apps`;
         default: this.log.warn(`[system+] unknown command ${commandId}`);
       }
     } catch (e) {
-      if (/assistive access|not allowed assistive|-25211|-1719/.test((e as Error).message)) {
+      this.log.error(`[system+] ${commandId}: ${(e as Error).message}`);
+      if (/assistive access|not allowed assistive|-25211/.test((e as Error).message)) {
         // System Events UI scripting runs under Asyar's TCC identity: Asyar needs Accessibility (one-time toggle).
         await this.hud('Grant Accessibility to Asyar (System Settings → Privacy & Security → Accessibility)');
         await this.run('/usr/bin/open', ['x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility']).catch(() => {});
