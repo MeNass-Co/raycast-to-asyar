@@ -1,0 +1,197 @@
+{
+  "id": "com.nassim.systemplus",
+  "name": "System+",
+  "version": "1.0.0",
+  "description": "Raycast's System commands for Asyar: Empty Trash, Open Trash, Sleep Displays, Screen Saver, Show Desktop, Hide/Quit apps, Eject Disks, Volume, Appearance, Hidden Files, Stage Manager.",
+  "author": "Nassim Lecornet",
+  "icon": "icon:settings",
+  "type": "extension",
+  "asyarSdk": "^4.10.0",
+  "platforms": [
+    "macos"
+  ],
+  "searchable": false,
+  "background": {
+    "main": "worker.js"
+  },
+  "permissions": [
+    "shell:spawn",
+    "shell:open-path",
+    "notifications:send",
+    "preferences:read"
+  ],
+  "permissionArgs": {
+    "shell:spawn": [
+      "/usr/bin/osascript",
+      "/usr/bin/pmset",
+      "/usr/bin/defaults",
+      "/usr/bin/killall",
+      "/usr/bin/open"
+    ]
+  },
+  "preferences": [
+    {
+      "name": "warnBeforeEmptyingTrash",
+      "type": "checkbox",
+      "title": "Show Warning Before Emptying Trash",
+      "description": "Ask for confirmation before the Trash is emptied.",
+      "default": true
+    }
+  ],
+  "commands": [
+    {
+      "id": "empty-trash",
+      "name": "Empty Trash",
+      "description": "Empty the Trash.",
+      "icon": "icon:trash",
+      "mode": "background"
+    },
+    {
+      "id": "open-trash",
+      "name": "Open Trash",
+      "description": "Open the Trash in Finder.",
+      "icon": "icon:folder",
+      "mode": "background"
+    },
+    {
+      "id": "sleep-displays",
+      "name": "Sleep Displays",
+      "description": "Put the displays to sleep.",
+      "icon": "icon:moon",
+      "mode": "background"
+    },
+    {
+      "id": "show-screen-saver",
+      "name": "Show Screen Saver",
+      "description": "Start the screen saver.",
+      "icon": "icon:sparkles",
+      "mode": "background"
+    },
+    {
+      "id": "show-desktop",
+      "name": "Show Desktop",
+      "description": "Hide every app and show the desktop.",
+      "icon": "icon:layers",
+      "mode": "background"
+    },
+    {
+      "id": "hide-all-except-frontmost",
+      "name": "Hide All Apps Except Frontmost",
+      "description": "Hide every app except the one in front.",
+      "icon": "icon:eye",
+      "mode": "background"
+    },
+    {
+      "id": "quit-all-apps",
+      "name": "Quit All Apps",
+      "description": "Quit every open application.",
+      "icon": "icon:power",
+      "mode": "background"
+    },
+    {
+      "id": "quit-all-except-frontmost",
+      "name": "Quit All Apps Except Frontmost",
+      "description": "Quit every app except the one in front.",
+      "icon": "icon:power",
+      "mode": "background"
+    },
+    {
+      "id": "eject-all-disks",
+      "name": "Eject All Disks",
+      "description": "Eject every ejectable disk.",
+      "icon": "icon:server",
+      "mode": "background"
+    },
+    {
+      "id": "toggle-mute",
+      "name": "Toggle Mute",
+      "description": "Mute or unmute the speaker.",
+      "icon": "\ud83d\udd07",
+      "mode": "background"
+    },
+    {
+      "id": "volume-up",
+      "name": "Turn Volume Up",
+      "description": "Raise the volume by 10%.",
+      "icon": "\ud83d\udd0a",
+      "mode": "background"
+    },
+    {
+      "id": "volume-down",
+      "name": "Turn Volume Down",
+      "description": "Lower the volume by 10%.",
+      "icon": "\ud83d\udd09",
+      "mode": "background"
+    },
+    {
+      "id": "volume-0",
+      "name": "Set Volume to 0%",
+      "description": "Set the output volume to 0%.",
+      "icon": "\ud83d\udd07",
+      "mode": "background"
+    },
+    {
+      "id": "volume-25",
+      "name": "Set Volume to 25%",
+      "description": "Set the output volume to 25%.",
+      "icon": "\ud83d\udd08",
+      "mode": "background"
+    },
+    {
+      "id": "volume-50",
+      "name": "Set Volume to 50%",
+      "description": "Set the output volume to 50%.",
+      "icon": "\ud83d\udd09",
+      "mode": "background"
+    },
+    {
+      "id": "volume-75",
+      "name": "Set Volume to 75%",
+      "description": "Set the output volume to 75%.",
+      "icon": "\ud83d\udd0a",
+      "mode": "background"
+    },
+    {
+      "id": "volume-100",
+      "name": "Set Volume to 100%",
+      "description": "Set the output volume to 100%.",
+      "icon": "\ud83d\udd0a",
+      "mode": "background"
+    },
+    {
+      "id": "toggle-appearance",
+      "name": "Toggle System Appearance",
+      "description": "Switch between light and dark mode.",
+      "icon": "icon:moon",
+      "mode": "background"
+    },
+    {
+      "id": "toggle-hidden-files",
+      "name": "Toggle Hidden Files",
+      "description": "Show or hide hidden files in Finder.",
+      "icon": "icon:folder-search",
+      "mode": "background"
+    },
+    {
+      "id": "toggle-stage-manager",
+      "name": "Toggle Stage Manager",
+      "description": "Turn Stage Manager on or off.",
+      "icon": "icon:layers",
+      "mode": "background"
+    },
+    {
+      "id": "toggle-bluetooth",
+      "name": "Toggle Bluetooth",
+      "description": "Turn Bluetooth on or off (uses blueutil if installed, else opens Bluetooth settings).",
+      "icon": "icon:activity",
+      "mode": "background"
+    },
+    {
+      "id": "dismiss-notifications",
+      "name": "Dismiss Notifications",
+      "description": "Clear every banner in Notification Center.",
+      "icon": "icon:info",
+      "mode": "background"
+    }
+  ]
+}
