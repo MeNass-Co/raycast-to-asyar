@@ -1,8 +1,8 @@
 {
   "id": "com.nassim.lunar",
   "name": "Lunar",
-  "version": "1.0.0",
-  "description": "Lunar: cool near-black surfaces, silver text, one Instrument Cyan accent, moonlight glow. Raycast metrics (Inter, JetBrains Mono, 40 pt rows) kept.",
+  "version": "1.1.0",
+  "description": "Lunar glass: blur over cool near-black, silver text, one Instrument Cyan accent, moonlight rim and cast. Raycast metrics.",
   "author": "Nassim Lecornet",
   "type": "theme",
   "icon": "icon:moon",
