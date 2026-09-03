@@ -33,12 +33,15 @@ if (resume) names = names.filter((n) => !report.results[n] || report.results[n].
 if (limit) names = names.slice(0, limit);
 console.log(`[store] ${names.length} extensions, ${jobs} jobs`);
 
+const usedIds = new Set();
 const slug = (s) => String(s ?? '').toLowerCase().replace(/[^a-z0-9]+/g, '').replace(/^[^a-z]+/, '') || 'x';
 function convertOne(name) {
   return new Promise((resolve) => {
     const dir = path.join(STORE, name);
     const pkg = JSON.parse(fs.readFileSync(path.join(dir, 'package.json'), 'utf8'));
-    const id = `raycast.${slug(pkg.owner ?? pkg.author ?? 'community')}.${slug(pkg.name)}`;
+    let id = `raycast.${slug(pkg.owner ?? pkg.author ?? 'community')}.${slug(pkg.name)}`;
+    if (usedIds.has(id)) id = `${id}${slug(name)}`; // two store dirs can share owner+name (e.g. linak-desk-controller)
+    usedIds.add(id);
     const t0 = Date.now();
     const child = spawn(process.execPath, [path.join(here, 'rc2asyar.mjs'), dir, '--id', id], { cwd: SHIM, stdio: ['ignore', 'pipe', 'pipe'] });
     let out = ''; let err = '';
