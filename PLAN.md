@@ -236,6 +236,10 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 - Ask AI chip purple: hardcoded `#7c3aed` in agents/index.ts; patched on branch `nassim/lunar-polish` of the
   asyar checkout to `var(--accent-primary-fill)`; needs an app build (pnpm now installed).
 - Themes: Lunar 1.1 = glass (active on both); Raycast 1.1 = glass.
-- Open: blank icon tiles for some ported extensions in the launcher list (files valid; investigating the
-  asyar-extension:// image path vs index), Toggle Fullscreen (-25200), Reminders EventKit accessDenied
-  (ad-hoc Swift helper has no usage string → macOS denies silently).
+- **Blank icon tiles solved**: launcher rows (`<img>` in the main WKWebView) never load
+  `asyar-extension://…/assets/*.png` (the same URL works inside extension iframes); `data:image/png`
+  URIs render. `tools/inline-icons.py` inlines 64 px PNG data URIs into manifest icons; wired into
+  rc2asyar and rc-install; applied to every installed extension on MBA + MBP. Each extension now shows
+  its own Raycast icon and colour. (The three that "worked" earlier were the ones whose rows I had
+  captured while their view iframe was alive, which had warmed the image.)
+- Open: Toggle Fullscreen (-25200), Reminders EventKit accessDenied (ad-hoc Swift helper, no usage string).
