@@ -1995,3 +1995,59 @@
 [1994/3248] ok      pcloud 2s
 [1995/3248] ok      pdf-expert 1s
 [1996/3248] ok      move-cursor-next-display 505s :: [Planning deferred tasks]
+[1997/3248] ok      pdf-compression 535s :: [Planning deferred tasks]
+[1998/3248] ok      pdfsearch 526s :: [Planning deferred tasks]
+[1999/3248] ok      penflow-ai 0s
+[2000/3248] ok      penpot 0s
+[2001/3248] ok      pera-explorer 0s
+[2002/3248] ok      percentage-calculator 0s
+[2003/3248] ok      pdf-tools 539s :: [Planning deferred tasks]
+[2004/3248] ok      perchance-generator 1s
+[2005/3248] ok      performance-hud 0s
+[2006/3248] ok      perplexity 0s
+[2007/3248] ok      perplexity-api 3s
+[2008/3248] ok      perry 4s :: [rc2asyar] wrote /Users/nassimlecornet/Developer/raycast-to-asyar/shim/out/raycast.vmotta8.perry
+[2009/3248] ok      personio 2s
+[2010/3248] ok      pdsls 11s
+[2011/3248] ok      pestphp-documentation 2s
+[2012/3248] ok      petal 1s
+[2013/3248] ok      phare-io-uptime 1s
+[2014/3248] ok      phaseo 1s
+[2015/3248] ok      pexels 2s
+[2016/3248] ok      phi 1s
+[2017/3248] ok      phonenumber-in-im 1s
+[2018/3248] ok      phind-search 2s
+[2019/3248] ok      phonetic-typing 1s
+[2020/3248] ok      photoroom-image-editing 2s
+[2021/3248] ok      php-docs 2s
+[2022/3248] ok      phpmon 1s
+[2023/3248] ok      pi-drill 1s
+[2024/3248] ok      pia-controls 2s
+[2025/3248] ok      phosphor-icons 6s
+[2026/3248] ok      pianoman 1s
+[2027/3248] ok      php-toolbox 6s
+[2028/3248] ok      pick-random 1s
+[2029/3248] ok      picgo 6s
+[2030/3248] ok      pie-for-pihole 1s
+[2031/3248] ok      pick-your-wallpaper 6s
+[2032/3248] ok      picmal 6s
+[2033/3248] ok      pin-raycast 1s
+[2034/3248] ok      pika 3s
+[2035/3248] ok      pinboard 1s
+[2036/3248] ok      pinch-svg 1s
+[2037/3248] ok      pieces-raycast 6s
+[2038/3248] ok      ping-menu 1s
+[2039/3248] ok      ping 2s
+[2040/3248] ok      pinata 5s
+[2041/3248] ok      pinia-docs 1s
+[2042/3248] ok      pip 1s
+[2043/3248] ok      pipe-commands 2s
+[2044/3248] ok      pipedrive 2s
+[2045/3248] ok      pins 5s
+[2046/3248] ok      pitchcast 1s
+[2047/3248] ok      pinwork 7s
+[2048/3248] ok      pixabay 2s
+[2049/3248] ok      pixtuoid 1s
+[2050/3248] ok      pkg-swap 1s
+[2051/3248] fail    pitchfork 5s :: errors: [Getter/Setter],
+[2052/3248] ok      placeholder 2s

@@ -33632,6 +33632,1059 @@
    },
    "errors": [],
    "deps": []
+  },
+  "pbr-assistant": {
+   "id": "raycast.chadashley.pbrassistant",
+   "status": "ok",
+   "ms": 694,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1601953,
+    "view.js": 1095262,
+    "worker.js": 186432
+   },
+   "errors": [],
+   "deps": []
+  },
+  "paynow": {
+   "id": "raycast.maxijonson.paynow",
+   "status": "ok",
+   "ms": 3734,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 6477167,
+    "view.js": 1096369,
+    "worker.js": 187539
+   },
+   "errors": [],
+   "deps": [
+    "@paynow-gg/typescript-sdk",
+    "zod"
+   ]
+  },
+  "pdb-explorer": {
+   "id": "raycast.matthiasgrass.pdbexplorer",
+   "status": "ok",
+   "ms": 681,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1966672,
+    "view.js": 1095303,
+    "worker.js": 186473
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pcloud": {
+   "id": "raycast.xela92.pcloud",
+   "status": "ok",
+   "ms": 1505,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4086896,
+    "view.js": 1096030,
+    "worker.js": 187200
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch",
+    "lodash"
+   ]
+  },
+  "pdf-expert": {
+   "id": "raycast.mattiacolombomc.pdfexpert",
+   "status": "ok",
+   "ms": 680,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1589670,
+    "view.js": 1095472,
+    "worker.js": 186642
+   },
+   "errors": [],
+   "deps": []
+  },
+  "move-cursor-next-display": {
+   "id": "raycast.johnwick.movecursornextdisplay",
+   "status": "ok",
+   "ms": 504878,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1565901,
+    "view.js": 1096306,
+    "worker.js": 187476
+   },
+   "errors": [
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/move-cursor-next-display/swift/movecursor/.build/checkouts/extensions-swift-tools/Package.swift: TypeScriptCodeGenerator-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/move-cursor-next-display/swift/movecursor/.build/checkouts/extensions-swift-tools/Package.swift: MacrosImplementation: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/usr/lib' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/move-cursor-next-display/swift/movecursor/.build/checkouts/extensions-swift-tools/Package.swift: MacrosImplementation: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/move-cursor-next-display/swift/movecursor/Package.swift: movecursor-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/usr/lib' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/move-cursor-next-display/swift/movecursor/Package.swift: movecursor-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "[Planning deferred tasks]"
+   ],
+   "deps": []
+  },
+  "pdf-compression": {
+   "id": "raycast.birkhoff.pdfcompression",
+   "status": "ok",
+   "ms": 534932,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1567926,
+    "view.js": 1095189,
+    "worker.js": 186359
+   },
+   "errors": [
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdf-compression/swift/.build/checkouts/extensions-swift-tools/Package.swift: TypeScriptCodeGenerator-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdf-compression/swift/.build/checkouts/extensions-swift-tools/Package.swift: MacrosImplementation: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/usr/lib' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdf-compression/swift/.build/checkouts/extensions-swift-tools/Package.swift: MacrosImplementation: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdf-compression/swift/Package.swift: PDFCompression-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/usr/lib' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdf-compression/swift/Package.swift: PDFCompression-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "[Planning deferred tasks]"
+   ],
+   "deps": []
+  },
+  "pdfsearch": {
+   "id": "raycast.kevinpek.pdfsearch",
+   "status": "ok",
+   "ms": 525778,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2018094,
+    "view.js": 1095314,
+    "worker.js": 186484
+   },
+   "errors": [
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdfsearch/swift/.build/checkouts/extensions-swift-tools/Package.swift: MacrosImplementation: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/usr/lib' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdfsearch/swift/.build/checkouts/extensions-swift-tools/Package.swift: MacrosImplementation: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "\u001b[0;36m82 |\u001b[0;0m         throw IndexError.unableToOpenOrCreateIndex(\"Unable to open or create new index file for collection \\(collectionName).\")",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdfsearch/swift/Package.swift: DocumentSearcher-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/usr/lib' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdfsearch/swift/Package.swift: DocumentSearcher-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "[Planning deferred tasks]"
+   ],
+   "deps": [
+    "execa"
+   ]
+  },
+  "penflow-ai": {
+   "id": "raycast.fchen.penflowai",
+   "status": "ok",
+   "ms": 323,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1599200,
+    "view.js": 1095035,
+    "worker.js": 186205
+   },
+   "errors": [],
+   "deps": []
+  },
+  "penpot": {
+   "id": "raycast.bobbymannino.penpot",
+   "status": "ok",
+   "ms": 333,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1980130,
+    "view.js": 1095584,
+    "worker.js": 186754
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pera-explorer": {
+   "id": "raycast.akgunberk.peraexplorer",
+   "status": "ok",
+   "ms": 343,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1979136,
+    "view.js": 1095084,
+    "worker.js": 186254
+   },
+   "errors": [],
+   "deps": []
+  },
+  "percentage-calculator": {
+   "id": "raycast.theapache64.percentagecalculator",
+   "status": "ok",
+   "ms": 312,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1557382,
+    "view.js": 1095436,
+    "worker.js": 186606
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pdf-tools": {
+   "id": "raycast.xilopaint.pdftools",
+   "status": "ok",
+   "ms": 539115,
+   "code": 0,
+   "commands": 6,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3746041,
+    "view.js": 1098033,
+    "worker.js": 189203
+   },
+   "errors": [
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdf-tools/swift/Sources/PDFTools/Utilities/Utilities.swift:123:1: \u001b[1;33mwarning: \u001b[1;39mextension declares a conformance of imported type 'String' to imported protocol 'Error'; this will not behave correctly if the owners of 'Swift' ",
+    "\u001b[0;36m123 |\u001b[0;0m extension String: Error {}",
+    "\u001b[0;36m|\u001b[0;0m |- \u001b[1;33mwarning: \u001b[1;39mextension declares a conformance of imported type 'String' to imported protocol 'Error'; this will not behave correctly if the owners of 'Swift' introduce this conformance in the future\u001b[0;0m",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdf-tools/swift/Package.swift: PDFTools-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/usr/lib' not found",
+    "/Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/pdf-tools/swift/Package.swift: PDFTools-product: ld: warning: search path '/Library/Developer/CommandLineTools/Developer/Library/Frameworks' not found",
+    "[Planning deferred tasks]"
+   ],
+   "deps": [
+    "universal-selection"
+   ]
+  },
+  "perchance-generator": {
+   "id": "raycast.visualstudiocoder.perchancegenerator",
+   "status": "ok",
+   "ms": 1140,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1958757,
+    "view.js": 1095819,
+    "worker.js": 186989
+   },
+   "errors": [],
+   "deps": [
+    "jsdom",
+    "node-fetch"
+   ]
+  },
+  "performance-hud": {
+   "id": "raycast.say4n.performancehud",
+   "status": "ok",
+   "ms": 480,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1539038,
+    "view.js": 1095099,
+    "worker.js": 186269
+   },
+   "errors": [],
+   "deps": []
+  },
+  "perplexity": {
+   "id": "raycast.third774.perplexity",
+   "status": "ok",
+   "ms": 467,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1888364,
+    "view.js": 1095388,
+    "worker.js": 186558
+   },
+   "errors": [],
+   "deps": []
+  },
+  "perplexity-api": {
+   "id": "raycast.ilian.perplexityapi",
+   "status": "ok",
+   "ms": 3478,
+   "code": 0,
+   "commands": 15,
+   "tools": 2,
+   "sizes": {
+    "sidecar.cjs": 9179741,
+    "view.js": 1113009,
+    "worker.js": 204179
+   },
+   "errors": [],
+   "deps": [
+    "gpt-tokenizer",
+    "openai"
+   ]
+  },
+  "perry": {
+   "id": "raycast.vmotta8.perry",
+   "status": "ok",
+   "ms": 3893,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 18672137,
+    "view.js": 1096094,
+    "worker.js": 187264
+   },
+   "errors": [
+    "[rc2asyar] wrote /Users/nassimlecornet/Developer/raycast-to-asyar/shim/out/raycast.vmotta8.perry"
+   ],
+   "deps": [
+    "dt-sql-parser",
+    "pg",
+    "uuid"
+   ]
+  },
+  "personio": {
+   "id": "raycast.boosteblume.personio",
+   "status": "ok",
+   "ms": 1723,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 5738179,
+    "view.js": 1098734,
+    "worker.js": 189904
+   },
+   "errors": [],
+   "deps": [
+    "axios",
+    "moment-timezone"
+   ]
+  },
+  "pdsls": {
+   "id": "raycast.julietphilippe.pdsls",
+   "status": "ok",
+   "ms": 11291,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2956163,
+    "view.js": 1096079,
+    "worker.js": 187249
+   },
+   "errors": [],
+   "deps": [
+    "@atcute/did-plc",
+    "@atcute/identity",
+    "@atcute/identity-resolver",
+    "@atcute/identity-resolver-node",
+    "@atcute/lexicon-resolver",
+    "@atcute/lexicon-resolver-node",
+    "@atcute/lexicons"
+   ]
+  },
+  "pestphp-documentation": {
+   "id": "raycast.danyelkeddah.pestphpdocumentation",
+   "status": "ok",
+   "ms": 1565,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1924283,
+    "view.js": 1095371,
+    "worker.js": 186541
+   },
+   "errors": [],
+   "deps": [
+    "algoliasearch",
+    "striptags"
+   ]
+  },
+  "petal": {
+   "id": "raycast.aayush9029.petal",
+   "status": "ok",
+   "ms": 724,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2005044,
+    "view.js": 1096687,
+    "worker.js": 187857
+   },
+   "errors": [],
+   "deps": []
+  },
+  "phare-io-uptime": {
+   "id": "raycast.apopeos.phareiouptime",
+   "status": "ok",
+   "ms": 708,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2054127,
+    "view.js": 1095631,
+    "worker.js": 186801
+   },
+   "errors": [],
+   "deps": []
+  },
+  "phaseo": {
+   "id": "raycast.danielbutler1.phaseo",
+   "status": "ok",
+   "ms": 821,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2038026,
+    "view.js": 1095404,
+    "worker.js": 186574
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pexels": {
+   "id": "raycast.koinzhang.pexels",
+   "status": "ok",
+   "ms": 1871,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4769391,
+    "view.js": 1099695,
+    "worker.js": 190865
+   },
+   "errors": [],
+   "deps": [
+    "fs-extra",
+    "node-fetch",
+    "pexels"
+   ]
+  },
+  "phi": {
+   "id": "raycast.phibrowser.phi",
+   "status": "ok",
+   "ms": 1371,
+   "code": 0,
+   "commands": 8,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2193028,
+    "view.js": 1097375,
+    "worker.js": 188545
+   },
+   "errors": [],
+   "deps": [
+    "react"
+   ]
+  },
+  "phonenumber-in-im": {
+   "id": "raycast.timonpeng.phonenumberinim",
+   "status": "ok",
+   "ms": 734,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1545391,
+    "view.js": 1096877,
+    "worker.js": 188047
+   },
+   "errors": [],
+   "deps": []
+  },
+  "phind-search": {
+   "id": "raycast.chuck.phindsearch",
+   "status": "ok",
+   "ms": 1510,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4298686,
+    "view.js": 1095518,
+    "worker.js": 186688
+   },
+   "errors": [],
+   "deps": [
+    "iconv-lite",
+    "nanoid",
+    "node-fetch"
+   ]
+  },
+  "phonetic-typing": {
+   "id": "raycast.pgyogesh.phonetictyping",
+   "status": "ok",
+   "ms": 665,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1575636,
+    "view.js": 1097388,
+    "worker.js": 188558
+   },
+   "errors": [],
+   "deps": []
+  },
+  "photoroom-image-editing": {
+   "id": "raycast.ubuntudroid.photoroomimageediting",
+   "status": "ok",
+   "ms": 1885,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3273705,
+    "view.js": 1095504,
+    "worker.js": 186674
+   },
+   "errors": [],
+   "deps": [
+    "formdata-node",
+    "got",
+    "is-image"
+   ]
+  },
+  "php-docs": {
+   "id": "raycast.comes.phpdocs",
+   "status": "ok",
+   "ms": 1908,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 9528702,
+    "view.js": 1095036,
+    "worker.js": 186206
+   },
+   "errors": [],
+   "deps": [
+    "cheerio",
+    "node-fetch"
+   ]
+  },
+  "phpmon": {
+   "id": "raycast.nicoverbruggen.phpmonitor",
+   "status": "ok",
+   "ms": 1345,
+   "code": 0,
+   "commands": 11,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1595046,
+    "view.js": 1098441,
+    "worker.js": 189611
+   },
+   "errors": [],
+   "deps": [
+    "open"
+   ]
+  },
+  "pi-drill": {
+   "id": "raycast.jirikrystofjedlicka.pidrill",
+   "status": "ok",
+   "ms": 832,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1562091,
+    "view.js": 1095314,
+    "worker.js": 186484
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pia-controls": {
+   "id": "raycast.yakitrak.piacontrols",
+   "status": "ok",
+   "ms": 1926,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2157361,
+    "view.js": 1095750,
+    "worker.js": 186920
+   },
+   "errors": [],
+   "deps": [
+    "child_process",
+    "run-applescript"
+   ]
+  },
+  "phosphor-icons": {
+   "id": "raycast.marinsokol.phosphoricons",
+   "status": "ok",
+   "ms": 6475,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3265227,
+    "view.js": 1095338,
+    "worker.js": 186508
+   },
+   "errors": [],
+   "deps": [
+    "@phosphor-icons/core",
+    "lodash"
+   ]
+  },
+  "pianoman": {
+   "id": "raycast.juhamust.pianoman",
+   "status": "ok",
+   "ms": 1344,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1664634,
+    "view.js": 1095145,
+    "worker.js": 186315
+   },
+   "errors": [],
+   "deps": [
+    "js-base64",
+    "react"
+   ]
+  },
+  "php-toolbox": {
+   "id": "raycast.inxilpro.phptoolbox",
+   "status": "ok",
+   "ms": 6107,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 4015539,
+    "view.js": 1095457,
+    "worker.js": 186627
+   },
+   "errors": [],
+   "deps": [
+    "chrono-node",
+    "date-fns"
+   ]
+  },
+  "pick-random": {
+   "id": "raycast.matteogauthier.pickrandomraycastextension",
+   "status": "ok",
+   "ms": 705,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1547438,
+    "view.js": 1096138,
+    "worker.js": 187308
+   },
+   "errors": [],
+   "deps": []
+  },
+  "picgo": {
+   "id": "raycast.rubisco0211.picgo",
+   "status": "ok",
+   "ms": 6159,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 13919374,
+    "view.js": 1098016,
+    "worker.js": 189186
+   },
+   "errors": [],
+   "deps": [
+    "open",
+    "picgo"
+   ]
+  },
+  "pie-for-pihole": {
+   "id": "raycast.glado8.pieforpihole",
+   "status": "ok",
+   "ms": 793,
+   "code": 0,
+   "commands": 16,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2263913,
+    "view.js": 1100295,
+    "worker.js": 191465
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pick-your-wallpaper": {
+   "id": "raycast.hugomarfani.pickyourwallpaper",
+   "status": "ok",
+   "ms": 5830,
+   "code": 0,
+   "commands": 2,
+   "tools": 3,
+   "sizes": {
+    "sidecar.cjs": 1815639,
+    "view.js": 1097268,
+    "worker.js": 188438
+   },
+   "errors": [],
+   "deps": [
+    "ESLint",
+    "raycast",
+    "run-applescript"
+   ]
+  },
+  "picmal": {
+   "id": "raycast.albertogalca.picmal",
+   "status": "ok",
+   "ms": 5827,
+   "code": 0,
+   "commands": 8,
+   "tools": 7,
+   "sizes": {
+    "sidecar.cjs": 2114711,
+    "view.js": 1104009,
+    "worker.js": 195179
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pin-raycast": {
+   "id": "raycast.tanb.pin",
+   "status": "ok",
+   "ms": 1140,
+   "code": 0,
+   "commands": 5,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1581075,
+    "view.js": 1096047,
+    "worker.js": 187217
+   },
+   "errors": [],
+   "deps": [
+    "run-applescript"
+   ]
+  },
+  "pika": {
+   "id": "raycast.rishi.pika",
+   "status": "ok",
+   "ms": 2779,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2667192,
+    "view.js": 1095272,
+    "worker.js": 186442
+   },
+   "errors": [],
+   "deps": [
+    "node-fetch",
+    "raycast-toolkit",
+    "run-applescript"
+   ]
+  },
+  "pinboard": {
+   "id": "raycast.fe9lix.pinboard",
+   "status": "ok",
+   "ms": 1069,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2790921,
+    "view.js": 1096341,
+    "worker.js": 187511
+   },
+   "errors": [],
+   "deps": [
+    "he",
+    "node-fetch"
+   ]
+  },
+  "pinch-svg": {
+   "id": "raycast.connorforsyth.pinchsvg",
+   "status": "ok",
+   "ms": 555,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1928081,
+    "view.js": 1095669,
+    "worker.js": 186839
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pieces-raycast": {
+   "id": "raycast.pieces.piecesraycast",
+   "status": "ok",
+   "ms": 6024,
+   "code": 0,
+   "commands": 9,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 12729920,
+    "view.js": 1098343,
+    "worker.js": 189513
+   },
+   "errors": [],
+   "deps": [
+    "@pieces.app/pieces-os-client",
+    "node-fetch",
+    "semver",
+    "utf8",
+    "ws"
+   ]
+  },
+  "ping-menu": {
+   "id": "raycast.domonkosnagy.pingmenu",
+   "status": "ok",
+   "ms": 650,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1555943,
+    "view.js": 1095596,
+    "worker.js": 186766
+   },
+   "errors": [],
+   "deps": []
+  },
+  "ping": {
+   "id": "raycast.stevensd2m.ping",
+   "status": "ok",
+   "ms": 1745,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2008042,
+    "view.js": 1095114,
+    "worker.js": 186284
+   },
+   "errors": [],
+   "deps": [
+    "ping"
+   ]
+  },
+  "pinata": {
+   "id": "raycast.pinata.pinata",
+   "status": "ok",
+   "ms": 4889,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3815174,
+    "view.js": 1095991,
+    "worker.js": 187161
+   },
+   "errors": [],
+   "deps": [
+    "@types/node-fetch",
+    "axios",
+    "base-path-converter",
+    "form-data",
+    "formidable",
+    "fs",
+    "got",
+    "react",
+    "recursive-fs"
+   ]
+  },
+  "pinia-docs": {
+   "id": "raycast.jeffnawroth.piniadocs",
+   "status": "ok",
+   "ms": 770,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1557933,
+    "view.js": 1095125,
+    "worker.js": 186295
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pip": {
+   "id": "raycast.koinzhang.pip",
+   "status": "ok",
+   "ms": 712,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1934535,
+    "view.js": 1096094,
+    "worker.js": 187264
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pipe-commands": {
+   "id": "raycast.pomdtr.pipecommands",
+   "status": "ok",
+   "ms": 1931,
+   "code": 0,
+   "commands": 4,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2597971,
+    "view.js": 1096515,
+    "worker.js": 187685
+   },
+   "errors": [],
+   "deps": [
+    "globby",
+    "jsonschema",
+    "run-applescript",
+    "untildify"
+   ]
+  },
+  "pipedrive": {
+   "id": "raycast.ahp.pipedrive",
+   "status": "ok",
+   "ms": 1729,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2242277,
+    "view.js": 1096018,
+    "worker.js": 187188
+   },
+   "errors": [],
+   "deps": [
+    "react"
+   ]
+  },
+  "pins": {
+   "id": "raycast.helloimsteven.pins",
+   "status": "ok",
+   "ms": 5333,
+   "code": 0,
+   "commands": 9,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 7942303,
+    "view.js": 1106361,
+    "worker.js": 197531
+   },
+   "errors": [],
+   "deps": [
+    "@iarna/toml",
+    "@types/papaparse",
+    "@types/xml-js",
+    "papaparse",
+    "placeholders-toolkit",
+    "xml-js",
+    "yaml"
+   ]
+  },
+  "pitchcast": {
+   "id": "raycast.stuartromanek.pitchcast",
+   "status": "ok",
+   "ms": 1428,
+   "code": 0,
+   "commands": 1,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 2084740,
+    "view.js": 1095136,
+    "worker.js": 186306
+   },
+   "errors": [],
+   "deps": [
+    "html-entities"
+   ]
+  },
+  "pinwork": {
+   "id": "raycast.adaptingtech.pinwork",
+   "status": "ok",
+   "ms": 6883,
+   "code": 0,
+   "commands": 6,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3505054,
+    "view.js": 1096701,
+    "worker.js": 187871
+   },
+   "errors": [],
+   "deps": [
+    "date-fns",
+    "zod"
+   ]
+  },
+  "pixabay": {
+   "id": "raycast.tonka3000.pixabay",
+   "status": "ok",
+   "ms": 1566,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 3548427,
+    "view.js": 1096131,
+    "worker.js": 187301
+   },
+   "errors": [],
+   "deps": [
+    "cross-fetch",
+    "node-fetch",
+    "url-join"
+   ]
+  },
+  "pixtuoid": {
+   "id": "raycast.ivanwng97.pixtuoid",
+   "status": "ok",
+   "ms": 725,
+   "code": 0,
+   "commands": 2,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1935490,
+    "view.js": 1095765,
+    "worker.js": 186935
+   },
+   "errors": [],
+   "deps": []
+  },
+  "pkg-swap": {
+   "id": "raycast.neversitdull.pkgswap",
+   "status": "ok",
+   "ms": 752,
+   "code": 0,
+   "commands": 3,
+   "tools": 0,
+   "sizes": {
+    "sidecar.cjs": 1549612,
+    "view.js": 1095506,
+    "worker.js": 186676
+   },
+   "errors": [],
+   "deps": []
   }
  }
 }

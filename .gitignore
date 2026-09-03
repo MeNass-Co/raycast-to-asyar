@@ -9,3 +9,4 @@ shim/out/
 shim/tmp/
 shim/preview/out/
 store/
+shim/releases.jsonl
