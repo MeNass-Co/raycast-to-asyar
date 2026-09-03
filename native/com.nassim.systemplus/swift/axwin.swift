@@ -42,11 +42,12 @@ case "set":
   let r1 = AXUIElementSetAttributeValue(target, kAXPositionAttribute as CFString, pv); let r2 = AXUIElementSetAttributeValue(target, kAXSizeAttribute as CFString, sv); _ = AXUIElementSetAttributeValue(target, kAXPositionAttribute as CFString, pv)
   if r1 != .success || r2 != .success { fputs("set failed: \(r1.rawValue) \(r2.rawValue)\n", stderr); exit(6) }
 case "fullscreen":
-  // Pressing the green button works without activating the app; setting AXFullScreen fails (-25205) when inactive.
-  var btn: CFTypeRef?; AXUIElementCopyAttributeValue(target, "AXFullScreenButton" as CFString, &btn)
-  var r = AXError.cannotComplete
-  if let b = btn { r = AXUIElementPerformAction(b as! AXUIElement, kAXPressAction as CFString) }
-  if r != .success { var v: CFTypeRef?; AXUIElementCopyAttributeValue(target, "AXFullScreen" as CFString, &v); let cur = (v as? Bool) ?? false; r = AXUIElementSetAttributeValue(target, "AXFullScreen" as CFString, (cur ? kCFBooleanFalse : kCFBooleanTrue)) }
+  // AXFullScreen is settable only on the active app: activate it first (Raycast does the same), then set.
+  var pidRef: pid_t = 0; AXUIElementGetPid(app, &pidRef)
+  if let ra = NSRunningApplication(processIdentifier: pidRef) { ra.activate(options: []) ; usleep(250_000) }
+  var v: CFTypeRef?; AXUIElementCopyAttributeValue(target, "AXFullScreen" as CFString, &v); let cur = (v as? Bool) ?? false
+  var r = AXUIElementSetAttributeValue(target, "AXFullScreen" as CFString, (cur ? kCFBooleanFalse : kCFBooleanTrue))
+  if r != .success { var btn: CFTypeRef?; AXUIElementCopyAttributeValue(target, "AXFullScreenButton" as CFString, &btn); if let b = btn { r = AXUIElementPerformAction(b as! AXUIElement, kAXPressAction as CFString) } }
   if r != .success { fputs("fullscreen toggle failed: \(r.rawValue)\n", stderr); exit(5) }
 default: break }
 let (x, y, w, h) = get(); print("\((name as? String) ?? "?")|\(Int(x))|\(Int(y))|\(Int(w))|\(Int(h))")
