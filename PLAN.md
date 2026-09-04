@@ -497,3 +497,12 @@ Panel scrim eased .80 → .68 to match rgb(70). Themes pushed to both Macs; buil
 Capsule footer shipped and verified same binary on MBA+MBP. Nassim: icons must be 1:1 with Raycast (imperfect
 matches OK), e.g. Quit Asyar must use Raycast's quit icon. Doing a full remap of every built-in command and
 system action against Raycast's real icon set (228 loose PNGs re-pulled to /tmp/rayicons).
+
+## 2026-09-04 — icons 1:1 + Nassim's 3 tweaks (build 16)
+Icons: every built-in root + command (23 roots, 44 commands) and the 6 system actions remapped to Raycast's real
+tiles by eye from a rendered contact sheet; Quit = Raycast's own app icon; System+ 28/38 exact (volume levels,
+trash, sleep-displays, screensaver, bluetooth, stage manager, DND=Focus); window-management keeps its procedural
+position tiles (Raycast has no loose asset for those). Preview sheet: /tmp/builtin-tiles.png.
+Tweaks: primary action "Run" → "Open" (t('actions.open')); panel scrim .68 → .78; footer capsule lifted 6px.
+Tests: system manager expects data-URI icons; icon contract skips data-URI-only manifests (empty describe = error).
+Themes + System+ manifest pushed to both Macs and relaunched (live now); build 16 carries icons/label/lift.
