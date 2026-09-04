@@ -290,3 +290,26 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 - Backups kept: `/tmp/asyar.app.shipped-backup`, `/tmp/asyar_data.mba-before-agent-purge.db`, `/tmp/org.asyar.app.backup-1044`.
 - The DeepSeek API key is **plaintext** in settings.dat, so it survived the key loss. Only snippet expansions +
   clipboard history are AES-encrypted at rest; both preserved.
+
+## 2026-09-04 (batch 3) — Raycast-parity polish, shipped to both Macs
+New build #8 (cdhash 21632b61…, keychain re-auth via the tattoo procedure) installed on MBA + MBP. Verified:
+snippets 33, 0 aliases, no panics, both themes, Gaming Mode intact on MBP.
+- **Scripts run-history removed** — `selectionEffects` filters shell-script runs out of the injected list;
+  `ShowMoreBarHuds` scripts chip deleted. Scripts still run; history never shows. (searchResultMapper stays general.)
+- **Command rows read "Command"** not the extension name (`resolveItemMeta`, Raycast 1:1). App still ranks first.
+- **Font = macOS system (SF Pro)** — `--font-ui` in style.css + both Lunar theme.json. Matches Raycast.
+- **Real Raycast icons** — pulled from Raycast.app on the MBP (frontend PNGs, 108px tiles). 22 built-in feature
+  manifests + 25 System+ command icons (System+ manifest is portable, same paths both Macs → just a file copy).
+- **AI extensions** — `agentsManager` renders every agent as an "AI Extension" (Raycast AI tile + label);
+  `seed-ai-extensions.py` creates one "Ask <Ext>" agent per tool-bearing extension (12–13). Generic AI icon, not
+  per-extension (that needs an `icon` column on `agents` — deferred).
+- **Auto-aliases cleared** (37 MBA / 35 MBP) — they pinned commands above the app; extensions found by name/trigger
+  now. `ext-aliases.py` marked RETIRED.
+- **Lunar Light glass theme** (`com.nassim.lunar-light`) installed and registered on both Macs (not set active).
+- **Gaming Mode** — separate subagent ported his real 3-file snapshot/sweep/restore scripts verbatim into
+  `com.nassim.gamingmode` (violet gamepad tile), installed MBP-only (a server-side sweep would kill the relay).
+  Branch `nassim/gaming-mode`.
+- ⚠️ asyar submodule branch `nassim/lunar-polish` is committed locally but CANNOT push (upstream Xoshbin/asyar,
+  no write access). Source is safe on disk; app is installed. A fork would be needed to push it.
+- Not done 1:1: per-extension AI-extension icons; a few agent names read the extension's category ("Ask Image
+  Modification"). Visual eyeballing left to Nassim (MBA lid-closed can't capture the launcher window).
