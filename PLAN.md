@@ -397,3 +397,14 @@ finds the glass via `find_vibrancy_view` (now matches by class) and sends `mater
 ObjC exception → non-unwinding abort. This is the crash in #9/#10/#11 (the tag theory was a side-quest; #10's
 `setTag:` was a second, separate abort). Fix: appearance.rs guards with `isKindOfClass: NSVisualEffectView`
 before touching material. Selector audit (Swift `responds(to:)`) is now the rule before any objc2 msg_send.
+
+## 2026-09-04 — ✅ build #12 LIVE on both Macs (batch 4 shipped)
+cdhash b5a84798…. Launches clean on MBA + MBP, no panic; snippets 33 both; MBP 13 agents (12 Ask-X + gaming
+extension agent), MBA 12; Gaming Mode intact on MBP; 3 themes (Lunar periwinkle, Lunar Light, Raycast) installed;
+System+ Raycast icons; aliases cleared; index rebuilt. Verified by MBA screenshot: native Liquid Glass backdrop
+(NSGlassEffectView) live, "Show More" bar gone, Run/Actions glass pills, "Command"/"Application" labels, SF Pro,
+Raycast icons. Compact bar = single glass pill, ↓ still expands.
+Crash chain for the record: #9 (glass, `material` sent to glass), #10 (added the bad `setTag:`), #11 (removed tag,
+still `material`), #12 (class guard) ✅. Rollbacks kept: MBA /tmp/asyar8-keep.tgz.
+TODO next: Nassim re-grants "Device Control and Data Access" for the new cdhash on the MBP; stable self-signed
+signing identity (so AX + keychain stop resetting per build); libreoffice cask upgraded ok; brew fully current.
