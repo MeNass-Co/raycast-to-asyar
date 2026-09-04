@@ -460,3 +460,11 @@ exact designated requirement (stable now). Verified across 2 relaunches, no prom
 Also: killing a stale `SecurityAgent` (pid held orphaned prompts from my earlier CLI runs) is safe; the real
 app prompt reappears as a fresh SecurityAgent. Gaming Mode: Raycast removed from KEEP + skipped on restore
 (⌥Space conflict); Raycast + Raycast Beta login items deleted on the MBP.
+
+## 2026-09-04 — MBP "aesthetics didn't propagate": stale binary
+Nassim saw extensions but not the batch-5 look on the MBP. Cause: MBP ran a different binary (md5
+1850cb77…) than build 13 (0fd3b68e…) — the MBP install happened from an earlier bundle before the final rebuild,
+and the later MBA rebuild was never re-pushed. Fix: re-tarred /Applications/asyar.app from the MBA (the exact build
+13), installed on MBP, md5 now identical on both. Themes on disk were already the dark ones; the app reads
+theme.json at boot, so the relaunch also picked them up. Rule: after ANY rebuild, push the MBA's
+/Applications/asyar.app to the MBP and compare `md5 -q …/MacOS/asyar` on both before claiming parity.
