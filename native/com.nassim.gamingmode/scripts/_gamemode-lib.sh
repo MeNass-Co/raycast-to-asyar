@@ -23,8 +23,8 @@ mkdir -p "$STATE_DIR"
 # the machine or the sweep mid-run.
 # ---------------------------------------------------------------------------
 KEEP=(
-  # The two he asked for.
-  "/Applications/Raycast.app"
+  # GameHub is the one he asked for. Raycast is GONE from the keep list:
+  # Asyar replaced it and both grab ⌥Space (04/09 hotkey conflict).
 
   # Asyar — the launcher that replaced Raycast, and the process that now RUNS
   # this sweep. Not in the original list because it did not exist yet. It must
@@ -34,7 +34,6 @@ KEEP=(
   # snapshot unreachable.
   "/Applications/asyar.app"
   "asyar"
-  "Raycast"
   "/Applications/GameHub.app"
 
   # The Claude API relay — Aside talks to its providers through this. Killing

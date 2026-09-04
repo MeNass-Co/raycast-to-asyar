@@ -11,7 +11,7 @@
 # @raycast.argument1 { "type": "dropdown", "placeholder": "mode", "optional": true, "data": [{"title": "Sweep", "value": "sweep"}, {"title": "Dry run", "value": "dry"}] }
 #
 # Documentation:
-# @raycast.description Snapshots what is running, then closes everything except Raycast and GameHub. Use Gaming Mode OFF to restore.
+# @raycast.description Snapshots what is running, then closes everything except Asyar and GameHub. Use Gaming Mode OFF to restore.
 # @raycast.author Nassim
 
 set -uo pipefail
@@ -110,7 +110,7 @@ sleep 3
 UID_NUM="$(id -u)"
 for a in "${SNAP_AGENTS[@]}"; do
   case "$a" in
-    *raycast*|*Raycast*|*claudex*|*cli-proxy*|*asyar*|*Asyar*) continue ;;   # keep launcher (Raycast + Asyar) + Claude relay alive
+    *claudex*|*cli-proxy*|*asyar*|*Asyar*) continue ;;   # keep launcher (Asyar) + Claude relay alive; Raycast is swept
   esac
   launchctl bootout "gui/$UID_NUM/$a" >/dev/null 2>&1
 done

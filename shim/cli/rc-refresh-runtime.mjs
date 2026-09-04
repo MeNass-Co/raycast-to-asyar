@@ -18,7 +18,8 @@ const SHIM = path.resolve(here, '..');
 const PKG = path.join(SHIM, 'packages');
 const EXT_DIR = path.join(os.homedir(), 'Library/Application Support/org.asyar.app/extensions');
 const args = process.argv.slice(2);
-const ids = args.length ? args : fs.readdirSync(EXT_DIR).filter((d) => d.startsWith('raycast.') && fs.existsSync(path.join(EXT_DIR, d, 'rc2asyar.json')));
+// Store-installed extensions have no rc2asyar.json (publish-release strips it) but always carry package.json.
+const ids = args.length ? args : fs.readdirSync(EXT_DIR).filter((d) => d.startsWith('raycast.') && fs.existsSync(path.join(EXT_DIR, d, 'package.json')) && fs.existsSync(path.join(EXT_DIR, d, 'view.js')));
 const log = (...a) => console.log('[refresh]', ...a);
 
 const prefDefaults = (list) => Object.fromEntries((list ?? []).filter((p) => p.default !== undefined || p.type === 'checkbox').map((p) => [p.name, p.type === 'checkbox' ? Boolean(p.default) : p.default]));
@@ -27,7 +28,8 @@ const modeOf = (c) => c.mode ?? 'view';
 let ok = 0, skipped = 0;
 for (const id of ids) {
   const dir = path.join(EXT_DIR, id);
-  const meta = JSON.parse(fs.readFileSync(path.join(dir, 'rc2asyar.json'), 'utf8'));
+  const metaPath = path.join(dir, 'rc2asyar.json');
+  const meta = fs.existsSync(metaPath) ? JSON.parse(fs.readFileSync(metaPath, 'utf8')) : {};
   const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8'));
   // The Raycast package.json ships next to assets (rc2asyar copies it); fall back to the source dir.
   const pkgPath = [path.join(dir, 'package.json'), path.join(meta.source ?? '', 'package.json')].find((p) => p && fs.existsSync(p));
