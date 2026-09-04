@@ -7,7 +7,15 @@ export const COLORS: Record<string, string> = {
   'raycast-purple': '#BF5AF2', 'raycast-red': '#FF453A', 'raycast-yellow': '#FFD60A',
   'raycast-primary-text': 'var(--text-primary)', 'raycast-secondary-text': 'var(--text-secondary)',
 };
-export function colorOf(c: unknown, appearance: 'light' | 'dark' = 'dark'): string | undefined {
+/** Resolved host appearance: follows the launcher's data-theme, else the OS. */
+export function hostAppearance(): 'light' | 'dark' {
+  try {
+    const t = document.documentElement.getAttribute('data-theme');
+    if (t === 'light' || t === 'dark') return t;
+    return window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  } catch { return 'dark'; }
+}
+export function colorOf(c: unknown, appearance: 'light' | 'dark' = hostAppearance()): string | undefined {
   if (!c) return undefined;
   if (typeof c === 'string') return COLORS[c] ?? c;
   if (typeof c === 'object') { const d = c as { light?: string; dark?: string }; return appearance === 'light' ? d.light : d.dark; }
