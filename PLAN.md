@@ -381,3 +381,11 @@ and the launcher then sent it WKWebView-only messages (pin / webkit-flags / firs
 with `VIBRANCY_VIEW_TAG` (91376254) so every subview walker treats it as the backdrop. cargo check green, #10 building.
 MBA was restored to build 8 (tarred from the MBP, since the local shipped-backup died with the reboot's /tmp).
 Leftover brew: imagemagick, codex, gogcli done; libreoffice cask stuck on a `.upgrading` dir → cleaning.
+
+## 2026-09-04 — build #10 ALSO panicked → real cause found, build #11
+#10 crashed identically. The `setTag:` "fix" was itself the crash: `tag` is read-only on a plain NSView (only
+NSControl has `setTag:`), so the unrecognized selector raised an ObjC exception that aborts as a
+"non-unwinding panic" at the FFI boundary. Real fix: `is_backdrop()` recognises the backdrop by CLASS
+(`isKindOfClass: NSGlassEffectView`) OR the vibrancy tag, so `find_webview` skips the glass. No `setTag:`.
+Lesson tattooed: an objc2 `msg_send!` to a selector the receiver lacks = instant abort, not a Rust error;
+verify selectors against the class before use. cargo check green, #11 building.
