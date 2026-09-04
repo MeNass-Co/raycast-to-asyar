@@ -335,3 +335,33 @@ snippets 33, 0 aliases, no panics, both themes, Gaming Mode intact on MBP.
 - ⚠️ Rebuild changes the adhoc signature again → AX + keychain grants reset. Nassim re-grants AX manually (the
   Accessibility toggle was RENAMED in macOS 27 — ask him the new name and tattoo it). PERMANENT FIX still TODO:
   stable self-signed signing identity so AX + keychain persist across rebuilds. Do it as a focused follow-up.
+
+## 2026-09-04 — ⛔ MBA toolchain wedged by interrupted brew upgrade → REBOOT. RESUME HERE.
+An auto `brew upgrade` started 13:47, hung 67 min on `gh auth token` (adhoc gh + Gatekeeper), and left
+`libada.4.0.0.dylib` (ada-url, a node dependency) in a bad state. Result: node hangs in dyld loading libada,
+so vite/tauri/pnpm can't run and build #9 never happened. Killing brew/gh/amfid did NOT clear it (kernel-level
+code-sign wedge). Nassim authorized a reboot (2026-09-04). **Batch 4 is fully committed, nothing lost.**
+
+### RESUME STEPS after the MBA reboots (do in order):
+1. **Kill any auto-restarted brew** (`sudo pkill -9 -f portable-ruby; sudo pkill -9 -f 'gh auth'`), then
+   **finish the upgrade cleanly**: `export HOMEBREW_NO_AUTO_UPDATE=1; brew upgrade` (if `gh auth token` hangs
+   again, `pkill -9 -f 'gh auth'` — brew falls back to anonymous GitHub). Then **verify node**:
+   `node -e "console.log(process.version)"` must print instantly. If node still hangs on libada:
+   `brew reinstall ada-url node`.
+2. **Build** (do NOT use the pnpm wrapper if it hangs — call tauri directly):
+   `cd ~/Developer/raycast-to-asyar/asyar/asyar-launcher && APPLE_SIGNING_IDENTITY=- pnpm tauri build --bundles app`
+   (adhoc sign; the updater-key error at the end is expected/harmless once "Finished 1 bundle" prints).
+   New cdhash = read `codesign -dvvv .../bundle/macos/asyar.app | grep CDHash`.
+3. **Install on MBA + MBP** exactly like batch 3 (see the keychain tattoo `reference_asyar_keychain_resign`):
+   quit asyar → cp new app to /Applications → **re-extract master key** from MBP
+   (`ssh mbpn.local 'echo Nassim2003|sudo -S launchctl asuser 501 sudo -u nassimlecornet /usr/bin/security find-generic-password -s org.asyar.app -a data-encryption-v1 -w ~/Library/Keychains/login.keychain-db'`)
+   → `security delete-generic-password` then `add-generic-password -w <KEY> -T /Applications/asyar.app -U` →
+   `set-generic-password-partition-list -S "cdhash:<NEW>,apple:,apple-tool:,teamid:877MKJ6983" -k Nassim2003`
+   → copy theme/com.nassim.lunar-light + native/com.nassim.systemplus/manifest.json into the extensions dir →
+   `python3 native/ai-commands/seed-ai-extensions.py --purge && python3 native/ai-commands/seed-ai-extensions.py`
+   (--purge first to pick up cleaner names + per-extension icons) → `delete from item_aliases` →
+   `rm search_index.db*` → relaunch. MBP: push the app tarball + assets first (leave com.nassim.gamingmode alone).
+4. Nassim re-grants **Accessibility = "Device Control and Data Access"** (macOS 27 rename) after install (new cdhash).
+5. **Verify live** by capturing the launcher on the MBA (lid open, screencapture works): glass, periwinkle accent,
+   pills, no red error, "Ask X" per-extension icons.
+6. Still TODO: **stable self-signed signing identity** so AX + keychain stop resetting each rebuild.
