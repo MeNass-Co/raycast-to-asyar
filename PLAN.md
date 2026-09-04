@@ -372,3 +372,12 @@ any loader (node, node@22, python ctypes). Found by loading node's dylibs one by
 `/opt/homebrew/opt/simdjson → 4.6.9` + `brew pin simdjson`. node prints v26.8.1 instantly. Tattooed in memory.
 Leftover brew upgrades (imagemagick, codex, libreoffice, gogcli) finishing detached. Build #9 running →
 then install on both Macs per the RESUME STEPS above (assets + key already staged on MBP at /tmp/asyar9-assets).
+
+## 2026-09-04 — build #9 panicked at launch; fixed in #10
+Build #9 launched, applied `NSGlassEffectView`, then aborted (`panic in a function that cannot unwind` inside
+tao `did_finish_launching`). Root cause: the glass view sat at `contentView.subviews[0]` with tag 0, so
+`find_webview` (which returns the first subview NOT carrying the window-vibrancy tag) returned the GLASS view,
+and the launcher then sent it WKWebView-only messages (pin / webkit-flags / first-responder). Fix: tag the glass
+with `VIBRANCY_VIEW_TAG` (91376254) so every subview walker treats it as the backdrop. cargo check green, #10 building.
+MBA was restored to build 8 (tarred from the MBP, since the local shipped-backup died with the reboot's /tmp).
+Leftover brew: imagemagick, codex, gogcli done; libreoffice cask stuck on a `.upgrading` dir → cleaning.
