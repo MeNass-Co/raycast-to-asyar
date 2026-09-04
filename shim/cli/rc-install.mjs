@@ -57,6 +57,7 @@ for (const { e, dir, manifest } of staged) {
   if (touched) fs.writeFileSync(path.join(dest, 'manifest.json'), JSON.stringify(manifest, null, 1));
   // Launcher rows do not load asyar-extension:// images; inline 64 px data URIs into the manifest icons.
   try { execFileSync('python3', [path.join(SHIMDIR, '..', 'tools', 'inline-icons.py'), '--single', dest], { stdio: 'ignore' }); } catch {}
+  try { execFileSync('python3', [path.join(SHIMDIR, '..', 'tools', 'add-triggers.py'), '--single', dest], { stdio: 'ignore' }); } catch {}
   ext.enabled[manifest.id] = true;
   ext.consent[manifest.id] = { consentedAt: Date.now(), grandfathered: false, permissionArgs: manifest.permissionArgs ?? {}, permissions: manifest.permissions ?? [] };
   for (const bin of manifest.permissionArgs?.['shell:spawn'] ?? []) db.prepare('insert or ignore into shell_trusted_binaries(extension_id,binary_path,trusted_at) values(?,?,?)').run(manifest.id, bin, Math.floor(Date.now() / 1000));

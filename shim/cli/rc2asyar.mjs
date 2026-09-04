@@ -302,6 +302,8 @@ if (fs.existsSync(path.join(srcDir, 'assets'))) fs.cpSync(path.join(srcDir, 'ass
 // Launcher rows do not load asyar-extension:// images (empty box); inline 64 px data URIs into the manifest
 // icons instead. Assets stay on disk for the extension's own views.
 try { execFileSync('python3', [path.join(SHIM, '..', 'tools', 'inline-icons.py'), '--single', outDir], { stdio: 'ignore' }); } catch {}
+// Search: Asyar matches a command's `trigger`; include the extension name + Raycast keywords so "brew" finds Brew's commands.
+try { execFileSync('python3', [path.join(SHIM, '..', 'tools', 'add-triggers.py'), '--single', outDir], { stdio: 'ignore' }); } catch {}
 fs.writeFileSync(path.join(outDir, 'package.json'), JSON.stringify({ name: pkg.name, title: pkg.title, owner: pkg.owner, author: pkg.author, commands: pkg.commands, preferences: pkg.preferences, tools: pkg.tools }, null, 1));
 // keep the Python MCP server if the source ships one (v1 compat)
 if (pkg.ai?.instructions) fs.writeFileSync(path.join(outDir, 'agent-instructions.md'), String(pkg.ai.instructions));
