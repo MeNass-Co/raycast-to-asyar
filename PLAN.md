@@ -536,3 +536,16 @@ tiles by this rule (they now show the stage-manager tile) — revisit only if Na
   - `rc-refresh-runtime.mjs` rafraîchit aussi `view.css`.
 - ⚠️ **`rc2asyar --out <dossier installé>` écrase view.js/view.css avec le runtime du moment** : toujours relancer `rc-refresh-runtime <id>` après si le shim a bougé, puis comparer les md5 des deux Macs.
 - ⚠️ MBP : le clone est `~/Developer/raycast-to-asyar-mba` et suit `origin/main` ; la MBA travaille sur `nassim/gaming-mode`. `git push origin HEAD:main` (fast-forward) avant tout `rc-refresh-runtime` côté MBP.
+
+## 2026-09-04 (nuit) — placement 16 %, toggles built-ins, Create Snippet, badge footer
+
+- **Position verticale** : Nassim compare deux plein-écran → Raycast ouvre le haut du panneau à **16 % de l'écran** (186 pt / 1169), Asyar à 29,5 % (345 pt). Cause : `settings.dat › launcherPlacement.anchor = { kind: "centered" }` (mis à « centered » par erreur en cherchant à monter la fenêtre). Corrigé sur la MBA : `{ kind: "topWeighted", bias: 0.16 }` → mesuré haut à 157 pt (compact 56 px, même haut qu'en étendu). **À faire sur la MBP** (injoignable ce soir : `No route to host`) — ou Réglages › Général › Placement › « Top ».
+- **Built-ins désactivables** (asyar fork commit `51b5e77`) :
+  - Rust `lifecycle.rs` : `LOCKED_BUILTINS = ["settings","quit"]` ; `set_enabled` refuse seulement ceux-là ; `apply_extension_states` lit `extensions.enabled[id]` pour les autres built-ins.
+  - TS `extensionDiscovery.isLockedBuiltIn`, `extensionStateManager` (plus de « Cannot disable built-in »), `ExtensionsTab` + `ExtensionDetailPanel` (Toggle actif sauf settings/quit), `settingsHandlers.toggleExtension`.
+  - **Par commande** : `settings.extensions.disabledCommands[cmd_<ext>_<cmd>] = true` ; `settingsService.isCommandEnabled/setCommandEnabled` ; `ExtensionLoader.syncCommandIndex` filtre → la commande quitte la recherche racine (alias/hotkeys restent). UI : Toggle dans chaque ligne de commande (`ExtensionsTab`), handler `toggleCommand` + `extensionManager.resyncCommandIndex()`.
+  - Tests : loader (commande désactivée exclue du sync), handler (built-in ordinaire bascule, settings verrouillé), Rust (`locked_builtins_are_only_settings_and_quit`).
+- **Snippets** : commande `create-snippet` « Create Snippet » (même icône) → ouvre la vue en mode création via `editorTrigger = 'add'`.
+- **Badge bas-gauche** (Raycast : 45×30 pt, radius 8, fill +9 %, icône ≈ 20 px, 7 pt du bord) : `.footer-badge` dans `BottomActionBar` à la racine (remplacé par InformationPanel dans une vue) ; clic → `showSettingsWindow()`. Asset `static/footer-badge.png` (app-icon 64 px).
+- Build 18 (toggles seuls, md5 `f318714a…`) non installé ; **build 19** = tout ce qui précède, en cours.
+- ⚠️ `asyar/` est un dépôt git séparé (`origin = Xoshbin/asyar`, pas d'accès en écriture) et ignoré par le dépôt externe : les commits y vivent localement seulement.
