@@ -114,7 +114,8 @@ export default function Command() {
     await LocalStorage.setItem(RECENTS_KEY, JSON.stringify(next));
   }
   function current(): Entry | null {
-    return (selectedId.current && BY_ID.get(selectedId.current)) || null;
+    const id = selectedId.current; if (!id) return null;
+    return BY_ID.get(id.replace(/^[rs]:/, "")) ?? null;
   }
   async function paste(mod?: string) {
     const e = current(); if (!e) return;
@@ -163,7 +164,9 @@ export default function Command() {
     </ActionPanel>
   );
 
-  const cell = (e: Entry) => <Grid.Item key={e.id} id={e.id} content={{ value: display(e), tooltip: e.n }} />;
+  // Keys are unique per section: an emoji listed under "Recently Used" AND its category must be two
+  // React nodes, or reconciliation moves one node between sections and leaves a stale cell behind.
+  const cell = (e: Entry, scope = "") => <Grid.Item key={scope + e.id} id={scope + e.id} content={{ value: display(e), tooltip: e.n }} />;
 
   return (
     <Grid
@@ -176,14 +179,14 @@ export default function Command() {
       actions={actions}
     >
       {searching ? (
-        results.length ? results.map(cell) : <Grid.EmptyView title="No emoji found" description="Try a name, an alias like :+1: or a keyword" icon="magnifying-glass-16" />
+        results.length ? results.map((e) => cell(e, "s:")) : <Grid.EmptyView title="No emoji found" description="Try a name, an alias like :+1: or a keyword" icon="magnifying-glass-16" />
       ) : (
         <>
           {recents.length ? (
-            <Grid.Section title="Recently Used">{recents.map((id) => BY_ID.get(id)).filter((e): e is Entry => !!e).map(cell)}</Grid.Section>
+            <Grid.Section title="Recently Used">{recents.map((id) => BY_ID.get(id)).filter((e): e is Entry => !!e).map((e) => cell(e, "r:"))}</Grid.Section>
           ) : null}
           {CATEGORY_ORDER.map((c) => (
-            <Grid.Section key={c} title={CATEGORY_TITLE[c]}>{ENTRIES.filter((e) => e.c === c).map(cell)}</Grid.Section>
+            <Grid.Section key={c} title={CATEGORY_TITLE[c]}>{ENTRIES.filter((e) => e.c === c).map((e) => cell(e))}</Grid.Section>
           ))}
         </>
       )}
