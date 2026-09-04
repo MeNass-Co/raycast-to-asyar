@@ -430,3 +430,23 @@ validated by decrypting a snippet. Build 12 re-signed in place with "Asyar Local
 the stable-DR csreq could not be injected → `tccutil reset` both services; Nassim re-grants once in
 "Device Control and Data Access" (+ Full Disk Access for Messages/Mail). Since the identity is now stable,
 that grant survives every future rebuild. DONE: keychain + AX + FDA no longer reset per build on either Mac.
+
+## 2026-09-04 (batch 5) — Raycast footer + gap-analysis fixes (build #13, stable-signed)
+Nassim: blank strip under compact search (old show-more space), pills in their own strip with a divider, pills
+"ugly not Apple". Fixes:
+- **Compact = 56px** (header only; was 96 = header+footer) — TS `LAUNCHER_HEIGHT_COMPACT` + Rust
+  `LAUNCHER_COMPACT_HEIGHT` + the two non-macOS literals in lib.rs. Rust/TS contract test green.
+- **Footer floats over the list** (BottomActionBar): no border-top, no opaque strip; a transparent→tint gradient
+  so rows scroll under it; pointer-events only on the pills. Raycast/iOS tab-bar feel.
+- **Pills = Raycast's**: label + flat keycap only (no ring/fill on the pair). KeyboardHint kbd = 24px, radius 6,
+  10% text-primary wash, no rim (measured spec). BottomBarButton/PrimaryActionDisplay lose ring+fill.
+- Gap list: glass radius 20 (was 12), `.launcher-popup` → themeable `--shadow-popup` + lighter blur (24px/140%),
+  `popupScale` transition on ⌘K, action-panel section titles rendered, row subtitle 12px tertiary,
+  **Suggestions** section (top 5 frecency rows), toasts get Success/Failure/Animated + 5s auto-dismiss + replace,
+  Satoshi @font-face removed, `#f78c6c` → `--syntax-number`. Shim: `colorOf` follows host theme,
+  `Action.PickDate` opens a native datetime picker and returns a real Date, in-extension toast themed.
+- **Themes darker + truly transparent**: Raycast, Raycast Glass (now tracked in repo), Lunar → near-black tint
+  at α≈.55 so the NSGlassEffectView refraction shows dark. Installed on both Macs (no rebuild needed).
+- **New tool `shim/cli/rc-refresh-runtime.mjs`**: rebuilds view.js/worker.js inside installed extensions from
+  their rc2asyar.json + package.json (same defines as rc2asyar) — shim fixes ship without a store rebuild.
+- MBP: App Cleaner + CleanShot X installed via rc-install (node@22 path needed on MBP: `/opt/homebrew/bin/node`).
