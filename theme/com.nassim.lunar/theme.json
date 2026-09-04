@@ -1,7 +1,7 @@
 {
   "variables": {
-    "--bg-primary": "rgba(0, 0, 0, 0.78)",
-    "--bg-secondary": "rgba(0, 0, 0, 0.80)",
+    "--bg-primary": "rgba(0, 0, 0, 0.70)",
+    "--bg-secondary": "rgba(0, 0, 0, 0.72)",
     "--bg-tertiary": "rgba(255, 255, 255, 0.05)",
     "--bg-hover": "rgba(196, 220, 255, 0.07)",
     "--bg-selected": "rgba(196, 220, 255, 0.13)",
@@ -38,7 +38,7 @@
     "--radius-lg": "10px",
     "--radius-xl": "12px",
     "--radius-full": "9999px",
-    "--font-ui": "-apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"SF Pro Display\", system-ui, sans-serif",
+    "--font-ui": "\"Inter\", -apple-system, BlinkMacSystemFont, \"SF Pro Text\", system-ui, sans-serif",
     "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
     "--dur-instant": "0ms",
     "--dur-quick": "80ms",
