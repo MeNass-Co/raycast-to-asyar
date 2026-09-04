@@ -551,3 +551,17 @@ tiles by this rule (they now show the stage-manager tile) — revisit only if Na
 - ⚠️ `asyar/` est un dépôt git séparé (`origin = Xoshbin/asyar`, pas d'accès en écriture) et ignoré par le dépôt externe : les commits y vivent localement seulement.
 - **Build 19 LIVE** sur MBA + MBP, md5 `050acc43…` identique. Vérifié : index de recherche = 337 commandes ; après `enabled[usage-stats]=false` + `disabledCommands[cmd_walkthrough_show-walkthrough]=true` → 335, les deux ids absents, `cmd_snippets_create-snippet` présent. Badge footer mesuré : région +28 de luminance, icône visible (max 234). Placement : fenêtre à y=178 pt sur 1112 = 0,16 (Raycast 0,16). Les deux Macs ont Usage Stats et Walkthrough désactivés.
 
+
+## 2026-09-05 — passe « 1:1 Raycast » finale (mesures @2x, Raycast 1.104 vs Asyar)
+
+Références Raycast mesurées sur ses captures plein écran (px @2x → pt) :
+- Fenêtre 750 pt ; **compact 64 pt** (Asyar était 56) ; coin **23 pt** ; rim 1 px (+24 L) sur les 4 bords, aucun glow interne.
+- En-tête : **logo Raycast** 21.5 pt à x=16, y=21..42.5, gris placeholder ; requête **Inter Regular 18** (« test » = 30.5 pt de large) à x=50 ; placeholder « Search for apps and commands... » ; aucun trait sous l'en-tête ; **pas de pilule « Ask AI · Tab »** (Nassim : « I know to click tab »).
+- Liste : « Results » = Inter SemiBold 11, gris 159, y 71..78.5, x 17 ; rangées **38 pt de pas, sans écart**, bande sélection plate (45 sur 16), radius 8, x 8..741.5 ; icône 8..47, titre à x=53.5 Inter Medium 13 ; accessoire « Command » Regular 13 gris 170, bord droit 732.5.
+- Pied : capsule **44 pt**, 8 pt du bas, 1 pt du bord droit, 259 pt de large avec « Open Command » (Inter SemiBold 12, blanc) ; keycaps 24×24 radius 7 = **anneau 1 px** (+40 L), sans fond, glyphe 175 ; « Actions » Regular 12 gris ; badge gauche = même capsule, 64.5 pt, 1.5 pt du bord, glyphe **deux barres** (13 et 8 pt, 1.5 pt d'épais, 4.5 pt entre centres, L 172).
+- Verre : corps 70 sur papier peint 236 → alpha ≈ 0.70 (Asyar était 0.78).
+- Police : Raycast embarque Inter ; les largeurs ne collent qu'avec Inter → **Inter Regular/Medium/SemiBold/Bold copiés dans `src/resources/fonts/`**, `--font-ui` commence par Inter (style.css + les 3 thèmes sombres).
+
+Appliqué (fork asyar commits `c87babb` → build 21, + build 22) : tout ce qui précède, plus `static/raycast-logo.png` (masque alpha extrait de `Assets.car › raycast-logo-16`), badge PNG Asyar supprimé, `.context-hint` et `aiHintIntensity` retirés du header, `search.results_header`/`actions.open_command`/`actions.open_application` dans `en.json`, `--shell-footer-h` 52 (44+8) et le contenu passe sous les capsules (`bottom: 0` + padding-bottom de liste).
+Outils : `/tmp/ocr` (Vision OCR, Swift) et `/tmp/rcx` (extraction Assets.car) ; Codex vision indisponible (quota jusqu'au 07/09).
+Écart accepté : le rim natif `NSGlassEffectView` fait 2 px + dégradé (+40) là où Raycast a 1 px net ; changer cela demanderait d'abandonner le verre natif que Nassim a demandé.
