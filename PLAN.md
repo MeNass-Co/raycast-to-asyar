@@ -484,3 +484,11 @@ tint if it ever wants; themes: `--bg-primary rgba(0,0,0,.80)`, secondary .82, li
 Pills: glass capsules (9% white fill, 1px 10% rim, 1px top highlight); keycaps 14% fill with top rim/bottom
 shade. Footer scrim transparent→black .6. Verified on the MBA over the desktop: it is right.
 Themes pushed to both Macs (file-level, applied on relaunch). Build 14 = pills/keycaps/scrim in the binary.
+
+## 2026-09-04 — footer = Raycast capsule (Nassim's correction, build 15)
+Nassim: "Raycast has a pill always AND a pill on hover; and Asyar's bottom is too dark while Raycast lightens".
+Measured his Raycast screenshot: panel rgb(70), outer footer capsule ≈ white 9% over it, inner hover capsule
+rgb(104), keycap rgb(177); bottom edge = same as panel (no darkening). Rebuilt: ONE outer glass capsule
+(`.footer-capsule`, 8% fill, 9% rim, 1px top highlight, blur 16px) holding Run | Actions; each action is bare
+label+keycap that gets its own inner capsule on hover; no scrim under the footer; keycaps flat light 16%.
+Panel scrim eased .80 → .68 to match rgb(70). Themes pushed to both Macs; build 15 carries the footer.
