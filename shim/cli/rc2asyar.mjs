@@ -59,7 +59,7 @@ const argsOf = (c) => (c.arguments ?? []).slice(0, 3).map((a) => ({ name: a.name
 
 const manifestCommands = commands.map((c) => {
   const mode = modeOf(c);
-  const base = { id: c.name, name: c.title, description: c.description || c.subtitle || c.title, icon: iconOf(c.icon) ?? iconOf(pkg.icon) ?? undefined };
+  const base = { id: c.name, name: c.title, description: c.description || c.subtitle || c.title, icon: iconOf(pkg.icon) /* Nassim: every command carries its extension's icon */ ?? undefined };
   if (c.preferences?.length) base.preferences = c.preferences.map(prefToAsyar);
   if (c.arguments?.length) base.arguments = argsOf(c);
   if (mode === 'view') return { ...base, mode: 'view', component: c.name };
