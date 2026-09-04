@@ -106,6 +106,9 @@ apps_up=0
 typeset -a failed
 for app in "${WANT_APPS[@]}"; do
   name="${${app:t}%.app}"
+  # Never bring Raycast back: Asyar replaced it and both grab ⌥Space, so a
+  # restored Raycast steals the hotkey (Nassim needed two presses, 04/09).
+  case "$name" in Raycast|"Raycast Beta") continue ;; esac
   [[ -n "${LIVE[$app]:-}" ]] && continue                  # already running
   if open -g -j -a "$app" >/dev/null 2>&1; then
     (( apps_up++ ))
