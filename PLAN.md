@@ -492,3 +492,8 @@ rgb(104), keycap rgb(177); bottom edge = same as panel (no darkening). Rebuilt: 
 (`.footer-capsule`, 8% fill, 9% rim, 1px top highlight, blur 16px) holding Run | Actions; each action is bare
 label+keycap that gets its own inner capsule on hover; no scrim under the footer; keycaps flat light 16%.
 Panel scrim eased .80 → .68 to match rgb(70). Themes pushed to both Macs; build 15 carries the footer.
+
+## 2026-09-04 — build 15 live both Macs (md5 2841ad89…); icon 1:1 pass next
+Capsule footer shipped and verified same binary on MBA+MBP. Nassim: icons must be 1:1 with Raycast (imperfect
+matches OK), e.g. Quit Asyar must use Raycast's quit icon. Doing a full remap of every built-in command and
+system action against Raycast's real icon set (228 loose PNGs re-pulled to /tmp/rayicons).
