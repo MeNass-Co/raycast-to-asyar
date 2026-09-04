@@ -1,12 +1,12 @@
 {
   "variables": {
-    "--bg-primary": "rgba(0, 0, 0, 0.18)",
-    "--bg-secondary": "rgba(0, 0, 0, 0.22)",
-    "--bg-tertiary": "rgba(255, 255, 255, 0.04)",
+    "--bg-primary": "rgba(0, 0, 0, 0.80)",
+    "--bg-secondary": "rgba(0, 0, 0, 0.82)",
+    "--bg-tertiary": "rgba(255, 255, 255, 0.05)",
     "--bg-hover": "rgba(196, 220, 255, 0.07)",
     "--bg-selected": "rgba(196, 220, 255, 0.13)",
     "--bg-popup": "rgb(12, 14, 20)",
-    "--bg-secondary-full-opacity": "rgba(0, 0, 0, 0.85)",
+    "--bg-secondary-full-opacity": "rgba(0, 0, 0, 0.88)",
     "--text-primary": "rgb(236, 240, 246)",
     "--text-secondary": "rgb(150, 160, 178)",
     "--text-tertiary": "rgb(96, 106, 124)",
@@ -55,6 +55,6 @@
     "--syntax-string": "rgb(120, 214, 180)",
     "--syntax-number": "rgb(232, 196, 96)",
     "--syntax-function": "rgb(129, 161, 255)",
-    "--glass-tint": "rgba(0, 0, 0, 0.82)"
+    "--glass-tint": "rgba(0, 0, 0, 0)"
   }
 }
