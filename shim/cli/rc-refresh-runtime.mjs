@@ -50,6 +50,8 @@ for (const id of ids) {
   try {
     await esbuild.build({ ...common, entryPoints: [path.join(PKG, 'view', 'view.tsx')], outfile: path.join(dir, 'view.js') });
     if (fs.existsSync(path.join(dir, 'worker.js'))) await esbuild.build({ ...common, entryPoints: [path.join(PKG, 'worker', 'worker.ts')], outfile: path.join(dir, 'worker.js') });
+    // view.css ships with the runtime too (glyph cells, toasts…): refresh it alongside view.js.
+    if (fs.existsSync(path.join(dir, 'view.css'))) fs.copyFileSync(path.join(PKG, 'view', 'view.css'), path.join(dir, 'view.css'));
     ok++;
   } catch (e) { log('FAILED', id, String(e.message ?? e).split('\n')[0].slice(0, 160)); }
 }
