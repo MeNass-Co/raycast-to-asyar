@@ -56,6 +56,9 @@ html, body { margin: 0; height: 100%; background: transparent; color: var(--rc-t
 .rc-cell[data-selected="true"] { background: var(--rc-sel); }
 .rc-cell-content { aspect-ratio: 1; border-radius: 8px; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .rc-cell-content img, .rc-cell-content .rc-icon { width: 60%; height: 60%; }
+/* Emoji/symbol glyph cells (Raycast emoji picker): no tile behind the glyph, the selection wash alone marks the cell. */
+.rc-cell-glyph { background: transparent; }
+.rc-cell-glyph .rc-emoji { font-size: 34px !important; width: auto !important; height: auto !important; }
 .rc-cell-title { margin-top: 6px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .rc-cell-subtitle { font-size: 11px; color: var(--rc-text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .rc-grid .rc-section-header { grid-column: 1 / -1; }

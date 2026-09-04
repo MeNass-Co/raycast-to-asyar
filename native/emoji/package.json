@@ -1,0 +1,48 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "emoji",
+  "title": "Emoji & Symbols",
+  "description": "Search and paste emoji and symbols, like Raycast's built-in Search Emoji & Symbols.",
+  "icon": "icon.png",
+  "author": "nassim",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "search-emoji",
+      "title": "Search Emoji & Symbols",
+      "description": "Find an emoji or symbol by name, alias or keyword and paste it",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "primaryAction",
+      "type": "dropdown",
+      "required": false,
+      "title": "Primary Action",
+      "description": "What Enter does",
+      "default": "paste",
+      "data": [
+        { "title": "Paste to Active App", "value": "paste" },
+        { "title": "Copy to Clipboard", "value": "copy" }
+      ]
+    },
+    {
+      "name": "skinTone",
+      "type": "dropdown",
+      "required": false,
+      "title": "Skin Tone",
+      "description": "Default skin tone for people and hand emoji",
+      "default": "default",
+      "data": [
+        { "title": "Default", "value": "default" },
+        { "title": "Light", "value": "light" },
+        { "title": "Medium-Light", "value": "mediumLight" },
+        { "title": "Medium", "value": "medium" },
+        { "title": "Medium-Dark", "value": "mediumDark" },
+        { "title": "Dark", "value": "dark" }
+      ]
+    }
+  ],
+  "dependencies": { "@raycast/api": "^1.100.0" }
+}

@@ -24,7 +24,11 @@ export function colorOf(c: unknown, appearance: 'light' | 'dark' = hostAppearanc
 
 let extensionId = '';
 export const setImageContext = (id: string) => { extensionId = id; };
-const isEmoji = (s: string) => /^\p{Extended_Pictographic}/u.test(s) && s.length <= 8;
+// Text glyph, not an icon name/path: pictographs, flags (regional indicators), keycaps/ZWJ sequences,
+// and bare symbols/punctuation (Raycast's "Unicode Symbols": !, $, ², µ, -, _ …). Icon names start with
+// an ASCII letter (magnifying-glass-16, icon.png), so those never match.
+export const isEmoji = (s: string) => s.length <= 16 && !/^(https?:|data:|asyar-|\/)/.test(s)
+  && (/^[\p{Extended_Pictographic}\p{Regional_Indicator}\p{S}\p{P}]/u.test(s) || /[\uFE0F\u20E3\u200D]/.test(s) || (s.length <= 2 && !/^[A-Za-z0-9]+$/.test(s)));
 
 function sourceUrl(src: unknown): string | undefined {
   if (typeof src !== 'string') { const d = src as { light?: string; dark?: string } | undefined; return d ? sourceUrl(d.dark ?? d.light) : undefined; }
