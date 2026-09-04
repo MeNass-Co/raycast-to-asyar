@@ -1,0 +1,14 @@
+{
+  "id": "com.nassim.lunar-light",
+  "name": "Lunar Light",
+  "version": "1.0.0",
+  "description": "Lunar glass, daylight: blur over translucent porcelain, ink text, one Instrument Cyan accent, soft moonlight rim. Raycast metrics.",
+  "author": "Nassim Lecornet",
+  "type": "theme",
+  "icon": "icon:sun",
+  "asyarSdk": "^4.10.0",
+  "platforms": [
+    "macos"
+  ],
+  "commands": []
+}

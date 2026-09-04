@@ -38,7 +38,7 @@
     "--radius-lg": "10px",
     "--radius-xl": "12px",
     "--radius-full": "9999px",
-    "--font-ui": "\"Inter\", -apple-system, system-ui, sans-serif",
+    "--font-ui": "-apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"SF Pro Display\", system-ui, sans-serif",
     "--font-mono": "\"JetBrains Mono\", ui-monospace, Menlo, monospace",
     "--dur-instant": "0ms",
     "--dur-quick": "80ms",
