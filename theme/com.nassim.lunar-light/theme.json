@@ -1,7 +1,7 @@
 {
   "variables": {
-    "--bg-primary": "rgba(255, 255, 255, 0.15)",
-    "--bg-secondary": "rgba(255, 255, 255, 0.18)",
+    "--bg-primary": "rgba(255, 255, 255, 0.72)",
+    "--bg-secondary": "rgba(255, 255, 255, 0.76)",
     "--bg-tertiary": "rgba(226, 230, 236, 0.40)",
     "--bg-hover": "rgba(18, 38, 74, 0.055)",
     "--bg-selected": "rgba(18, 38, 74, 0.10)",
@@ -55,6 +55,6 @@
     "--syntax-string": "rgb(24, 150, 110)",
     "--syntax-number": "rgb(176, 120, 20)",
     "--syntax-function": "rgb(74, 110, 235)",
-    "--glass-tint": "rgba(255, 255, 255, 0.55)"
+    "--glass-tint": "rgba(0, 0, 0, 0)"
   }
 }
