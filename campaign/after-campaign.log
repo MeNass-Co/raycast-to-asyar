@@ -1,0 +1,166 @@
+[after] campaign finished Thu Sep  3 12:45:59 CEST 2026
+[after] retrying 131 failed extensions
+[store] 131 extensions, 3 jobs
+[1/131] ok      ai-gen 0s
+[2/131] fail    ado-search 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${baseBranch || " of pac
+[3/131] fail    airbuddy 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "Spatial Audio never | np
+[4/131] ok      aleph 0s
+[5/131] ok      algolia 0s
+[6/131] fail    aliyun-oss 0s :: errors: [Getter/Setter],
+[7/131] ok      alt-text-generator 0s
+[8/131] ok      alloy 1s
+[9/131] ok      alpaca-trading 1s
+[10/131] fail    app-store-connect 0s :: [rc2asyar] undeclared deps: request failed
+[11/131] ok      anna-s-archive 1s
+[12/131] fail    arcane-wallpaper 0s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "rust:.." of package "rus
+[13/131] fail    asana 0s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${task.name}" of package
+[14/131] fail    atlassian-data-center 1s :: Error: npm install failed: npm error code E404 | npm error 404 Not Found - GET https://registry.npmjs.org/DEV-123 - Not 
+[15/131] ok      apple-reminders 2s
+[16/131] ok      atomic 0s
+[17/131] ok      banca-d-italia-currency-converter 0s
+[18/131] ok      aztu-lms 1s
+[19/131] ok      bazinga-tools 0s
+[20/131] ok      bangumi 3s
+[21/131] ok      biaodian 0s
+[22/131] ok      betterstack-utils 2s
+[23/131] ok      binance 1s
+[24/131] fail    blackr 0s :: errors: [Getter/Setter],
+[25/131] fail    browser-tabs 0s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "rust:.." of package "rus
+[26/131] fail    bundles 0s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${folder.name}" of packa
+[27/131] fail    bunq 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${sourceAccount.descript
+[28/131] ok      bitwarden 2s
+[29/131] fail    ccf-what 1s :: } catch (err) {
+[30/131] fail    central-icons 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${pkg}" of package "${pk
+[31/131] ok      changedetection-io 0s
+[32/131] fail    chiikawa-character 0s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "small and cute" of packa
+[33/131] fail    cilium-docs 1s :: errors: [Getter/Setter],
+[34/131] fail    claude-artifacts 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "nothing is pinned" of pa
+[35/131] fail    claudecast 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "--claude" of package "--
+[36/131] fail    clean-keyboard 0s :: errors: [Getter/Setter],
+[37/131] fail    cloudflare-ai 0s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "Query Cloudflare AI" of 
+[38/131] ok      codex-manager 1s
+[39/131] fail    coffee 3s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "rust:.." of package "rus
+[40/131] fail    cal-com-share-meeting-links 10s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "filter is hiding everyth
+[41/131] fail    color-picker 1s :: errors: [Getter/Setter],
+[42/131] fail    comet 2s :: errors: [Getter/Setter],
+[43/131] fail    conventional-comments 1s :: errors: [Getter/Setter],
+[44/131] fail    copy-gcp-icons 0s :: errors: [Getter/Setter],
+[45/131] fail    coze 0s :: errors: [Getter/Setter],
+[46/131] fail    companies-house 5s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "not read from storage ye
+[47/131] fail    date-converter 0s :: errors: [Getter/Setter],
+[48/131] fail    debank 0s :: errors: [Getter/Setter],
+[49/131] fail    deepseeker 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name " + formatDate(item.times
+[50/131] fail    descript 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${projectName}" of packa
+[51/131] fail    dimmer 0s :: errors: [Getter/Setter],
+[52/131] fail    doccheck 1s :: errors: [Getter/Setter],
+[53/131] fail    ets2-ats-profiles 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${profile.name}" of pack
+[54/131] fail    deno-deploy 3s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "https:" of package "http
+[55/131] fail    fake-financial-data 0s :: errors: [Getter/Setter],
+[56/131] fail    fastly 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${acl.name}" of package 
+[57/131] fail    finder-file-actions 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "bun:test" of package "bu
+[58/131] fail    firefox-tabs 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "not set up" of package "
+[59/131] fail    focus-automation 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "never onboarded" of pack
+[60/131] fail    gemini-cli 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${session.title}" of pac
+[61/131] fail    gh-pr-tracker 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "all caught up" of packag
+[62/131] fail    git 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name " + file.oldPath }; | npm
+[63/131] fail    git-worktrees 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${currentName}" of packa
+[64/131] fail    gles-to-malioc 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "Tier 1" of package "Tier
+[65/131] fail    glossary 0s :: errors: [Getter/Setter],
+[66/131] fail    google-chrome-profiles 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "Work admin" of package "
+[67/131] fail    google-meet 1s :: Error: npm install failed: npm error code E404 | npm error 404 Not Found - GET https://registry.npmjs.org/couldn - Not f
+[68/131] fail    heatcheck 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "AC Power" of package "AC
+[69/131] fail    heidisql-sessions 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "you have no saved sessio
+[70/131] fail    heptabase 2s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "data:" of package "data:
+[71/131] fail    gitlab 6s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${props.branch.name}" of
+[72/131] fail    json-editor 1s :: errors: [Getter/Setter],
+[73/131] fail    karakeep 2s :: [rc2asyar] undeclared deps: restored from cache, Copy Error, there was no server, I don
+[74/131] fail    list-by-fullforms 2s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "a member | npm error   "
+[75/131] fail    lokalise 8s :: Error: npm install failed: npm error code E404 | npm error 404 Not Found - GET https://registry.npmjs.org/zh_tw - Not fo
+[76/131] fail    jsr 13s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "https:" of package "http
+[77/131] fail    lunaris 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "rust:.." of package "rus
+[78/131] fail    mouse-cursor-toggle 1s :: errors: [Getter/Setter],
+[79/131] fail    media-flow 3s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${s.album}" of package "
+[80/131] fail    nepali-typing 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "bun:test" of package "bu
+[81/131] fail    next-run 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${item.name}" of package
+[82/131] fail    not-diamond 2s :: errors: [Getter/Setter],
+[83/131] fail    opencode-sessions 1s :: errors: [Getter/Setter],
+[84/131] fail    oss-browser 1s :: errors: [Getter/Setter],
+[85/131] fail    password-generator 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "bun:test" of package "bu
+[86/131] fail    pitchfork 1s :: errors: [Getter/Setter],
+[87/131] fail    pm2 1s :: errors: [Getter/Setter],
+[88/131] fail    portuguese-primeira-liga 2s :: errors: [Getter/Setter],
+[89/131] fail    producthunt 4s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "Sign in with Product Hun
+[90/131] fail    pubme 1s :: errors: [Getter/Setter],
+[91/131] fail    music 18s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${track.playlist}" of pa
+[92/131] fail    putty-sessions 2s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "you have no saved sessio
+[93/131] fail    quarantine-manager 2s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${target.title}" of pack
+[94/131] fail    random-email 1s :: errors: [Getter/Setter],
+[95/131] fail    raycast-focus-stats 1s :: errors: [Getter/Setter],
+[96/131] fail    raycast-store-updates 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "the feature is broken" o
+[97/131] fail    raycast-wallpaper 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "rust:.." of package "rus
+[98/131] fail    raycast-zabbix 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${name}" of package "${n
+[99/131] fail    react-icons 2s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${category.id}" of packa
+[100/131] fail    reader-mode 2s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "Try Anyway" of package "
+[101/131] fail    remember-this 1s :: errors: [Getter/Setter],
+[102/131] fail    renaming 2s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "Renamed 3 files" of pack
+[103/131] fail    respace 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${workspaceName}" of pac
+[104/131] fail    ruler 0s :: errors: [Getter/Setter],
+[105/131] fail    scoop 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "scoop cat" of package "s
+[106/131] fail    raynab 11s :: Error: npm install failed: npm error code E404 | npm error 404 Not Found - GET https://registry.npmjs.org/Checking - Not
+[107/131] ok      screenocr 3s
+[108/131] fail    script-commands 2s :: Error: npm install failed: npm error code E404 | npm error 404 Not Found - GET https://registry.npmjs.org/Const - Not fo
+[109/131] fail    simple-draw 1s :: errors: [Getter/Setter],
+[110/131] fail    soundboard 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${item?.title}" of packa
+[111/131] fail    svgr 1s :: errors: [Getter/Setter],
+[112/131] fail    swinsian-player 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${album.album}" of packa
+[113/131] fail    textarray 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "ÆRØ" of package "ÆRØ@lat
+[114/131] fail    teak-raycast 5s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "bun:test" of package "bu
+[115/131] fail    tiktoken 1s :: errors: [Getter/Setter],
+[116/131] fail    tokenizer 0s :: errors: [Getter/Setter],
+[117/131] fail    transform 1s :: errors: [Getter/Setter],
+[118/131] fail    ugly-face 1s :: errors: [Getter/Setter],
+[119/131] fail    utc-workbench 1s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "Pin All with Label" of p
+[120/131] fail    vocabuilder 2s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "${escapeMarkdown(origina
+[121/131] fail    vortex 1s :: errors: [Getter/Setter],
+[122/131] fail    webkit-developer-docs 1s :: errors: [Getter/Setter],
+[123/131] ok      weread-sync 1s
+[124/131] ok      wezterm-navigator 1s
+[125/131] fail    xcodes 1s :: errors: [Getter/Setter],
+[126/131] fail    yap 1s :: Error: npm install failed: npm error code E404 | npm error 404 Not Found - GET https://registry.npmjs.org/x-post - Not f
+[127/131] ok      yerd 1s
+[128/131] ok      youtube-highlights 1s
+[129/131] fail    ticktick-plus 15s :: Error: npm install failed: npm error code EINVALIDPACKAGENAME | npm error Invalid package name "the API is unreachable, 
+[130/131] ok      zerion 5s
+[131/131] ok      aranet-co2-monitor 411s :: [Planning deferred tasks]
+[store] done {"ok":3143,"fail":105} → /Users/nassimlecornet/Developer/raycast-to-asyar/shim/store-report.json
+[after] retry done Thu Sep  3 12:52:53 CEST 2026
+ok=3143 fail=105 timeout=0 clusters=27
+   68  npm-install  e.g. ado-search, airbuddy, app-store-connect
+    6  missing-export:default  e.g. cilium-docs, doccheck, json-editor
+    3  missing-export:pasteText  e.g. conventional-comments, glossary, random-email
+    3  other:errors: [Getter/Setter],  e.g. tiktoken, tokenizer, ugly-face
+    2  unresolved:proxy-agent  e.g. aliyun-oss, oss-browser
+    2  unresolved:electron  e.g. copy-gcp-icons, xcodes
+    1  swift:../swift/blackr-overlay  e.g. blackr
+    1  unresolved:rust:../rust/clean-keyboard  e.g. clean-keyboard
+    1  swift:../swift/color-picker  e.g. color-picker
+    1  unresolved:@raycast/utils/dist/handle-error-toast-action  e.g. comet
+    1  missing-export:fetch  e.g. coze
+    1  unresolved:@total-typescript/ts-reset  e.g. date-converter
+    1  missing-export:ListSection  e.g. debank
+    1  swift:../swift/dimmer-helper  e.g. dimmer
+    1  unresolved:lodash  e.g. fake-financial-data
+    1  swift:../swift/cursor-helper  e.g. mouse-cursor-toggle
+    1  missing-export:ChatOpenAICompletions  e.g. not-diamond
+    1  missing-export:createOpencode  e.g. opencode-sessions
+    1  unresolved:blessed/lib/colors  e.g. pm2
+    1  unresolved:better-sqlite3  e.g. raycast-focus-stats
+    1  missing-export:ListItem  e.g. remember-this
+    1  swift:../swift/Ruler  e.g. ruler
+    1  swift:../swift/simple-draw  e.g. simple-draw
+    1  unresolved:@babel/preset-typescript/package.json  e.g. svgr
+    1  unresolved:html2pug  e.g. transform
+    1  unresolved:@cashu/cashu-ts/dist/lib/es6/utils  e.g. vortex
+    1  unresolved:canvas  e.g. webkit-developer-docs
+→ ../campaign/clusters.json
+[after] triage written Thu Sep  3 12:52:53 CEST 2026

@@ -46,8 +46,8 @@ prov = s.get('ai', {}).get('providers', {})
 print('[install] settings written; theme active; DeepSeek provider present:', 'custom_8ee25dd7' in prov)
 PY
 
-# 5. agents (need the DeepSeek provider id used in the seed scripts)
-python3 "$ROOT/native/ai-commands/seed-ai-commands.py" && python3 "$ROOT/native/ai-commands/seed-presets.py"
+# 5. agents — DISABLED 2026-09-04: Nassim deleted every agent himself (Manage Agents) and dislikes the concept.
+#    Re-enable only on his explicit ask:  python3 native/ai-commands/seed-ai-commands.py && python3 native/ai-commands/seed-presets.py
 
 # 6. converted store extensions from GitHub (rc-install quits/relaunches Asyar itself)
 (cd "$ROOT/shim" && node cli/rc-install.mjs raycast.thomaslombart.messages raycast.yug2005.mail raycast.gebeto.translate raycast.thomas.colorpicker)

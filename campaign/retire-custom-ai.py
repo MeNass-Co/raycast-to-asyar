@@ -2,7 +2,7 @@
 """Retire the hand-made "AI Messages & Mail" (extension + MCP server + agent + script trust) now that the
 ported Raycast Messages and Mail extensions carry their own AI tools. Also replaces the combined
 "Raycast Messages & Mail" agent with one agent per extension. Run with Asyar QUIT."""
-import json, os, shutil, sqlite3, time, sys
+import sys, json, os, shutil, sqlite3, time
 APP = os.path.expanduser('~/Library/Application Support/org.asyar.app')
 MAIL_ID = sys.argv[1] if len(sys.argv) > 1 else 'raycast.yug2005.mail'
 MSG_ID = 'raycast.thomaslombart.messages'
@@ -18,7 +18,11 @@ for t in ('mcp_servers', 'mcp_permissions', 'mcp_audit', 'mcp_settings'):
         try: con.execute(f"delete from {t} where id='ai-local'")
         except Exception: pass
 con.execute("delete from shell_trusted_binaries where extension_id='com.menass.ai-messages-mail' or binary_path like '%asyar-scripts/ai-messages.sh'")
+WITH_AGENTS = '--with-agents' in sys.argv  # 2026-09-04: Nassim deleted all agents and dislikes the concept; opt-in only
+
 def agent(aid, name, desc, ext, prompt):
+    if not WITH_AGENTS:
+        return None
     m = json.load(open(os.path.join(APP, 'extensions', ext, 'manifest.json')))
     tools = [f"{ext}:{t['id']}" for t in m.get('tools', [])]
     now = int(time.time()*1000)

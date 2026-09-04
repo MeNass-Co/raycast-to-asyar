@@ -1,0 +1,15 @@
+[store] 13 extensions, 2 jobs
+[1/13] ok      arcane-wallpaper 0s
+[2/13] ok      blackr 0s
+[3/13] ok      browser-tabs 0s
+[4/13] ok      clean-keyboard 0s
+[5/13] ok      color-picker 0s
+[6/13] ok      dimmer 0s
+[7/13] ok      lunaris 0s
+[8/13] ok      coffee 2s
+[9/13] ok      raycast-wallpaper 0s
+[10/13] ok      ruler 325s :: /Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/ruler/swift/Ruler/Package.swift: Ruler-product: ld: wa
+[11/13] ok      mouse-cursor-toggle 348s :: /Users/nassimlecornet/Developer/raycast-to-asyar/store/extensions/mouse-cursor-toggle/swift/cursor-helper/Package.swift:
+[12/13] ok      soundboard 0s
+[13/13] ok      simple-draw 218s :: [Planning deferred tasks]
+[store] done {"ok":3236,"fail":12} → /Users/nassimlecornet/Developer/raycast-to-asyar/shim/store-report.json
