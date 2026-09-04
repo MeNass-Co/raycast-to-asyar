@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""ext-aliases.py: give each installed converted extension's FIRST view command an alias = a short
+"""RETIRED 2026-09-04: trigger matching ships in the rebuilt app and Nassim dislikes these
+auto-assigned command aliases (they pin a command above the matching app). Do NOT run this.
+Extensions are found by name/trigger now. Kept only for reference.
+
+Original: ext-aliases.py: give each installed converted extension's FIRST view command an alias = a short
 extension name (brew, audio, notes…), so typing the extension name finds it today. Asyar allows one alias
 per object and unique aliases. Replaced by trigger matching once the rebuilt app ships."""
 import json, os, re, sqlite3, time, glob
