@@ -389,3 +389,11 @@ NSControl has `setTag:`), so the unrecognized selector raised an ObjC exception 
 (`isKindOfClass: NSGlassEffectView`) OR the vibrancy tag, so `find_webview` skips the glass. No `setTag:`.
 Lesson tattooed: an objc2 `msg_send!` to a selector the receiver lacks = instant abort, not a Rust error;
 verify selectors against the class before use. cargo check green, #11 building.
+
+## 2026-09-04 — build #11 panicked too → PROVEN root cause, build #12
+Simulated every backdrop operation in Swift on a real `NSGlassEffectView`: all fine EXCEPT `material` /
+`setMaterial:` (NSVisualEffectView-only). `apply_panel_appearance` runs right after the glass is inserted,
+finds the glass via `find_vibrancy_view` (now matches by class) and sends `material` → unrecognized selector →
+ObjC exception → non-unwinding abort. This is the crash in #9/#10/#11 (the tag theory was a side-quest; #10's
+`setTag:` was a second, separate abort). Fix: appearance.rs guards with `isKindOfClass: NSVisualEffectView`
+before touching material. Selector audit (Swift `responds(to:)`) is now the rule before any objc2 msg_send.
