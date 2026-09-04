@@ -1,0 +1,13 @@
+{
+  "id": "com.nassim.raycast-glass",
+  "name": "Raycast Glass",
+  "version": "1.0.0",
+  "description": "Deep-black liquid-glass dark theme with a Raycast-identical feel and native SF Pro typography.",
+  "author": "Nassim (via Aside)",
+  "type": "theme",
+  "icon": "icon:palette",
+  "asyarSdk": "^1.9.1",
+  "minAppVersion": "0.1.0",
+  "platforms": ["macos", "linux", "windows"],
+  "commands": []
+}
