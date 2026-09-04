@@ -517,3 +517,22 @@ override a root icon with a PNG (`--set <id>=<png>`); (5) Apple-app extensions (
 Calendar) now use the real macOS app icons extracted from /System/Applications/*.app AppIcon.icns.
 Applied on MBA (80 cmds) + MBP (103 cmds), both relaunched. Window-management presets lost their per-position
 tiles by this rule (they now show the stage-manager tile) — revisit only if Nassim asks.
+
+## 2026-09-04 (soir) — build 17 + emoji natif
+
+- **Build 17 installé** sur MBA + MBP, md5 `c104311d…` identique. Toutes les commandes built-in héritent de l'icône de leur feature.
+- **Audit icônes** : toutes les extensions portées correspondent à leurs originaux Raycast (diff < 12), sauf les 4 apps Apple (Reminders/Notes/Messages/Calendar = vraie icône macOS, voulu) et 4 écarts de rendu seulement (word-count, currency, things, killprocess).
+- **Emoji** : `raycast.fezvrasta.emoji` (10 MB, Fuse.js, cache persistant, lent) **supprimé des deux Macs**. Remplacé par `native/emoji` → `com.nassim.emoji` « Emoji & Symbols » :
+  - dataset = `/Applications/Raycast.app/Contents/Resources/emoji.json` (2462 entrées, noms + alias + mots-clés + skin tone, ordre curé Raycast) copié dans `src/emoji.json` ;
+  - classement en process (exact > préfixe nom > préfixe alias > préfixe mot > préfixe keyword > sous-chaîne), ≈1 ms/requête, 200 résultats max, `filtering={false}` + `onSearchTextChange` ;
+  - Grid 8 colonnes, sections par catégorie + « Recently Used » (LocalStorage), Enter = Paste (pref `primaryAction`), ⌘C copie, sous-menus skin tone, pref `skinTone` ;
+  - tuile Raycast `extension-emoji-picker_large`.
+  - Mesuré (sidecar headless) : premier render 25 ms, recherche 3–8 ms.
+- **Shim corrigé** (propagé via `rc-refresh-runtime` aux 38 + 2 extensions installées, sur les deux Macs) :
+  - `reconciler.ts` : `appendChild`/`insertBefore` détachent d'abord le nœud → un enfant keyed déplacé n'était pas retiré de son ancienne place (cellules périmées, doublons dans toute liste retriée) ;
+  - `image.tsx` : `isEmoji` accepte drapeaux (regional indicators), keycaps, ZWJ, symboles/ponctuation (`µ`, `!`, `-`) ; avant, 665 entrées tombaient en `<img>` cassée ;
+  - `list.tsx`/`view.css` : cellule glyphe sans tuile derrière (`.rc-cell-glyph`, 34 px) ;
+  - `app.tsx` : nouvelle requête → curseur sur le premier résultat ;
+  - `rc-refresh-runtime.mjs` rafraîchit aussi `view.css`.
+- ⚠️ **`rc2asyar --out <dossier installé>` écrase view.js/view.css avec le runtime du moment** : toujours relancer `rc-refresh-runtime <id>` après si le shim a bougé, puis comparer les md5 des deux Macs.
+- ⚠️ MBP : le clone est `~/Developer/raycast-to-asyar-mba` et suit `origin/main` ; la MBA travaille sur `nassim/gaming-mode`. `git push origin HEAD:main` (fast-forward) avant tout `rc-refresh-runtime` côté MBP.
