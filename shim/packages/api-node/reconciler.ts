@@ -20,6 +20,7 @@ export interface Container {
 
 let nextId = 1;
 const create = (type: string, props: Record<string, unknown>): Instance => ({ id: nextId++, type, props, children: [] });
+const detach = (list: Instance[], c: Instance) => { const i = list.indexOf(c); if (i >= 0) list.splice(i, 1); };
 
 /** Function registry: (instanceId, propName) → stable callback id. */
 export class CallbackRegistry {
@@ -70,10 +71,13 @@ const hostConfig: Reconciler.HostConfig<string, Record<string, unknown>, Contain
   createTextInstance: (text) => ({ id: nextId++, type: '#text', props: {}, children: [], text }),
   appendInitialChild: (p, c) => { p.children.push(c); },
   finalizeInitialChildren: () => false,
-  appendChild: (p, c) => { p.children.push(c); },
-  appendChildToContainer: (c, i) => { c.children.push(i); c.root = c.children[0] ?? null; },
-  insertBefore: (p, c, before) => { const i = p.children.indexOf(before); p.children.splice(i < 0 ? p.children.length : i, 0, c); },
-  insertInContainerBefore: (c, i, before) => { const k = c.children.indexOf(before); c.children.splice(k < 0 ? c.children.length : k, 0, i); c.root = c.children[0] ?? null; },
+  // React reuses appendChild/insertBefore to MOVE an existing keyed child (no removeChild first). Detach the
+  // node from its old slot before placing it, or a reordered list (search results, sorted rows) grows
+  // duplicates and keeps stale cells.
+  appendChild: (p, c) => { detach(p.children, c); p.children.push(c); },
+  appendChildToContainer: (c, i) => { detach(c.children, i); c.children.push(i); c.root = c.children[0] ?? null; },
+  insertBefore: (p, c, before) => { detach(p.children, c); const i = p.children.indexOf(before); p.children.splice(i < 0 ? p.children.length : i, 0, c); },
+  insertInContainerBefore: (c, i, before) => { detach(c.children, i); const k = c.children.indexOf(before); c.children.splice(k < 0 ? c.children.length : k, 0, i); c.root = c.children[0] ?? null; },
   removeChild: (p, c) => { const i = p.children.indexOf(c); if (i >= 0) p.children.splice(i, 1); },
   removeChildFromContainer: (c, i) => { const k = c.children.indexOf(i); if (k >= 0) c.children.splice(k, 1); c.root = c.children[0] ?? null; },
   commitTextUpdate: (t, _o, n) => { t.text = n; },

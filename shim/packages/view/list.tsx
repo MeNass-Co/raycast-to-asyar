@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import type { RNode } from '../common/protocol';
 import { realChildren, slotChild, textOf, type Invoke } from './tree';
-import { Img, colorOf } from './image';
+import { Img, colorOf, isEmoji } from './image';
 import { Markdown } from './markdown';
 import { Metadata } from './detail';
 
@@ -122,7 +122,7 @@ function GridCell({ r, selected, onSelect, onActivate }: { r: Row; selected: boo
   const color = c && typeof c === 'object' && 'color' in (c as object) ? colorOf((c as { color: unknown }).color) : undefined;
   return (
     <div className="rc-cell" data-selected={selected} onMouseEnter={onSelect} onClick={onSelect} onDoubleClick={onActivate}>
-      <div className="rc-cell-content" style={color ? { background: color } : undefined}>{color ? null : <Img value={c} size={48} />}</div>
+      <div className={`rc-cell-content ${typeof c === 'string' && isEmoji(c) ? 'rc-cell-glyph' : ''}`} style={color ? { background: color } : undefined}>{color ? null : <Img value={c} size={48} />}</div>
       {r.title ? <div className="rc-cell-title">{r.title}</div> : null}
       {p.subtitle ? <div className="rc-cell-subtitle">{String(p.subtitle)}</div> : null}
     </div>
