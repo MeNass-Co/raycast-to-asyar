@@ -36,7 +36,17 @@ for d in sorted(os.listdir(EXT)):
     tools = m.get('tools') or []
     if not tools:
         continue
-    name = m.get('title') or m.get('name') or d.split('.')[-1].title()
+    # Cleaner "Ask <Name>" than the raw manifest title. Strip the "Apple "
+    # vendor prefix (Raycast says "Ask Mail", not "Ask Apple Mail") and fix a
+    # few that read as a category rather than a product.
+    OVERRIDES = {
+        'raycast.helloimsteven.sips': 'Images',
+        'raycast.rolandleth.killprocess': 'Processes',
+        'raycast.mooxl.coffee': 'Caffeinate',
+    }
+    name = OVERRIDES.get(d) or m.get('title') or m.get('name') or d.split('.')[-1].title()
+    if name.startswith('Apple '):
+        name = name[len('Apple '):]
     aid = slug(d, name)
     tool_sel = [f"{d}:{t['id']}" for t in tools if t.get('id')]
     now = int(time.time() * 1000)

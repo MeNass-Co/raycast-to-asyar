@@ -313,3 +313,25 @@ snippets 33, 0 aliases, no panics, both themes, Gaming Mode intact on MBP.
   no write access). Source is safe on disk; app is installed. A fork would be needed to push it.
 - Not done 1:1: per-extension AI-extension icons; a few agent names read the extension's category ("Ask Image
   Modification"). Visual eyeballing left to Nassim (MBA lid-closed can't capture the launcher window).
+
+## 2026-09-04 (batch 4) — native Liquid Glass + polish (pending rebuild)
+- **Native Liquid Glass.** macOS 27 has `NSGlassEffectView` (the AppKit Liquid Glass, SwiftUI `.glassEffect()`
+  equivalent) — the real thing Raycast uses, NOT `NSVisualEffectView` vibrancy. Validated in isolation with a Swift
+  test (screenshotted over a colour backdrop: genuine refraction). `window.rs::apply_liquid_glass` inserts an
+  `NSGlassEffectView` backdrop (cornerRadius 12, autoresize-fill) behind the transparent webview via objc2 dynamic
+  class lookup; falls back to vibrancy pre-Tahoe. Theme `--bg-primary` is the colour scrim on top. cargo check green.
+- **Themes:** Lunar teal → moonlight **periwinkle** (dark rgb(129,161,255), light rgb(74,110,235)); all 3 themes
+  more translucent (bg opacity 0.60→~0.42) so the glass shows. Lunar light also periwinkle.
+- **Show-more bar removed** — only the pill bar stays; ↓ still expands via the keyboard handler (not shown).
+- **Glass pills** on Run + Actions (BottomBarButton + PrimaryActionDisplay: translucent fill, thin rim, radius-full).
+- **Red error fixed two ways:** feedbackService auto-dismisses any terminal feedback after 5 s (never lingers); and
+  window-management `applyPreset`/`applyCustomLayout` treat the "save previous bounds" probe as non-fatal — the resize
+  the user asked for always runs, a failed snapshot only logs. So ⇧⌘N never surfaces the error.
+- **Clipboard image previews fixed.** Root cause: CSP `img-src` allowed `asyar-thumb:`/`asset:`/`data:` but NOT
+  `blob:`; image previews use `URL.createObjectURL` (blob:), so CSP blocked them and `<img>` fell back to alt text
+  "Preview". File thumbnails use `asyar-thumb:` (allowed) — hence they worked. Added `blob:` to img-src.
+- **Agent icons:** each "Ask <Ext>" now uses its extension's own icon (derived from tool_selection's extId — no schema
+  change), generic Raycast AI tile as fallback. Names cleaned (strip "Apple ", sips→Images, killprocess→Processes).
+- ⚠️ Rebuild changes the adhoc signature again → AX + keychain grants reset. Nassim re-grants AX manually (the
+  Accessibility toggle was RENAMED in macOS 27 — ask him the new name and tattoo it). PERMANENT FIX still TODO:
+  stable self-signed signing identity so AX + keychain persist across rebuilds. Do it as a focused follow-up.

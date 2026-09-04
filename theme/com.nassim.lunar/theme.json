@@ -1,12 +1,12 @@
 {
   "variables": {
-    "--bg-primary": "rgba(11, 13, 18, 0.60)",
-    "--bg-secondary": "rgba(13, 15, 21, 0.64)",
-    "--bg-tertiary": "rgba(22, 25, 34, 0.55)",
+    "--bg-primary": "rgba(11, 13, 18, 0.42)",
+    "--bg-secondary": "rgba(13, 15, 21, 0.46)",
+    "--bg-tertiary": "rgba(22, 25, 34, 0.38)",
     "--bg-hover": "rgba(196, 220, 255, 0.06)",
     "--bg-selected": "rgba(196, 220, 255, 0.11)",
     "--bg-popup": "rgb(30, 33, 44)",
-    "--bg-secondary-full-opacity": "rgba(17, 19, 26, 0.72)",
+    "--bg-secondary-full-opacity": "rgba(17, 19, 26, 0.66)",
     "--text-primary": "rgb(236, 240, 246)",
     "--text-secondary": "rgb(150, 160, 178)",
     "--text-tertiary": "rgb(96, 106, 124)",
@@ -15,12 +15,12 @@
     "--separator": "rgba(150, 170, 200, 0.18)",
     "--rim-light": "rgba(220, 235, 255, 0.11)",
     "--rim-shade": "rgba(0, 0, 0, 0.6)",
-    "--accent-primary": "rgb(47, 214, 194)",
-    "--accent-primary-rgb": "47, 214, 194",
+    "--accent-primary": "rgb(129, 161, 255)",
+    "--accent-primary-rgb": "129, 161, 255",
     "--accent-success": "rgb(74, 222, 168)",
     "--accent-warning": "rgb(232, 196, 96)",
     "--accent-danger": "rgb(255, 118, 128)",
-    "--accent-primary-fill": "rgb(47, 214, 194)",
+    "--accent-primary-fill": "rgb(108, 142, 250)",
     "--accent-success-fill": "rgb(20, 150, 106)",
     "--accent-warning-fill": "rgb(160, 122, 30)",
     "--accent-danger-fill": "rgb(184, 52, 68)",
@@ -30,8 +30,8 @@
     "--shadow-md": "0 8px 24px rgba(2, 6, 14, 0.5)",
     "--shadow-lg": "0 16px 48px rgba(2, 6, 14, 0.6)",
     "--shadow-xl": "0 4px 40px 8px rgba(2, 6, 14, 0.45)",
-    "--shadow-popup": "inset 0 1px 0 rgba(220, 235, 255, 0.11), 0 0 0 1px rgba(150, 170, 200, 0.22), 0 4px 40px 8px rgba(2, 6, 14, 0.45), 0 0 40px rgba(47, 214, 194, 0.05)",
-    "--shadow-focus": "0 0 0 1px rgba(47, 214, 194, 0.85), 0 0 12px rgba(47, 214, 194, 0.25)",
+    "--shadow-popup": "inset 0 1px 0 rgba(220, 235, 255, 0.11), 0 0 0 1px rgba(150, 170, 200, 0.22), 0 4px 40px 8px rgba(2, 6, 14, 0.45), 0 0 40px rgba(129, 161, 255, 0.06)",
+    "--shadow-focus": "0 0 0 1px rgba(129, 161, 255, 0.85), 0 0 12px rgba(129, 161, 255, 0.28)",
     "--radius-xs": "4px",
     "--radius-sm": "6px",
     "--radius-md": "8px",
@@ -54,7 +54,7 @@
     "--syntax-keyword": "rgb(158, 178, 255)",
     "--syntax-string": "rgb(120, 214, 180)",
     "--syntax-number": "rgb(232, 196, 96)",
-    "--syntax-function": "rgb(47, 214, 194)"
+    "--syntax-function": "rgb(129, 161, 255)"
   },
   "fonts": [
     {

@@ -1,8 +1,8 @@
 {
   "variables": {
-    "--bg-primary": "rgba(22, 23, 27, 0.60)",
-    "--bg-secondary": "rgba(20, 21, 25, 0.64)",
-    "--bg-tertiary": "rgba(28, 30, 36, 0.55)",
+    "--bg-primary": "rgba(22, 23, 27, 0.42)",
+    "--bg-secondary": "rgba(20, 21, 25, 0.46)",
+    "--bg-tertiary": "rgba(28, 30, 36, 0.38)",
     "--bg-hover": "rgba(255, 255, 255, 0.06)",
     "--bg-selected": "rgba(255, 255, 255, 0.10)",
     "--bg-popup": "rgb(40, 41, 46)",
