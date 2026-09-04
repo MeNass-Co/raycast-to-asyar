@@ -256,3 +256,14 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
   glass tiles on the `nassim/lunar-polish` branch of the asyar checkout: needs the app build.
 - Disk: store node_modules (62 GB) + npm cache purged → 41 GB free. Converter reinstalls on demand.
 - App build: `tauri build --bundles app` retried on a clean target with `-ld_classic`.
+
+## 2026-09-04 — aliases with symbols, agents gone, adhoc build
+- Aliases: Rust `validate_alias` + TS `ALIAS_REGEX` now `^[\x21-\x7e]{1,10}$` (any printable ASCII, no whitespace) —
+  `'`, `.`, `/`, `-`, `_`, `!` all accepted; max 10 kept; tests + contract test updated and green (cargo + vitest).
+  Query path untouched: `find_by_alias(query.trim())` only trims/lowercases, so `'` + space auto-executes like Raycast.
+- Agents: Nassim deleted all 56 on the MBP himself (Manage Agents) and dislikes the concept → MBA purged to match
+  (backup `/tmp/asyar_data.mba-before-agent-purge.db`); `install-on-mac.sh` no longer seeds; `retire-custom-ai.py`
+  creates Messages/Mail agents only with `--with-agents`. Ask AI chip patch stays (harmless).
+- Build #7 (`APPLE_SIGNING_IDENTITY=-`, `strip="none"`) running → install on both Macs, verify chip colour, coloured
+  built-in tiles, "brew" finds Brew via trigger, symbol alias live.
+- Gatekeeper prompt source `$TMPDIR/.bun-501-*.node` deleted.
