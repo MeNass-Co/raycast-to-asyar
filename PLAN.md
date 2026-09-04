@@ -468,3 +468,19 @@ and the later MBA rebuild was never re-pushed. Fix: re-tarred /Applications/asya
 13), installed on MBP, md5 now identical on both. Themes on disk were already the dark ones; the app reads
 theme.json at boot, so the relaunch also picked them up. Rule: after ANY rebuild, push the MBA's
 /Applications/asyar.app to the MBP and compare `md5 -q …/MacOS/asyar` on both before claiming parity.
+
+## 2026-09-04 — real dark Liquid Glass, settled by side-by-side tests
+Nassim: "not dark enough, want real liquid glass, look at how Raycast does it". Inspected the Raycast binary on
+the MBP: it uses `NSGlassEffectView` too (`RaycastMacOSUI/NSGlassEffectView+Private.swift`, selectors
+`tintColor`/`style`/`variant`/`cornerRadius`) — same primitive as ours. Dumped the macOS 27 class (private
+`_variant`, `_subvariant`, `_scrimState`, `_tintOpacityReduced`…). Rendered 15 combinations in Swift over a
+colour gradient and captured them:
+- `tintColor` black at any alpha caps at a grey-teal and FLATTENS the refraction (the glass renders the tint,
+  not the desktop). Same for `_variant 1`.
+- **Winner: untinted NSGlassEffectView + a CSS scrim rgba(0,0,0,.80) over it** → near-black panel with live
+  refraction underneath (the desktop still reads through). That is what Raycast looks like.
+Implemented: `set_glass_tint` command + theme var `--glass-tint` (kept, default transparent) so a theme can
+tint if it ever wants; themes: `--bg-primary rgba(0,0,0,.80)`, secondary .82, light theme white .72.
+Pills: glass capsules (9% white fill, 1px 10% rim, 1px top highlight); keycaps 14% fill with top rim/bottom
+shade. Footer scrim transparent→black .6. Verified on the MBA over the desktop: it is right.
+Themes pushed to both Macs (file-level, applied on relaunch). Build 14 = pills/keycaps/scrim in the binary.
