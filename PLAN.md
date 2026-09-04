@@ -450,3 +450,13 @@ Nassim: blank strip under compact search (old show-more space), pills in their o
 - **New tool `shim/cli/rc-refresh-runtime.mjs`**: rebuilds view.js/worker.js inside installed extensions from
   their rc2asyar.json + package.json (same defines as rc2asyar) — shim fixes ship without a store rebuild.
 - MBP: App Cleaner + CleanShot X installed via rc-install (node@22 path needed on MBP: `/opt/homebrew/bin/node`).
+
+## 2026-09-04 — keychain ACL nuance with the stable identity (MBA)
+`-A` / `-T /Applications/asyar.app` on the item did NOT stop the app's own read from prompting on the MBA
+(the ACL-by-path entry does not match the app's code identity as macOS 27 evaluates it). What works: let the
+app raise its prompt once and answer **Always Allow** — the keychain then stores an ACL entry for the app's
+exact designated requirement (stable now). Verified across 2 relaunches, no prompt. MBP never prompted
+(its item was recreated while the app was quit, then the app's first read got Always Allow earlier).
+Also: killing a stale `SecurityAgent` (pid held orphaned prompts from my earlier CLI runs) is safe; the real
+app prompt reappears as a fresh SecurityAgent. Gaming Mode: Raycast removed from KEEP + skipped on restore
+(⌥Space conflict); Raycast + Raycast Beta login items deleted on the MBP.
