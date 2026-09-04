@@ -506,3 +506,14 @@ position tiles (Raycast has no loose asset for those). Preview sheet: /tmp/built
 Tweaks: primary action "Run" → "Open" (t('actions.open')); panel scrim .68 → .78; footer capsule lifted 6px.
 Tests: system manager expects data-URI icons; icon contract skips data-URI-only manifests (empty describe = error).
 Themes + System+ manifest pushed to both Macs and relaunched (live now); build 16 carries icons/label/lift.
+
+## 2026-09-04 — RULE: every command carries its extension's icon (Nassim)
+Nassim: commands inside an extension must show the extension's icon (Clipboard, Developer tools, Settings had
+odd per-command icons); extensions must carry the icon of the app they mirror; Reminders icon was wrong.
+Done: (1) built-ins: every manifest command icon = feature root icon (source, build 17); (2) System+ 38/38 →
+extension icon; (3) rc2asyar now ignores per-command Raycast icons (`iconOf(pkg.icon)` only), so future
+conversions comply; (4) new `shim/cli/rc-unify-icons.mjs` applies the rule to installed extensions and can
+override a root icon with a PNG (`--set <id>=<png>`); (5) Apple-app extensions (Reminders, Notes, Messages,
+Calendar) now use the real macOS app icons extracted from /System/Applications/*.app AppIcon.icns.
+Applied on MBA (80 cmds) + MBP (103 cmds), both relaunched. Window-management presets lost their per-position
+tiles by this rule (they now show the stage-manager tile) — revisit only if Nassim asks.
