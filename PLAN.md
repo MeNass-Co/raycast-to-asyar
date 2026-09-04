@@ -549,3 +549,5 @@ tiles by this rule (they now show the stage-manager tile) — revisit only if Na
 - **Badge bas-gauche** (Raycast : 45×30 pt, radius 8, fill +9 %, icône ≈ 20 px, 7 pt du bord) : `.footer-badge` dans `BottomActionBar` à la racine (remplacé par InformationPanel dans une vue) ; clic → `showSettingsWindow()`. Asset `static/footer-badge.png` (app-icon 64 px).
 - Build 18 (toggles seuls, md5 `f318714a…`) non installé ; **build 19** = tout ce qui précède, en cours.
 - ⚠️ `asyar/` est un dépôt git séparé (`origin = Xoshbin/asyar`, pas d'accès en écriture) et ignoré par le dépôt externe : les commits y vivent localement seulement.
+- **Build 19 LIVE** sur MBA + MBP, md5 `050acc43…` identique. Vérifié : index de recherche = 337 commandes ; après `enabled[usage-stats]=false` + `disabledCommands[cmd_walkthrough_show-walkthrough]=true` → 335, les deux ids absents, `cmd_snippets_create-snippet` présent. Badge footer mesuré : région +28 de luminance, icône visible (max 234). Placement : fenêtre à y=178 pt sur 1112 = 0,16 (Raycast 0,16). Les deux Macs ont Usage Stats et Walkthrough désactivés.
+
