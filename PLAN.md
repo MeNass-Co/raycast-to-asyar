@@ -365,3 +365,10 @@ code-sign wedge). Nassim authorized a reboot (2026-09-04). **Batch 4 is fully co
 5. **Verify live** by capturing the launcher on the MBA (lid open, screencapture works): glass, periwinkle accent,
    pills, no red error, "Ask X" per-extension icons.
 6. Still TODO: **stable self-signed signing identity** so AX + keychain stop resetting each rebuild.
+
+## 2026-09-04 post-reboot — root cause found, build #9 running
+Reboot did NOT fix node. Real culprit: brew bottle **simdjson 4.6.10** (arm64_tahoe) hangs dyld on `fcntl` for
+any loader (node, node@22, python ctypes). Found by loading node's dylibs one by one via `ctypes.CDLL`. Fix:
+`/opt/homebrew/opt/simdjson → 4.6.9` + `brew pin simdjson`. node prints v26.8.1 instantly. Tattooed in memory.
+Leftover brew upgrades (imagemagick, codex, libreoffice, gogcli) finishing detached. Build #9 running →
+then install on both Macs per the RESUME STEPS above (assets + key already staged on MBP at /tmp/asyar9-assets).
