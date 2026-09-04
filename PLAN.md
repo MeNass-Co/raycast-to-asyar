@@ -267,3 +267,26 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
 - Build #7 (`APPLE_SIGNING_IDENTITY=-`, `strip="none"`) running → install on both Macs, verify chip colour, coloured
   built-in tiles, "brew" finds Brew via trigger, symbol alias live.
 - Gatekeeper prompt source `$TMPDIR/.bun-501-*.node` deleted.
+
+## 2026-09-04 (cont.) — new build installed on both Macs + keychain incident
+- **Installed the adhoc build (v0.1.1-45, commit 0797895) on MBA and MBP.** Running, stable, 33 snippets + 0 agents both.
+  Verified in the bundle: 20 built-in coloured glass tiles (data-URI), Ask AI chip → `accent-primary-fill`, alias regex
+  widened (Rust unit `validate_accepts_symbols` + vitest green), trigger search in `search_names`.
+- **⚠️ KEYCHAIN TATTOO — re-signing Asyar breaks at-rest decryption.** The master key (`org.asyar.app` /
+  `data-encryption-v1`, 32 B AES-256-GCM) lives in the login keychain. Its ACL/partition trusts the *Developer-ID*
+  signature (team 877MKJ6983). An adhoc-resigned build has a different code identity → keychain refuses the key →
+  on a lid-closed Mac the app panics `In dark wake, no UI possible` and won't start. FIX for any resigned build:
+  ```
+  security add-generic-password -s org.asyar.app -a data-encryption-v1 -w <KEY_B64> -T /Applications/asyar.app -U
+  security set-generic-password-partition-list -S "cdhash:<adhocCDHash>,apple:,apple-tool:,teamid:877MKJ6983" \
+      -s org.asyar.app -a data-encryption-v1 -k <loginpw>
+  ```
+  (cdhash from `codesign -dvvv asyar.app | grep CDHash`; same bundle bytes = same cdhash on both Macs.)
+- **Incident:** an earlier `add-generic-password -U` (meant to add ACL trust) wiped the key value → both the shipped
+  and new build panicked. Recovered the real 32-byte key from the MBP (still running, key in memory) via
+  `sudo launchctl asuser 501 security find-generic-password -s org.asyar.app -a data-encryption-v1 -w` in the GUI
+  session (SSH-only read fails: interaction-not-allowed / dark wake). Chainbreaker offline failed ("Invalid Unlock
+  Options" — MBP login-keychain pw ≠ account pw). Re-added the key on both Macs with the cdhash procedure above.
+- Backups kept: `/tmp/asyar.app.shipped-backup`, `/tmp/asyar_data.mba-before-agent-purge.db`, `/tmp/org.asyar.app.backup-1044`.
+- The DeepSeek API key is **plaintext** in settings.dat, so it survived the key loss. Only snippet expansions +
+  clipboard history are AES-encrypted at rest; both preserved.
