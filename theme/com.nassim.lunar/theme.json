@@ -1,18 +1,18 @@
 {
   "variables": {
-    "--bg-primary": "rgba(6, 8, 12, 0.55)",
-    "--bg-secondary": "rgba(5, 6, 10, 0.58)",
-    "--bg-tertiary": "rgba(12, 14, 20, 0.50)",
-    "--bg-hover": "rgba(196, 220, 255, 0.06)",
-    "--bg-selected": "rgba(196, 220, 255, 0.11)",
-    "--bg-popup": "rgb(20, 22, 30)",
-    "--bg-secondary-full-opacity": "rgba(9, 11, 16, 0.80)",
+    "--bg-primary": "rgba(0, 0, 0, 0.18)",
+    "--bg-secondary": "rgba(0, 0, 0, 0.22)",
+    "--bg-tertiary": "rgba(255, 255, 255, 0.04)",
+    "--bg-hover": "rgba(196, 220, 255, 0.07)",
+    "--bg-selected": "rgba(196, 220, 255, 0.13)",
+    "--bg-popup": "rgb(12, 14, 20)",
+    "--bg-secondary-full-opacity": "rgba(0, 0, 0, 0.85)",
     "--text-primary": "rgb(236, 240, 246)",
     "--text-secondary": "rgb(150, 160, 178)",
     "--text-tertiary": "rgb(96, 106, 124)",
     "--text-on-accent": "rgb(6, 12, 16)",
-    "--border-color": "rgba(150, 170, 200, 0.26)",
-    "--separator": "rgba(150, 170, 200, 0.18)",
+    "--border-color": "rgba(255, 255, 255, 0.10)",
+    "--separator": "rgba(255, 255, 255, 0.07)",
     "--rim-light": "rgba(220, 235, 255, 0.11)",
     "--rim-shade": "rgba(0, 0, 0, 0.6)",
     "--accent-primary": "rgb(129, 161, 255)",
@@ -54,6 +54,7 @@
     "--syntax-keyword": "rgb(158, 178, 255)",
     "--syntax-string": "rgb(120, 214, 180)",
     "--syntax-number": "rgb(232, 196, 96)",
-    "--syntax-function": "rgb(129, 161, 255)"
+    "--syntax-function": "rgb(129, 161, 255)",
+    "--glass-tint": "rgba(0, 0, 0, 0.82)"
   }
 }
