@@ -243,3 +243,16 @@ Limits: Asyar themes cannot change spacing/font-size; those need CSS in the shim
   its own Raycast icon and colour. (The three that "worked" earlier were the ones whose rows I had
   captured while their view iframe was alive, which had warmed the image.)
 - Open: Toggle Fullscreen (-25200), Reminders EventKit accessDenied (ad-hoc Swift helper, no usage string).
+
+## 2026-09-04 morning
+- **Loose scripts gone** on both Macs: script directories dropped, `~/asyar-scripts` deleted, run history
+  cleared, index reset. Only the built-in "Script Library" row remains (Asyar built-in; hidden once the
+  rebuilt app ships, its manifest is `searchable:false` on the branch).
+- **"brew" / "audio" found nothing**: Asyar matches a command's `trigger` only; converted commands had
+  trigger = command name. `tools/add-triggers.py` sets trigger = "<command> <extension name> <Raycast
+  keywords>"; wired into rc2asyar + rc-install; applied on both Macs.
+- **Icons**: every System+ command has its own hue (38 distinct tiles, data URIs). Built-in System
+  commands (Sleep/Lock/Log Out/Restart/Shut Down) and the 20 built-in feature manifests get coloured
+  glass tiles on the `nassim/lunar-polish` branch of the asyar checkout: needs the app build.
+- Disk: store node_modules (62 GB) + npm cache purged → 41 GB free. Converter reinstalls on demand.
+- App build: `tauri build --bundles app` retried on a clean target with `-ld_classic`.
