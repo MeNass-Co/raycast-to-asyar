@@ -299,6 +299,19 @@ if (hasBg) fs.writeFileSync(path.join(outDir, 'worker.html'), html(manifest.name
 // assets (+ the Raycast package.json: @raycast/utils reads `<assetsPath>/../package.json` for owner/name)
 fs.mkdirSync(path.join(outDir, 'assets'), { recursive: true });
 if (fs.existsSync(path.join(srcDir, 'assets'))) fs.cpSync(path.join(srcDir, 'assets'), path.join(outDir, 'assets'), { recursive: true });
+// Executable assets (native helpers like kofeflow/assets/kofeax) must be spawnable: Asyar only allows absolute
+// programs listed in permissionArgs['shell:spawn'], and rc-install turns that list into shell_trusted_binaries.
+{
+  const installDir = path.join(APP_DATA, 'extensions', extensionId);
+  const bins = [];
+  for (const f of walk(path.join(srcDir, 'assets'))) { try { const st = fs.statSync(f); if (st.isFile() && (st.mode & 0o111) && !/\.(png|jpe?g|svg|gif|json|md|txt|html|css|js)$/i.test(f)) bins.push(path.join(installDir, 'assets', path.relative(path.join(srcDir, 'assets'), f))); } catch {} }
+  if (bins.length) {
+    const m = JSON.parse(fs.readFileSync(path.join(outDir, 'manifest.json'), 'utf8'));
+    m.permissionArgs['shell:spawn'] = [...new Set([...(m.permissionArgs['shell:spawn'] ?? []), ...bins])];
+    fs.writeFileSync(path.join(outDir, 'manifest.json'), JSON.stringify(m, null, 2));
+    log('executable assets trusted:', bins.map((b) => path.basename(b)).join(', '));
+  }
+}
 // Launcher rows do not load asyar-extension:// images (empty box); inline 64 px data URIs into the manifest
 // icons instead. Assets stay on disk for the extension's own views.
 try { execFileSync('python3', [path.join(SHIM, '..', 'tools', 'inline-icons.py'), '--single', outDir], { stdio: 'ignore' }); } catch {}
