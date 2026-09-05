@@ -22,15 +22,10 @@ export async function ensureRunning(): Promise<void> {
  */
 export type Popover = { texts: string[]; buttons: string[] };
 
-const OPEN = `click menu bar item 1 of menu bar 2
-  delay 0.8`;
-
-export async function readPopover(): Promise<Popover> {
-  const out = await osa(`tell application "System Events" to tell process "Kofe Flow"
-  ${OPEN}
-  set ts to {}
-  set bs to {}
-  repeat with e in (entire contents of window 1)
+// `entire contents` of the popover window comes back empty (probed 2026-09-05); a recursive walk over
+// `UI elements` is what works. Handlers must live outside the `tell process` block.
+const WALK = `on walk(e, ts, bs)
+  tell application "System Events"
     try
       set r to role of e
       if r is "AXStaticText" then set end of ts to (value of e as string)
@@ -44,43 +39,54 @@ export async function readPopover(): Promise<Popover> {
             set lbl to (description of e as string)
           end try
         end if
-        if lbl is "" or lbl is "missing value" then
-          try
-            set lbl to (help of e as string)
-          end try
-        end if
-        set end of bs to lbl
+        set end of bs to {lbl, e}
       end if
+      repeat with c in (UI elements of e)
+        my walk(c, ts, bs)
+      end repeat
     end try
-  end repeat
-  key code 53
-  set AppleScript's text item delimiters to "\\n"
-  return (ts as string) & "\\n@@\\n" & (bs as string)
-end tell`);
-  const [t, b] = out.split("\n@@\n");
-  const clean = (s: string) => s.split("\n").map((x) => x.trim()).filter((x) => x && x !== "missing value");
-  return { texts: clean(t ?? ""), buttons: (b ?? "").split("\n").map((x) => x.trim()) };
+  end tell
+end walk
+tell application "System Events" to tell process "Kofe Flow"
+  click menu bar item 1 of menu bar 2
+  delay 0.9
+  set w to window 1
+end tell
+set ts to {}
+set bs to {}
+walk(w, ts, bs)
+set labels to {}
+repeat with b in bs
+  set end of labels to item 1 of b
+end repeat`;
+
+const FINISH = `set AppleScript's text item delimiters to "||"
+return "T:" & (ts as string) & "@@B:" & (labels as string)`;
+
+function parse(out: string): Popover {
+  const [t, b] = out.split("@@B:");
+  const split = (x: string) => x.split("||").map((v) => v.trim()).filter((v) => v && v !== "missing value");
+  return { texts: split((t ?? "").replace(/^T:/, "")), buttons: (b ?? "").split("||").map((v) => v.trim()) };
 }
 
-/** Click the n-th (1-based) button found anywhere in the popover; returns the status line afterwards. */
+export async function readPopover(): Promise<Popover> {
+  const out = await osa(`${WALK}
+tell application "System Events" to key code 53
+${FINISH}`);
+  return parse(out);
+}
+
+/** Click the n-th (1-based) button found in the popover, then return the fresh status line. */
 export async function pressButtonIndex(n: number): Promise<string> {
-  await osa(`tell application "System Events" to tell process "Kofe Flow"
-  ${OPEN}
-  set i to 0
-  repeat with e in (entire contents of window 1)
-    try
-      if role of e is "AXButton" then
-        set i to i + 1
-        if i is ${n} then
-          click e
-          exit repeat
-        end if
-      end if
-    end try
-  end repeat
-  delay 0.5
-  key code 53
-end tell`);
+  await osa(`${WALK}
+tell application "System Events"
+  if (count of bs) >= ${n} then click item 2 of item ${n} of bs
+  delay 0.8
+  try
+    key code 53
+  end try
+end tell
+return "ok"`);
   return statusLine();
 }
 
