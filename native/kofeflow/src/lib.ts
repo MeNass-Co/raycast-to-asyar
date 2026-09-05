@@ -11,8 +11,9 @@ export const BUNDLE_ID = "com.rahulmfg.kofeflow";
  * The only scriptable surface is the **Dashboard window** (1200×860, tabs Timer / Analytics / Settings),
  * which the app opens on launch and `open -b` re-opens. Timer tab layouts (probed 2026-09-05):
  *   running        : "Deep work is running."  buttons: [wide]                       wide = Pause
- *   paused         : "Focus is paused."       buttons: [wide, small-L, small-R]     wide = Resume, small-L = Take a break, small-R = ?
- *   break          : "Take a short break."    buttons: [wide, small]                small = Skip break → fresh focus
+ *   paused         : "Focus is paused."       buttons: [wide, small-L, small-R]     wide = Resume, small-L = Take a break, small-R = Resume too
+ *   break          : "Take a short break."    buttons: [wide, small]                wide = Pause break, small = Skip break → fresh focus
+ *   break paused   : "Break is paused."       buttons: [wide, small]                wide = Resume break, small = Skip break
  *   break complete : "Break complete"         buttons: [b1, b2] (no tabs)           b1 = Start focus
  * Action buttons carry no help/name (description "button"); tabs carry help "Timer|Analytics|Settings",
  * the share button help "Share today's focus card", window chrome has description "close button" etc.
@@ -39,8 +40,12 @@ const WALK = `on walk(e, ts, bs)
         set wd to 0
         set px to 0
         try
-          set wd to item 1 of (size of e)
-          set px to item 1 of (position of e)
+          set sz to size of e
+          set wd to item 1 of sz
+        end try
+        try
+          set ps to position of e
+          set px to item 1 of ps
         end try
         set end of bs to {h, d, wd, px, e}
       end if
@@ -74,12 +79,12 @@ export async function ensureWindow(): Promise<void> {
 
 export async function readScreen(): Promise<Screen> {
   const out = await osa(`${WALK}
-set lines to {}
+set rows to {}
 repeat with b in bs
-  set end of lines to (item 1 of b) & "|" & (item 2 of b) & "|" & (item 3 of b) & "|" & (item 4 of b)
+  set end of rows to (item 1 of b) & "|" & (item 2 of b) & "|" & (item 3 of b) & "|" & (item 4 of b)
 end repeat
 set AppleScript's text item delimiters to "\\n"
-return "T:" & (ts as string) & "\\n@@\\n" & (lines as string)`);
+return "T:" & (ts as string) & "\\n@@\\n" & (rows as string)`);
   const [t, b] = out.split("\n@@\n");
   const texts = (t ?? "").replace(/^T:/, "").split("\n").map((s) => s.trim()).filter((s) => s && s !== "missing value" && s !== "Kofe Flow");
   const buttons = (b ?? "").split("\n").filter(Boolean).map((line, i) => {
@@ -89,12 +94,10 @@ return "T:" & (ts as string) & "\\n@@\\n" & (lines as string)`);
   return { texts, buttons };
 }
 
-const actions = (s: Screen) => s.buttons.filter((b) => !b.help && b.desc === "button");
-export const primary = (s: Screen) => actions(s).reduce<Btn | undefined>((best, b) => (!best || b.width > best.width ? b : best), undefined);
-export const secondary = (s: Screen, n: number) => {
-  const p = primary(s);
-  return actions(s).filter((b) => b !== p).sort((a, b) => a.x - b.x)[n - 1];
-};
+/** Anonymous action buttons in document order: [wide primary, small…]. The wide one always comes first. */
+export const actions = (s: Screen) => s.buttons.filter((b) => !b.help && b.desc === "button");
+export const primary = (s: Screen) => actions(s)[0];
+export const secondary = (s: Screen, n: number) => actions(s)[n];
 
 export async function clickIndex(index: number): Promise<void> {
   await osa(`${WALK}
