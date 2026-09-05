@@ -2,8 +2,8 @@ import { closeMainWindow, showHUD } from "@raycast/api";
 import { ensureRunning, isBreak, pressButton, statusLine } from "./lib";
 export default async function Command() {
   await closeMainWindow();
-  await ensureRunning();
   try {
+    await ensureRunning();
     const s = await statusLine();
     if (!isBreak(s)) { await showHUD(`Kofe Flow: ${s}`); return; }
     // Break screen: prefer an explicit end/skip/done button, else the first one.

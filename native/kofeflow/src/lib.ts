@@ -5,7 +5,11 @@ const osa = (s: string) => run("/usr/bin/osascript", ["-e", s]);
 
 export const BUNDLE_ID = "com.rahulmfg.kofeflow";
 export async function ensureRunning(): Promise<void> {
-  await run("/usr/bin/open", ["-g", "-b", BUNDLE_ID]);
+  try {
+    await run("/usr/bin/open", ["-g", "-b", BUNDLE_ID]);
+  } catch {
+    throw new Error("Kofe Flow is not installed on this Mac");
+  }
 }
 
 /**
