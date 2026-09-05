@@ -118,8 +118,12 @@ func chevronFor(_ row: AXUIElement) -> AXUIElement? {
 }
 func ensureWindow() {
   if windows().isEmpty { NSWorkspace.shared.launchApplication(withBundleIdentifier: bundle, options: [.withoutActivation], additionalEventParamDescriptor: nil, launchIdentifier: nil) }
-  for _ in 0..<40 { if byId("headerLabel") != nil { return }; usleep(250_000) }
-  fail("Proton VPN window did not appear", 3)
+  for _ in 0..<40 {
+    if byId("headerLabel") != nil { return }
+    if byId("UsernameTextField") != nil || byId("PasswordTextField") != nil { fail("Proton VPN is signed out — open the app and sign in first", 6) }
+    usleep(250_000)
+  }
+  fail("Proton VPN window did not appear (is Accessibility granted to Asyar?)", 3)
 }
 func status() -> [String: Any] {
   let header = byId("headerLabel").map { s($0, kAXValueAttribute) } ?? ""

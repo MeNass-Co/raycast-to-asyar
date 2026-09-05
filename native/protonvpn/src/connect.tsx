@@ -28,15 +28,17 @@ function CityList({ country }: { country: Country }) {
   );
 }
 
+/** Keep the view alive while the helper works (closing it would tear the view's sidecar down mid-connect);
+ *  show an animated toast, then close with a HUD once the tunnel is up. */
 async function connect(country: Country, city?: City) {
   const target = city ? `${city.name}, ${country.name}` : country.name;
-  await closeMainWindow();
-  await showHUD(`Proton VPN: connecting to ${target}…`);
+  const toast = await showToast({ style: Toast.Style.Animated, title: `Connecting to ${target}…` });
   try {
     const s: Status = await protonax("connect", country.name, ...(city ? [city.name] : []));
-    await showHUD(s.ok && s.connected ? `Proton VPN: ${s.header} · ${s.ip}` : `Proton VPN: could not reach ${target} (${s.header})`);
+    if (s.ok && s.connected) { await toast.hide(); await closeMainWindow(); await showHUD(`Proton VPN: ${s.header} · ${s.ip}`); }
+    else { toast.style = Toast.Style.Failure; toast.title = `Could not reach ${target}`; toast.message = s.header; }
   } catch (e) {
-    await showHUD(`Proton VPN: ${String(e).slice(0, 90)}`);
+    toast.style = Toast.Style.Failure; toast.title = "Proton VPN"; toast.message = String(e).slice(0, 120);
   }
 }
 
@@ -64,8 +66,8 @@ export default function Command() {
             actions={
               <ActionPanel>
                 {status.connected
-                  ? <Action title="Disconnect" icon={Icon.XMarkCircle} style={Action.Style.Destructive} onAction={async () => { await closeMainWindow(); const s = await protonax("disconnect"); await showHUD(s.connected ? "Proton VPN: still connected" : "Proton VPN: disconnected"); }} />
-                  : <Action title="Quick Connect" icon={Icon.Bolt} onAction={async () => { await closeMainWindow(); await showHUD("Proton VPN: connecting…"); const s = await protonax("quick"); await showHUD(s.connected ? `Proton VPN: ${s.header}` : "Proton VPN: connection failed"); }} />}
+                  ? <Action title="Disconnect" icon={Icon.XMarkCircle} style={Action.Style.Destructive} onAction={async () => { const t = await showToast({ style: Toast.Style.Animated, title: "Disconnecting…" }); const s = await protonax("disconnect"); await t.hide(); await closeMainWindow(); await showHUD(s.connected ? "Proton VPN: still connected" : "Proton VPN: disconnected"); }} />
+                  : <Action title="Quick Connect" icon={Icon.Bolt} onAction={async () => { const t = await showToast({ style: Toast.Style.Animated, title: "Connecting…" }); const s = await protonax("quick"); await t.hide(); await closeMainWindow(); await showHUD(s.connected ? `Proton VPN: ${s.header}` : "Proton VPN: connection failed"); }} />}
               </ActionPanel>
             }
           />

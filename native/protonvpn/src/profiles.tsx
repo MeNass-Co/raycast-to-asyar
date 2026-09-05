@@ -1,4 +1,4 @@
-import { Action, ActionPanel, Icon, List, closeMainWindow, showHUD } from "@raycast/api";
+import { Action, ActionPanel, Icon, List, Toast, closeMainWindow, showHUD, showToast } from "@raycast/api";
 import { useEffect, useState } from "react";
 import { readProfiles, protonax, isInstalled } from "./lib";
 
@@ -13,9 +13,9 @@ export default function Command() {
         <List.Item key={p} icon={icon(p)} title={p} actions={
           <ActionPanel>
             <Action title={`Connect with ${p}`} icon={Icon.Globe} onAction={async () => {
-              await closeMainWindow(); await showHUD(`Proton VPN: connecting with ${p}…`);
-              try { const s = await protonax("profile", p); await showHUD(s.connected ? `Proton VPN: ${s.header} · ${s.ip}` : "Proton VPN: connection failed"); }
-              catch (e) { await showHUD(`Proton VPN: ${String(e).slice(0, 90)}`); }
+              const t = await showToast({ style: Toast.Style.Animated, title: `Connecting with ${p}…` });
+              try { const s = await protonax("profile", p); await t.hide(); await closeMainWindow(); await showHUD(s.connected ? `Proton VPN: ${s.header} · ${s.ip}` : "Proton VPN: connection failed"); }
+              catch (e) { t.style = Toast.Style.Failure; t.title = "Proton VPN"; t.message = String(e).slice(0, 120); }
             }} />
           </ActionPanel>
         } />
