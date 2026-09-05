@@ -1,0 +1,16 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "kofeflow",
+  "title": "Kofe Flow",
+  "description": "Drive Kofe Flow focus sessions from the launcher: start, pause or resume, take a break, and open the dashboard.",
+  "icon": "icon.png",
+  "author": "nassim",
+  "license": "MIT",
+  "commands": [
+    { "name": "start-focus", "title": "Start Focus", "subtitle": "Kofe Flow", "description": "Start or resume a Kofe Flow focus session", "mode": "no-view", "keywords": ["focus", "pomodoro", "deep work", "start", "coffee"] },
+    { "name": "pause-focus", "title": "Pause Focus", "subtitle": "Kofe Flow", "description": "Pause the running focus session", "mode": "no-view", "keywords": ["pause", "hold"] },
+    { "name": "take-break", "title": "Take a Break", "subtitle": "Kofe Flow", "description": "Skip to a short break", "mode": "no-view", "keywords": ["break", "rest", "skip"] },
+    { "name": "open-dashboard", "title": "Open Dashboard", "subtitle": "Kofe Flow", "description": "Open Kofe Flow's Today dashboard", "mode": "no-view", "keywords": ["dashboard", "today", "stats", "analytics"] }
+  ],
+  "dependencies": { "@raycast/api": "^1.100.0" }
+}

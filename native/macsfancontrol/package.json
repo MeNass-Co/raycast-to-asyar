@@ -1,0 +1,15 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "macsfancontrol",
+  "title": "Macs Fan Control",
+  "description": "Set your Mac's fans from the launcher: automatic or full blast, and open Macs Fan Control.",
+  "icon": "icon.png",
+  "author": "nassim",
+  "license": "MIT",
+  "commands": [
+    { "name": "fans-auto", "title": "Fans: Automatic", "subtitle": "Macs Fan Control", "description": "Let macOS control the fans", "mode": "no-view", "keywords": ["fan", "auto", "quiet", "ventilateur"] },
+    { "name": "fans-full-blast", "title": "Fans: Full Blast", "subtitle": "Macs Fan Control", "description": "Run every fan at maximum speed", "mode": "no-view", "keywords": ["fan", "max", "full", "cool", "ventilateur"] },
+    { "name": "open-app", "title": "Open Macs Fan Control", "subtitle": "Macs Fan Control", "description": "Show the Macs Fan Control window", "mode": "no-view", "keywords": ["fan", "temperature", "sensors"] }
+  ],
+  "dependencies": { "@raycast/api": "^1.100.0" }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "gamehub",
+  "title": "GameHub",
+  "description": "Launch any game in your GameHub library straight from the launcher, without opening GameHub first.",
+  "icon": "icon.png",
+  "author": "nassim",
+  "license": "MIT",
+  "commands": [
+    { "name": "launch-game", "title": "Launch Game", "subtitle": "GameHub", "description": "Pick a game from your GameHub library and launch it", "mode": "view", "keywords": ["game", "play", "steam", "epic", "gog", "sekiro", "rdr2"] },
+    { "name": "open-gamehub", "title": "Open GameHub", "subtitle": "GameHub", "description": "Open the GameHub app", "mode": "no-view", "keywords": ["gamehub", "library"] }
+  ],
+  "dependencies": { "@raycast/api": "^1.100.0" }
+}

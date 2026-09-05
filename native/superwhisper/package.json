@@ -1,0 +1,18 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "superwhisper",
+  "title": "Superwhisper",
+  "description": "Everything in Superwhisper's menu bar menu, without the menu: switch mode, toggle recording, transcribe a file, browse history, open settings, check for updates.",
+  "icon": "icon.png",
+  "author": "nassim",
+  "license": "MIT",
+  "commands": [
+    { "name": "select-mode", "title": "Select Mode", "subtitle": "Superwhisper", "description": "Switch Superwhisper's active dictation mode", "mode": "view", "keywords": ["mode", "dictation", "french", "english", "soap"] },
+    { "name": "toggle-recording", "title": "Toggle Recording", "subtitle": "Superwhisper", "description": "Start or stop a Superwhisper recording", "mode": "no-view", "keywords": ["record", "dictate", "voice"] },
+    { "name": "history", "title": "History", "subtitle": "Superwhisper", "description": "Browse and copy past transcriptions", "mode": "view", "keywords": ["transcriptions", "recordings", "past"] },
+    { "name": "transcribe-file", "title": "Transcribe File", "subtitle": "Superwhisper", "description": "Pick an audio file and transcribe it with Superwhisper", "mode": "no-view", "keywords": ["audio", "file", "wav", "mp3"] },
+    { "name": "open-settings", "title": "Settings", "subtitle": "Superwhisper", "description": "Open Superwhisper settings", "mode": "no-view", "keywords": ["preferences", "settings"] },
+    { "name": "check-for-updates", "title": "Check for Updates", "subtitle": "Superwhisper", "description": "Ask Superwhisper to check for a new version", "mode": "no-view", "keywords": ["update", "upgrade", "version"] }
+  ],
+  "dependencies": { "@raycast/api": "^1.100.0" }
+}
