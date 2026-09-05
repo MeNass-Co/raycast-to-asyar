@@ -4,42 +4,45 @@ const run = (cmd: string, args: string[]) =>
 const osa = (s: string) => run("/usr/bin/osascript", ["-e", s]);
 
 export const BUNDLE_ID = "com.rahulmfg.kofeflow";
-export async function ensureRunning(): Promise<void> {
-  try {
-    await run("/usr/bin/open", ["-g", "-b", BUNDLE_ID]);
-  } catch {
-    throw new Error("Kofe Flow is not installed on this Mac");
-  }
-}
 
 /**
- * Kofe Flow has no URL scheme and no scripting dictionary; its App Intents are not exposed to Shortcuts
- * on this machine. The only surface is the menu bar popover, whose element tree changes with the state:
- *   idle / running / paused → scroll area › [status texts, 3 buttons: Start-or-Resume, Pause, Break]
- *   break complete          → group › [ "Break complete", "Nice reset…", 2 unnamed buttons ]
- * So never address buttons by a fixed path: open the popover, read every static text and every button
- * wherever they sit, then pick the button by its label (name / description / help), falling back to index.
+ * Kofe Flow (4.7) has no URL scheme, no scripting dictionary and its App Intents are not exposed.
+ * Its menu-bar popover is not reachable through Accessibility (0 AX windows, off-screen CG layer).
+ * The only scriptable surface is the **Dashboard window** (1200×860, tabs Timer / Analytics / Settings),
+ * which the app opens on launch and `open -b` re-opens. Timer tab layouts (probed 2026-09-05):
+ *   running        : "Deep work is running."  buttons: [wide]                       wide = Pause
+ *   paused         : "Focus is paused."       buttons: [wide, small-L, small-R]     wide = Resume, small-L = Take a break, small-R = ?
+ *   break          : "Take a short break."    buttons: [wide, small]                small = Skip break → fresh focus
+ *   break complete : "Break complete"         buttons: [b1, b2] (no tabs)           b1 = Start focus
+ * Action buttons carry no help/name (description "button"); tabs carry help "Timer|Analytics|Settings",
+ * the share button help "Share today's focus card", window chrome has description "close button" etc.
+ * So: walk the tree, keep only anonymous "button"s, pick the widest as primary, the rest by x.
  */
-export type Popover = { texts: string[]; buttons: string[] };
+type Btn = { help: string; desc: string; width: number; x: number; index: number };
+export type Screen = { texts: string[]; buttons: Btn[] };
 
-// `entire contents` of the popover window comes back empty (probed 2026-09-05); a recursive walk over
-// `UI elements` is what works. Handlers must live outside the `tell process` block.
 const WALK = `on walk(e, ts, bs)
   tell application "System Events"
     try
       set r to role of e
       if r is "AXStaticText" then set end of ts to (value of e as string)
       if r is "AXButton" then
-        set lbl to ""
+        set h to ""
         try
-          set lbl to (name of e as string)
+          set h to (help of e as string)
         end try
-        if lbl is "" or lbl is "missing value" then
-          try
-            set lbl to (description of e as string)
-          end try
-        end if
-        set end of bs to {lbl, e}
+        if h is "missing value" then set h to ""
+        set d to ""
+        try
+          set d to (description of e as string)
+        end try
+        set wd to 0
+        set px to 0
+        try
+          set wd to item 1 of (size of e)
+          set px to item 1 of (position of e)
+        end try
+        set end of bs to {h, d, wd, px, e}
       end if
       repeat with c in (UI elements of e)
         my walk(c, ts, bs)
@@ -48,59 +51,79 @@ const WALK = `on walk(e, ts, bs)
   end tell
 end walk
 tell application "System Events" to tell process "Kofe Flow"
-  click menu bar item 1 of menu bar 2
-  delay 0.9
   set w to window 1
 end tell
 set ts to {}
 set bs to {}
-walk(w, ts, bs)
-set labels to {}
-repeat with b in bs
-  set end of labels to item 1 of b
-end repeat`;
+walk(w, ts, bs)`;
 
-const FINISH = `set AppleScript's text item delimiters to "||"
-return "T:" & (ts as string) & "@@B:" & (labels as string)`;
-
-function parse(out: string): Popover {
-  const [t, b] = out.split("@@B:");
-  const split = (x: string) => x.split("||").map((v) => v.trim()).filter((v) => v && v !== "missing value");
-  return { texts: split((t ?? "").replace(/^T:/, "")), buttons: (b ?? "").split("||").map((v) => v.trim()) };
+export async function ensureWindow(): Promise<void> {
+  try {
+    await run("/usr/bin/open", ["-g", "-b", BUNDLE_ID]);
+  } catch {
+    throw new Error("Kofe Flow is not installed on this Mac");
+  }
+  for (let i = 0; i < 10; i++) {
+    const n = await osa(`tell application "System Events" to tell process "Kofe Flow" to count windows`).catch(() => "0");
+    if (Number(n) > 0) return;
+    if (i === 3) await run("/usr/bin/open", ["-g", "-b", BUNDLE_ID]);
+    await new Promise((r) => setTimeout(r, 400));
+  }
+  throw new Error("Kofe Flow dashboard window did not open");
 }
 
-export async function readPopover(): Promise<Popover> {
+export async function readScreen(): Promise<Screen> {
   const out = await osa(`${WALK}
-tell application "System Events" to key code 53
-${FINISH}`);
-  return parse(out);
+set lines to {}
+repeat with b in bs
+  set end of lines to (item 1 of b) & "|" & (item 2 of b) & "|" & (item 3 of b) & "|" & (item 4 of b)
+end repeat
+set AppleScript's text item delimiters to "\\n"
+return "T:" & (ts as string) & "\\n@@\\n" & (lines as string)`);
+  const [t, b] = out.split("\n@@\n");
+  const texts = (t ?? "").replace(/^T:/, "").split("\n").map((s) => s.trim()).filter((s) => s && s !== "missing value" && s !== "Kofe Flow");
+  const buttons = (b ?? "").split("\n").filter(Boolean).map((line, i) => {
+    const [help, desc, width, x] = line.split("|");
+    return { help, desc, width: Number(width) || 0, x: Number(x) || 0, index: i + 1 };
+  });
+  return { texts, buttons };
 }
 
-/** Click the n-th (1-based) button found in the popover, then return the fresh status line. */
-export async function pressButtonIndex(n: number): Promise<string> {
+const actions = (s: Screen) => s.buttons.filter((b) => !b.help && b.desc === "button");
+export const primary = (s: Screen) => actions(s).reduce<Btn | undefined>((best, b) => (!best || b.width > best.width ? b : best), undefined);
+export const secondary = (s: Screen, n: number) => {
+  const p = primary(s);
+  return actions(s).filter((b) => b !== p).sort((a, b) => a.x - b.x)[n - 1];
+};
+
+export async function clickIndex(index: number): Promise<void> {
   await osa(`${WALK}
 tell application "System Events"
-  if (count of bs) >= ${n} then click item 2 of item ${n} of bs
-  delay 0.8
-  try
-    key code 53
-  end try
+  if (count of bs) >= ${index} then click item 5 of item ${index} of bs
 end tell
-return "ok"`);
-  return statusLine();
+delay 0.7`);
 }
 
-/** Click the first button whose label matches one of the patterns; else the fallback index. */
-export async function pressButton(patterns: RegExp[], fallbackIndex: number): Promise<string> {
-  const { buttons } = await readPopover();
-  const idx = buttons.findIndex((b) => patterns.some((p) => p.test(b)));
-  return pressButtonIndex(idx >= 0 ? idx + 1 : fallbackIndex);
+/** Make sure the Timer tab is showing (tabs are absent on the "Break complete" screen — that is fine). */
+export async function showTimerTab(s: Screen): Promise<Screen> {
+  const tab = s.buttons.find((b) => b.help === "Timer");
+  if (!tab) return s;
+  await clickIndex(tab.index);
+  return readScreen();
 }
 
-export async function statusLine(): Promise<string> {
-  const { texts } = await readPopover();
-  return texts.slice(0, 2).join(" ") || "no status";
+export const statusOf = (s: Screen) => s.texts.slice(0, 2).join(" ") || "no status";
+export const isRunning = (s: Screen) => /running/i.test(statusOf(s));
+export const isPaused = (s: Screen) => /paused/i.test(statusOf(s));
+export const isBreakDone = (s: Screen) => /break complete/i.test(statusOf(s));
+export const isBreak = (s: Screen) => /break/i.test(statusOf(s)) && !isBreakDone(s);
+
+export async function screen(): Promise<Screen> {
+  await ensureWindow();
+  return showTimerTab(await readScreen());
 }
-export const isRunning = (s: string) => /running|deep work|focus(ing)? (is )?(on|active)/i.test(s) && !/paused/i.test(s);
-export const isPaused = (s: string) => /paused/i.test(s);
-export const isBreak = (s: string) => /break/i.test(s);
+export async function press(btn: Btn | undefined, what: string): Promise<Screen> {
+  if (!btn) throw new Error(`no ${what} button on this screen`);
+  await clickIndex(btn.index);
+  return readScreen();
+}

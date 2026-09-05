@@ -1,13 +1,12 @@
 import { closeMainWindow, showHUD } from "@raycast/api";
-import { ensureRunning, isBreak, isRunning, pressButton, statusLine } from "./lib";
+import { isBreak, isRunning, press, primary, screen, secondary, statusOf } from "./lib";
 export default async function Command() {
   await closeMainWindow();
   try {
-    await ensureRunning();
-    const s = await statusLine();
-    if (isRunning(s)) { await showHUD(`Kofe Flow: ${s}`); return; }
-    // Break screen offers "Start focus"-like buttons; idle/paused screens put Start/Resume first.
-    const after = await pressButton([/start|resume|focus/i], isBreak(s) ? 1 : 1);
-    await showHUD(`Kofe Flow: ${after}`);
+    const s = await screen();
+    if (isRunning(s)) { await showHUD(`Kofe Flow: ${statusOf(s)}`); return; }
+    // paused → Resume (wide) · break → Skip break (small) · break complete / idle → Start (wide / first)
+    const after = isBreak(s) ? await press(secondary(s, 1), "skip break") : await press(primary(s), "start");
+    await showHUD(`Kofe Flow: ${statusOf(after)}`);
   } catch (e) { await showHUD(`Kofe Flow: ${String(e).slice(0, 90)}`); }
 }

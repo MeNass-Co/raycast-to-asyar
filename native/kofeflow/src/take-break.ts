@@ -1,11 +1,11 @@
 import { closeMainWindow, showHUD } from "@raycast/api";
-import { ensureRunning, isBreak, pressButton, statusLine } from "./lib";
+import { isBreak, isBreakDone, isRunning, press, primary, screen, secondary, statusOf } from "./lib";
 export default async function Command() {
   await closeMainWindow();
   try {
-    await ensureRunning();
-    const s = await statusLine();
-    if (isBreak(s)) { await showHUD(`Kofe Flow: ${s}`); return; }
-    await showHUD(`Kofe Flow: ${await pressButton([/break/i], 3)}`);
+    let s = await screen();
+    if (isBreak(s) || isBreakDone(s)) { await showHUD(`Kofe Flow: ${statusOf(s)}`); return; }
+    if (isRunning(s)) s = await press(primary(s), "pause"); // break lives on the paused screen
+    await showHUD(`Kofe Flow: ${statusOf(await press(secondary(s, 1), "break"))}`);
   } catch (e) { await showHUD(`Kofe Flow: ${String(e).slice(0, 90)}`); }
 }
