@@ -354,9 +354,9 @@ code-sign wedge). Nassim authorized a reboot (2026-09-04). **Batch 4 is fully co
    New cdhash = read `codesign -dvvv .../bundle/macos/asyar.app | grep CDHash`.
 3. **Install on MBA + MBP** exactly like batch 3 (see the keychain tattoo `reference_asyar_keychain_resign`):
    quit asyar → cp new app to /Applications → **re-extract master key** from MBP
-   (`ssh mbpn.local 'echo <redacted>|sudo -S launchctl asuser 501 sudo -u nassimlecornet /usr/bin/security find-generic-password -s org.asyar.app -a data-encryption-v1 -w ~/Library/Keychains/login.keychain-db'`)
+   (`ssh mbpn.local 'echo <sudo-pw>|sudo -S launchctl asuser 501 sudo -u nassimlecornet /usr/bin/security find-generic-password -s org.asyar.app -a data-encryption-v1 -w ~/Library/Keychains/login.keychain-db'`)
    → `security delete-generic-password` then `add-generic-password -w <KEY> -T /Applications/asyar.app -U` →
-   `set-generic-password-partition-list -S "cdhash:<NEW>,apple:,apple-tool:,teamid:877MKJ6983" -k <redacted>`
+   `set-generic-password-partition-list -S "cdhash:<NEW>,apple:,apple-tool:,teamid:877MKJ6983" -k <login-pw>`
    → copy theme/com.nassim.lunar-light + native/com.nassim.systemplus/manifest.json into the extensions dir →
    `python3 native/ai-commands/seed-ai-extensions.py --purge && python3 native/ai-commands/seed-ai-extensions.py`
    (--purge first to pick up cleaner names + per-extension icons) → `delete from item_aliases` →
