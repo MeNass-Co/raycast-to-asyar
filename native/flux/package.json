@@ -1,0 +1,18 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "flux",
+  "title": "f.lux",
+  "description": "Control f.lux from the launcher: disable it for an hour or until sunrise, toggle Darkroom and Movie mode, open its preferences.",
+  "icon": "icon.png",
+  "author": "nassim",
+  "license": "MIT",
+  "commands": [
+    { "name": "disable-for-an-hour", "title": "Disable for an Hour", "subtitle": "f.lux", "description": "Turn f.lux off for one hour", "mode": "no-view", "keywords": ["disable", "off", "hour"] },
+    { "name": "disable-until-sunrise", "title": "Disable Until Sunrise", "subtitle": "f.lux", "description": "Turn f.lux off until sunrise", "mode": "no-view", "keywords": ["disable", "off", "sunrise", "night"] },
+    { "name": "enable", "title": "Enable", "subtitle": "f.lux", "description": "Turn f.lux back on if it is disabled", "mode": "no-view", "keywords": ["enable", "on", "resume"] },
+    { "name": "toggle-darkroom", "title": "Toggle Darkroom", "subtitle": "f.lux", "description": "Toggle f.lux Darkroom colour effect", "mode": "no-view", "keywords": ["darkroom", "red", "effect"] },
+    { "name": "toggle-movie-mode", "title": "Toggle Movie Mode", "subtitle": "f.lux", "description": "Toggle f.lux Movie mode (2½ hours)", "mode": "no-view", "keywords": ["movie", "film", "effect"] },
+    { "name": "preferences", "title": "Preferences", "subtitle": "f.lux", "description": "Open f.lux preferences", "mode": "no-view", "keywords": ["settings", "preferences", "options"] }
+  ],
+  "dependencies": { "@raycast/api": "^1.100.0" }
+}

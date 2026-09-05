@@ -1,0 +1,16 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "amphetamine",
+  "title": "Amphetamine",
+  "description": "Keep your Mac awake with Amphetamine sessions: start, start for a duration, end, and check what's left.",
+  "icon": "icon.png",
+  "author": "nassim",
+  "license": "MIT",
+  "commands": [
+    { "name": "start-session", "title": "Start Session", "subtitle": "Amphetamine", "description": "Keep the Mac awake indefinitely", "mode": "no-view", "keywords": ["awake", "caffeinate", "sleep", "keep"] },
+    { "name": "start-for", "title": "Start Session For…", "subtitle": "Amphetamine", "description": "Keep the Mac awake for a chosen duration", "mode": "view", "keywords": ["awake", "timer", "duration"] },
+    { "name": "end-session", "title": "End Session", "subtitle": "Amphetamine", "description": "Let the Mac sleep again", "mode": "no-view", "keywords": ["sleep", "stop", "decaffeinate"] },
+    { "name": "session-status", "title": "Session Status", "subtitle": "Amphetamine", "description": "Show whether a session is active and how long it has left", "mode": "no-view", "keywords": ["remaining", "status", "time"] }
+  ],
+  "dependencies": { "@raycast/api": "^1.100.0" }
+}
