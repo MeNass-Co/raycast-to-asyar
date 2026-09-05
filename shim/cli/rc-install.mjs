@@ -26,8 +26,12 @@ const index = await (await fetch(API, { headers: { Accept: 'application/vnd.gith
 const byId = new Map(index.extensions.map((e) => [e.id, e]));
 if (args[0] === '--search') { const q = args.slice(1).join(' ').toLowerCase(); for (const e of index.extensions) if ((e.id + ' ' + e.name + ' ' + (e.description ?? '')).toLowerCase().includes(q)) console.log(`${e.id.padEnd(48)} ${e.name} — ${(e.description ?? '').slice(0, 80)}`); process.exit(0); }
 
-const wanted = args.filter((a) => !a.startsWith('--')).map((a) => byId.get(a) ?? index.extensions.find((e) => e.id.endsWith('.' + a.replace(/-/g, '')) || e.name.toLowerCase() === a.toLowerCase()) ?? (() => { throw new Error(`not in index: ${a}`); })());
-if (!wanted.length) { console.error('usage: rc-install.mjs <id> ... | --search <text>'); process.exit(2); }
+// --dir <path> ...: install already-built local extension folders (native/ Raycast-API ports converted by
+// rc2asyar) through the same consent + shell-trust path. Copying by hand skips the shell_trusted_binaries
+// row and every command dies with `shell_write_stdin: Not found: spawnId` (lived 2026-09-05).
+const localDirs = args[0] === '--dir' ? args.slice(1).filter((a) => !a.startsWith('--')) : [];
+const wanted = localDirs.length ? [] : args.filter((a) => !a.startsWith('--')).map((a) => byId.get(a) ?? index.extensions.find((e) => e.id.endsWith('.' + a.replace(/-/g, '')) || e.name.toLowerCase() === a.toLowerCase()) ?? (() => { throw new Error(`not in index: ${a}`); })());
+if (!wanted.length && !localDirs.length) { console.error('usage: rc-install.mjs <id> ... | --search <text> | --dir <built-ext-dir> ...'); process.exit(2); }
 
 // 1. download + verify + unzip (Asyar not touched yet)
 const staged = [];
@@ -40,6 +44,14 @@ for (const e of wanted) {
   execFileSync('unzip', ['-qo', tmp, '-d', dir]);
   const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8'));
   staged.push({ e, dir, manifest }); log('downloaded', e.id, e.version);
+}
+
+for (const d of localDirs) {
+  const src = path.resolve(d);
+  const manifest = JSON.parse(fs.readFileSync(path.join(src, 'manifest.json'), 'utf8'));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'rc-install-'));
+  fs.cpSync(src, dir, { recursive: true });
+  staged.push({ e: { id: manifest.id }, dir, manifest }); log('staged local', manifest.id, src);
 }
 
 // 2. quit Asyar, swap files, edit settings + DB, relaunch
