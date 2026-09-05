@@ -1,0 +1,53 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "protonvpn",
+  "title": "Proton VPN",
+  "description": "Browse every Proton VPN country and city with live server load, connect in one keystroke, jump between profiles, and see your current connection.",
+  "icon": "icon.png",
+  "author": "nassim",
+  "categories": ["Applications", "Security"],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "connect",
+      "title": "Connect to Country",
+      "subtitle": "Proton VPN",
+      "description": "Every Proton VPN location with server count and load; press Enter to connect, expand a country to pick a city",
+      "mode": "view",
+      "keywords": ["vpn", "proton", "country", "location", "server", "connect"]
+    },
+    {
+      "name": "profiles",
+      "title": "Connect with Profile",
+      "subtitle": "Proton VPN",
+      "description": "Your Proton VPN profiles (Fastest, Random, Stealth, and the ones you created)",
+      "mode": "view",
+      "keywords": ["vpn", "proton", "profile", "fastest", "random", "stealth"]
+    },
+    {
+      "name": "status",
+      "title": "Connection Status",
+      "subtitle": "Proton VPN",
+      "description": "Show the current server, IP, protocol and load",
+      "mode": "no-view",
+      "keywords": ["vpn", "proton", "status", "ip"]
+    },
+    {
+      "name": "quick-connect",
+      "title": "Quick Connect",
+      "subtitle": "Proton VPN",
+      "description": "Connect using your default Proton VPN profile",
+      "mode": "no-view",
+      "keywords": ["vpn", "proton", "connect", "quick"]
+    },
+    {
+      "name": "disconnect",
+      "title": "Disconnect",
+      "subtitle": "Proton VPN",
+      "description": "Disconnect the VPN",
+      "mode": "no-view",
+      "keywords": ["vpn", "proton", "disconnect", "off"]
+    }
+  ],
+  "dependencies": { "@raycast/api": "^1.100.0" }
+}
