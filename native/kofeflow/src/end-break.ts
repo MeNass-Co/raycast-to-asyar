@@ -5,7 +5,8 @@ export default async function Command() {
   await ensureRunning();
   try {
     const s = await statusLine();
-    if (isBreak(s)) { await showHUD(`Kofe Flow: ${s}`); return; }
-    await showHUD(`Kofe Flow: ${await pressButton([/break/i], 3)}`);
+    if (!isBreak(s)) { await showHUD(`Kofe Flow: ${s}`); return; }
+    // Break screen: prefer an explicit end/skip/done button, else the first one.
+    await showHUD(`Kofe Flow: ${await pressButton([/end|skip|done|finish|stop|dismiss/i, /start|focus|resume/i], 1)}`);
   } catch (e) { await showHUD(`Kofe Flow: ${String(e).slice(0, 90)}`); }
 }
