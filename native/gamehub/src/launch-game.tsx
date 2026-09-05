@@ -7,10 +7,12 @@ export default function Command() {
   const [running, setRunning] = useState<Set<string>>(new Set());
   useEffect(() => { setGames(readGames()); runningGames().then(setRunning); }, []);
 
+  // Fire the launch first: hiding the window tears the view (and its sidecar) down, so anything after it is lost.
+  // showHUD itself hides the launcher.
   async function launch(g: Game) {
-    await closeMainWindow();
+    try { await run("/usr/bin/open", ["-g", launchUrl(g)]); }
+    catch (e) { await showHUD(`GameHub: ${String(e).slice(0, 80)}`); return; }
     await showHUD(`Launching ${cleanName(g.name)}…`);
-    try { await run("/usr/bin/open", ["-g", launchUrl(g)]); } catch (e) { await showHUD(`GameHub: ${String(e).slice(0, 80)}`); }
   }
 
   return (
@@ -51,7 +53,7 @@ export default function Command() {
                 <Action title={isRunning ? "Switch to Game" : "Launch Game"} icon={Icon.Play} onAction={() => launch(g)} />
                 {g.installDir ? <Action.ShowInFinder title="Show Install Folder" path={g.installDir} shortcut={{ modifiers: ["cmd"], key: "f" }} /> : null}
                 {storeUrl(g) ? <Action.OpenInBrowser title="Open Steam Store Page" url={storeUrl(g)!} shortcut={{ modifiers: ["cmd"], key: "s" }} /> : null}
-                <Action title="Open GameHub" icon={Icon.AppWindow} shortcut={{ modifiers: ["cmd"], key: "o" }} onAction={async () => { await closeMainWindow(); await run("/usr/bin/open", ["-b", BUNDLE_ID]); }} />
+                <Action title="Open GameHub" icon={Icon.AppWindow} shortcut={{ modifiers: ["cmd"], key: "o" }} onAction={async () => { await run("/usr/bin/open", ["-b", BUNDLE_ID]); await closeMainWindow(); }} />
                 <Action.CopyToClipboard title="Copy Launch Link" content={launchUrl(g)} shortcut={{ modifiers: ["cmd"], key: "c" }} />
               </ActionPanel>
             }

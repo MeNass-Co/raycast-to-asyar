@@ -1,4 +1,4 @@
-import { Action, ActionPanel, Color, Icon, List, closeMainWindow, showHUD, showToast, Toast } from "@raycast/api";
+import { Action, ActionPanel, Color, Icon, List, showHUD, showToast, Toast } from "@raycast/api";
 import { useEffect, useState } from "react";
 import { City, Country, flagOf, isInstalled, loadColor, protonax, readCatalogue, Status } from "./lib";
 
@@ -35,7 +35,7 @@ async function connect(country: Country, city?: City) {
   const toast = await showToast({ style: Toast.Style.Animated, title: `Connecting to ${target}…` });
   try {
     const s: Status = await protonax("connect", country.name, ...(city ? [city.name] : []));
-    if (s.ok && s.connected) { await toast.hide(); await closeMainWindow(); await showHUD(`Proton VPN: ${s.header} · ${s.ip}`); }
+    if (s.ok && s.connected) { await toast.hide(); await showHUD(`Proton VPN: ${s.header} · ${s.ip}`); }
     else { toast.style = Toast.Style.Failure; toast.title = `Could not reach ${target}`; toast.message = s.header; }
   } catch (e) {
     toast.style = Toast.Style.Failure; toast.title = "Proton VPN"; toast.message = String(e).slice(0, 120);
@@ -66,8 +66,8 @@ export default function Command() {
             actions={
               <ActionPanel>
                 {status.connected
-                  ? <Action title="Disconnect" icon={Icon.XMarkCircle} style={Action.Style.Destructive} onAction={async () => { const t = await showToast({ style: Toast.Style.Animated, title: "Disconnecting…" }); const s = await protonax("disconnect"); await t.hide(); await closeMainWindow(); await showHUD(s.connected ? "Proton VPN: still connected" : "Proton VPN: disconnected"); }} />
-                  : <Action title="Quick Connect" icon={Icon.Bolt} onAction={async () => { const t = await showToast({ style: Toast.Style.Animated, title: "Connecting…" }); const s = await protonax("quick"); await t.hide(); await closeMainWindow(); await showHUD(s.connected ? `Proton VPN: ${s.header}` : "Proton VPN: connection failed"); }} />}
+                  ? <Action title="Disconnect" icon={Icon.XMarkCircle} style={Action.Style.Destructive} onAction={async () => { const t = await showToast({ style: Toast.Style.Animated, title: "Disconnecting…" }); const s = await protonax("disconnect"); await t.hide(); await showHUD(s.connected ? "Proton VPN: still connected" : "Proton VPN: disconnected"); }} />
+                  : <Action title="Quick Connect" icon={Icon.Bolt} onAction={async () => { const t = await showToast({ style: Toast.Style.Animated, title: "Connecting…" }); const s = await protonax("quick"); await t.hide(); await showHUD(s.connected ? `Proton VPN: ${s.header}` : "Proton VPN: connection failed"); }} />}
               </ActionPanel>
             }
           />
