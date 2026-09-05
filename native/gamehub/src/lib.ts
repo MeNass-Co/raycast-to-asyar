@@ -88,12 +88,17 @@ export const fmtAgo = (ts: number) => { if (!ts) return ""; const d = (Date.now(
 export const run = (cmd: string, args: string[]) =>
   new Promise<string>((res, rej) => execFile(cmd, args, (e, out) => (e ? rej(e) : res(String(out).trim()))));
 
-/** Is a game process alive under CrossOver/Wine right now? (best effort: match the install dir's exe folder name). */
+/** Games launched by GameHub run under its bundled Wine: `…/wine-engine/…/bin/wine C:\\…\\<exe>`. Match the
+ *  install folder name (Steam `installdir`) or the game name against those command lines. */
 export async function runningGames(): Promise<Set<string>> {
   try {
     const ps = await run("/bin/ps", ["-axo", "command"]);
+    const wine = ps.split("\n").filter((l) => /wine-engine|CrossOver|\bwine\b/i.test(l)).join("\n").toLowerCase();
     const set = new Set<string>();
-    for (const g of readGames()) { const key = g.installDir ? g.installDir.split("/").pop() ?? "" : cleanName(g.name); if (key && ps.includes(key)) set.add(g.id); }
+    for (const g of readGames()) {
+      const keys = [g.installDir?.split("/").pop(), cleanName(g.name).split(/[:™]/)[0]].filter((k): k is string => !!k && k.length > 3).map((k) => k.toLowerCase());
+      if (keys.some((k) => wine.includes(k))) set.add(g.id);
+    }
     return set;
   } catch { return new Set(); }
 }
