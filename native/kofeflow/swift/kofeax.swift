@@ -33,10 +33,11 @@ var found = snapshot()
 if found.isEmpty && texts.isEmpty { fputs("no window\n", stderr); exit(3) }
 if args.count >= 3, args[1] == "click", let i = Int(args[2]) {
   guard i >= 1, i <= found.count else { fputs("no button \(i) (have \(found.count))\n", stderr); exit(4) }
+  let before = texts
   let r = AXUIElementPerformAction(found[i - 1], kAXPressAction as CFString)
   if r != .success { fputs("press failed: \(r.rawValue)\n", stderr); exit(5) }
-  usleep(600_000)
-  _ = snapshot()
+  // The dashboard redraws lazily; wait until the texts actually change (≤ 2 s) so the caller's HUD is fresh.
+  for _ in 0..<20 { usleep(100_000); _ = snapshot(); if texts != before { break } }
 }
 let out: [String: Any] = ["texts": texts, "buttons": rows]
 let data = try! JSONSerialization.data(withJSONObject: out)
