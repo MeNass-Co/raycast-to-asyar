@@ -8,7 +8,8 @@ dirs=[args[0]] if single else [os.path.dirname(m) for m in glob.glob(os.path.joi
 n=0
 for d in dirs:
     mf=os.path.join(d,'manifest.json'); m=json.load(open(mf))
-    if not str(m.get('id','')).startswith('raycast.'): continue
+    # Converted Raycast extensions and our own natives (com.nassim.*) alike; skip only Asyar built-ins.
+    if not str(m.get('id','')).startswith(('raycast.','com.nassim.')): continue
     pk=os.path.join(d,'package.json'); pkg=json.load(open(pk)) if os.path.exists(pk) else {}
     ext_kw=' '.join(pkg.get('keywords') or [])
     bycmd={c.get('name'):c for c in pkg.get('commands',[])}
