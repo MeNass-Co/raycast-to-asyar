@@ -613,3 +613,25 @@ Outils : `/tmp/ocr` (Vision OCR, Swift) et `/tmp/rcx` (extraction Assets.car) ; 
 - `rc2asyar` : les **assets exécutables** entrent dans `permissionArgs['shell:spawn']` (trust row par rc-install). Sondes réutilisables : `/tmp/axdump <bundle>` (arbre AX complet), `/tmp/axpress <bundle> desc|id|title|settext|read`, `/tmp/exp`, `/tmp/cgall`.
 - MBA : Proton VPN installé mais **déconnecté du compte** → la vue liste bien les 145 pays (catalogue local) et l'action répond « signed out ».
 - **Vérifié depuis le launcher MBP (16:40, typer CGEvent `/tmp/asyar-type` visant le pid d'asyar, sans voler le focus)** : GameHub view → « Launching Sekiro… » HUD en 1 s, Wine démarre ; Proton VPN Connect view → Iceland en 4 s, Profiles view → Fastest en 2 s. Règle apprise : dans une vue, **ne jamais `closeMainWindow()` avant le travail** (ça démonte l'iframe et son sidecar, la promesse meurt) ; faire le travail sous un toast animé, puis `showHUD` (qui cache le launcher lui-même).
+
+## 2026-09-08 — « aucune extension ne répond sur la MBP » (build 31)
+
+Retour Nassim : taper un nom d'app à extension native (proton, gamehub…) n'affiche rien sur la MBP, même avec des alias.
+Enquête live (index `search_index.db`, `settings.dat`, `item_aliases`, WAL) → **trois causes empilées, aucune côté extension** :
+
+1. **Pas de mots-déclencheurs sur les natives.** `tools/add-triggers.py` ne traitait que `raycast.*` ; les `com.nassim.*`
+   n'avaient que leur nom de commande (« Connect to Country », « Launch Game »). « proton » ne matche donc rien.
+   → `add-triggers.py` couvre `com.nassim.*` ; rejoué sur les deux Macs (50 + 53 manifests).
+2. **L'index Rust n'actualisait jamais une commande déjà présente.** `sync_command_index` ne faisait qu'ajouter/retirer
+   par id : un manifest avec un nouveau `trigger` gardait l'ancien pour toujours.
+   → `commands.rs` : rafraîchit en place name/trigger/icon/type/extension (usage conservé), log « N updated », test
+   `sync_command_index_refreshes_existing_command_in_place`.
+3. **La fenêtre Réglages effaçait l'index et les alias.** Le toggle « masquer une commande » appelle
+   `extensionManager.resyncCommandIndex()` **dans la webview Réglages**, dont l'ExtensionManager n'a jamais chargé
+   d'extensions → sync avec une liste vide → Rust supprime toutes les `cmd_` puis `prune_orphans` efface tous les alias.
+   Preuve : WAL de la MBP contenait `gh`, `fanson`, `fansoff`, `fluxoff` (05/09 14:37) et `gamingmode` (06/09 11:17),
+   table vide ensuite ; index MBP = 65 commandes (dont dynamiques) vs 357 MBA. Les 5 alias ont été réinsérés à la main.
+   → `extensionManager.resyncCommandIndex()` : si `!initialized`, émet `asyar:commands-resync` ; le launcher écoute,
+   recharge `settingsService` puis pousse sa vraie liste. Test vitest ajouté.
+
+Alias restaurés MBP : gh, fanson, fansoff, gamingmode, fluxoff. Build 31 = build 30 + ces deux fixes Rust/TS.
