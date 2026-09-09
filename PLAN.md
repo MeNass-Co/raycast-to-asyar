@@ -635,3 +635,9 @@ Enquête live (index `search_index.db`, `settings.dat`, `item_aliases`, WAL) →
    recharge `settingsService` puis pousse sa vraie liste. Test vitest ajouté.
 
 Alias restaurés MBP : gh, fanson, fansoff, gamingmode, fluxoff. Build 31 = build 30 + ces deux fixes Rust/TS.
+
+## 2026-09-09 — « le file search gèle au 3e caractère » (MBP)
+- **Preuve** : Rust idle, WebContent idle, log s'arrête à `Search in extension: "hil"`, arbre AX = AXWebArea vide. Pas un blocage, une webview dont le DOM a été détruit.
+- **Cause** : `query::execute` renvoie deux chemins avec le même `file_id` (hard links `links=2` dans miniforge, symlinks AGENTS.md). `SplitListDetail` fait `{#each … (item.id)}` avec `id = fileId` → Svelte 5 prod lève `each_key_duplicate` → `<svelte:boundary onerror>` d'AppShell détruit tout l'arbre (boundary.js `#handle_error` → `destroy_effect(main_effect)`, pas de `failed` snippet). Plus d'input, plus d'Escape.
+- **Fix** : (1) Rust dédoublonne les hits par file_id en gardant le meilleur score, test ; (2) clé de liste = path ; (3) roots par défaut + /Applications et /System/Applications ; (4) action « Reveal in Finder » Cmd+Enter sur les apps en root search.
+- Rejouable hors ligne : `ASYAR_SNAPSHOT=/tmp/mbp_file_index_snapshot.bin cargo test --release --lib file_index::query::snapshot_repro -- --ignored --nocapture`.
